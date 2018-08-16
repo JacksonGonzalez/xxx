@@ -1,0 +1,325 @@
+<md-dialog
+  style="min-width: 100%; min-height: 100%;"
+>
+  <md-toolbar>
+    <div
+      flex
+      layout="row"
+      layout-padding
+    >
+      <div flex>
+        <span>
+          {{ articulo.cuerpo.opt }} {{ articulo.cuerpo.titulo }}
+        </span>
+      </div>
+      <md-button
+        ng-if="articulo.cuerpo.btn.disable"
+        class="md-icon-button md-primary md-secondary md-raised"
+        ng-click="articulo.cuerpo.generar()"
+      >
+        <md-icon md-svg-icon="plus-circle"></md-icon>
+      </md-button>
+      <md-button
+        class="md-icon-button md-primary md-secondary md-raised md-warn md-button md-ink-ripple  ng-scope"
+        ng-click="articulo.cuerpo.btn.close()"
+      >
+        <md-icon md-svg-icon="close-circle"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+
+  <md-dialog-content
+    flex
+    layout="row"
+    layout-gt-sm="column"
+  >
+    <md-list flex>
+      <md-list-item
+        class="md-3-line"
+        ng-repeat="item in articulo.cuerpo.list"
+        md-whiteframe="1dp"
+      >
+        <div
+          flex
+          layout="column"
+        >
+          <div
+            flex
+            layout="column"
+            layout-gt-sm="row"
+          >
+            <md-input-container flex>
+              <label>Nombre</label>
+              <input
+                type="text"
+                ng-model="item.titulo"
+                ng-blur= "articulo.cuerpo.btn.blurdata('titulo')"
+              >
+            </md-input-container>
+          </div>
+          <div
+            flex
+            layout="column"
+            layout-gt-sm="row"
+          >
+            <md-input-container flex>
+              <label>Codigo</label>
+              <input
+                type="text"
+                ng-model="item.codigo"
+                ng-blur= "articulo.cuerpo.btn.blurdata('codigo')"
+              >
+            </md-input-container>
+            <md-input-container flex>
+              <label>Tipo</label>
+              <!-- <input
+                type="text"
+                ng-model="item.tipo"
+              > -->
+              <md-select
+                ng-model="item.tipo"
+                class="md-no-underline"
+                ng-blur= "articulo.cuerpo.btn.blurdata('tipo')"
+              >
+                <md-option
+                  value="producto"
+                >
+                  Producto
+                </md-option>
+                <md-option
+                  value="materiaprima"
+                >
+                  Materiaprima
+                </md-option>
+                <md-option
+                  value="materiaprocesada"
+                >
+                  Materia prima procesada
+                </md-option>
+                <md-option
+                  value="servicio"
+                >
+                  Servicio
+                </md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container flex>
+              <label>Estado</label>
+              <md-select
+                ng-model="item.estado"
+                class="md-no-underline"
+                ng-blur= "articulo.cuerpo.btn.blurdata('estado')"
+              >
+                <md-option
+                  value="activo"
+                >
+                  Activo
+                </md-option>
+                <md-option
+                  value="inactivo"
+                >
+                  Inactivo
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+          <div
+            flex
+            layout="column"
+            layout-gt-sm="row"
+          >
+            <md-input-container flex>
+              <label>Tipo de Unidad</label>
+              <md-select
+                ng-model="item.tipounidad"
+                ng-blur="articulo.cuerpo.unidad.blurunidad(item)"
+                class="md-no-underline"
+              >
+                <md-option
+                  value="null"
+                  ng-blur= "articulo.cuerpo.btn.blurdata()"
+                >
+                  Null
+                </md-option>
+                <md-option
+                  ng-blur= "articulo.cuerpo.btn.blurdata('tipounidad')"
+                  ng-repeat="key in item.listipodeunidad"
+                  ng-value="key.tipounidad"
+                >
+                  {{ key.tipounidad }}
+                </md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container flex>
+              <label>Unidad</label>
+              <md-select
+                ng-model="item.unidad"
+                class="md-no-underline"
+                ng-blur= "articulo.cuerpo.btn.blurdata('unidad')"
+              >
+                <md-option value="null">Null</md-option>
+                <md-option
+                  ng-repeat="key in item.lisunidad"
+                  ng-value="key.unidad"
+                >
+                  {{ key.unidad }}
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+          <div
+            flex
+            layout="column"
+            layout-gt-sm="row"
+          >
+            <md-input-container flex>
+              <label>Cantidad Total</label>
+              <input
+                type="number"
+                ng-model="item.cantidadtotal"
+                ng-blur= "articulo.cuerpo.btn.blurdata('cantidadtotal')"
+              >
+            </md-input-container>
+
+            <md-input-container flex>
+              <label>Cantidad Stock</label>
+              <input
+                type="number"
+                ng-model="item.cantidadstock"
+                ng-blur= "articulo.cuerpo.btn.blurdata('cantidadstock')"
+              >
+            </md-input-container>
+          </div>
+          <div
+            flex
+            layout="column"
+            layout-gt-sm="row"
+          >
+            <md-input-container flex>
+              <label>Precio de Compra</label>
+              <input
+                type="number"
+                ng-model="item.preciocompra"
+                ng-blur= "articulo.cuerpo.btn.blurdata('preciocompra')"
+              >
+            </md-input-container>
+
+            <md-input-container flex>
+              <label>Precio Venta</label>
+              <input
+                type="number"
+                ng-model="item.precioventa"
+                ng-blur= "articulo.cuerpo.btn.blurdata('precioventa')"
+              >
+            </md-input-container>
+          </div>
+          <div
+            flex
+            layout="column"
+            layout-gt-sm="row"
+          >
+            <!-- <md-input-container flex>
+              <label>Fecha Vencimiento</label>
+              <md-datepicker
+                ng-model="item.fechavencimiento"
+                md-open-on-focus
+                ng-blur= "articulo.cuerpo.btn.blurdata('fechavencimiento')"
+              >
+              </md-datepicker>
+            </md-input-container> -->
+
+            <md-input-container flex>
+              <label>Iva</label>
+              <input
+                type="number"
+                ng-blur= "articulo.cuerpo.btn.blurdata('iva')"
+                ng-model="item.iva"
+              >
+            </md-input-container>
+          </div>
+          <div
+            flex
+            layout="column"
+            layout-gt-sm="row"
+          >
+            <md-autocomplete
+               flex
+               md-floating-label="Ciudad"
+               md-item-text="item.titulo"
+               md-selected-item="articulo.item.ciudad"
+               md-search-text="articulo.cuerpo.ciudad.searchText[$index]"
+               md-items="item in articulo.cuerpo.ciudad.search($index)"
+               ng-blur= "articulo.cuerpo.btn.blurdata('ciudad')"
+               >
+            <md-item-template>
+              <span
+                md-highlight-text="articulo.cuerpo.ciudad.searchText[$index]"
+                md-highlight-flags="^i"
+                >
+                {{item.titulo}}
+              </span>
+            </md-item-template>
+            </md-autocomplete>
+
+            <md-autocomplete
+               flex
+               md-floating-label="Barrio"
+               md-item-text="item.titulo"
+               md-selected-item="item.barrio"
+               md-search-text="articulo.cuerpo.barrio.searchText[$index]"
+               md-items="item in articulo.cuerpo.barrio.search($index)"
+               ng-blur= "articulo.cuerpo.btn.blurdata('barrio')"
+               >
+            <md-item-template>
+              <span
+                md-highlight-text="articulo.cuerpo.barrio.searchText[$index]"
+                md-highlight-flags="^i"
+                >
+                {{item.titulo}}
+              </span>
+            </md-item-template>
+            </md-autocomplete>
+          </div>
+          <div
+            flex
+            layout="column"
+            layout-gt-sm="row"
+          >
+            <md-input-container flex>
+              <label>Ubicacion</label>
+              <md-select
+                ng-model="item.ubicacion"
+                class="md-no-underline"
+                ng-blur= "articulo.cuerpo.btn.blurdata('ubicacion')"
+              >
+                <!-- <md-option
+                  ng-click=""
+                >
+                  Crear
+                </md-option> -->
+                <md-option
+                  ng-repeat="ubc in articulo.cuerpo.ubicacion.list"
+                  ng-value="ubc.id"
+                >
+                  {{ ubc.titulo }}
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+        </div>
+      </md-list-item>
+    </md-list>
+  </md-dialog-content>
+  <md-dialog-actions
+    layout-align="space-between center"
+  >
+    <span>
+    </span>
+    <md-button
+      ng-if="articulo.cuerpo.btn.disable"
+      ng-click="articulo.cuerpo.btn.guardad()"
+    >
+      Agregar
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

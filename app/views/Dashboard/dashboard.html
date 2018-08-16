@@ -1,0 +1,103 @@
+<div
+    flex
+    layout="column"
+    class="md-dashboard"
+    ng-class="{'md-sidenav-left-visible': dashboard.cuerpo.sidenav.hasOpen}"
+>
+  <div
+      flex
+      layout="column"
+  >
+    <md-toolbar
+        md-whiteframe="3"
+        class="md-primary md-hue-2"
+    >
+      <div class="md-toolbar-tools">
+        <div
+            layout="row"
+            layout-align="center center"
+        >
+          <md-button
+              ng-show="!gtsm"
+              ng-click="dashboard.cuerpo.sidenav.open('left')"
+              class="md-icon-button"
+          >
+            <md-icon md-svg-icon="menu" ></md-icon>
+          </md-button>
+          <md-button
+              ng-if="gtsm"
+              ng-click="dashboard.cuerpo.sidenav.hasOpen = !dashboard.cuerpo.sidenav.hasOpen;"
+              class="md-icon-button"
+          >
+            <md-icon md-svg-icon="{{ dashboard.cuerpo.sidenav.hasOpen?'menu-left':'menu' }}"></md-icon>
+            <md-tooltip>
+              {{ dashboard.cuerpo.sidenav.hasOpen?'Cerrar':'Abrir' }} Menú
+            </md-tooltip>
+          </md-button>
+          <h3>
+            Bienvenido a Dilisap
+          </h3>
+        </div>
+      </div>
+    </md-toolbar>
+    <md-content
+        flex
+        layout="column"
+        ui-view
+    >
+      <span>Principal</span>
+    </md-content>
+  </div>
+  <md-sidenav
+      md-whiteframe="4"
+      md-component-id="left"
+      class="md-sidenav-left"
+      md-is-locked-open="dashboard.cuerpo.sidenav.hasOpen"
+      layout="column"
+  >
+    <md-toolbar
+        md-whiteframe="2"
+    >
+      <div
+          class="md-toolbar-tools"
+          layout-align="space-between center"
+      >
+      <span>Dilisap</span>
+    </div>
+    </md-toolbar>
+    <md-content
+        flex
+        md-lazy-load-container
+    >
+    <md-list
+      flex
+    >
+      <md-list-item
+        class="md-3-line"
+        ng-repeat="item in dashboard.cuerpo.menu.list"
+      >
+          <div
+            class="md-list-item-text sidebar"
+            layout="column"
+          >
+            <ul class="sidebar-menu">
+              <li class="header"></li>
+              <li class="treeview">
+                <a>
+                  <i class="fa fa-laptop" style="font-size: 19px">
+                    <span>{{ item.name }}</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </i>
+                </a>
+                <ul class="treeview-menu" ng-repeat="sub in item.sublist">
+                  <li><a ui-sref="{{sub.sref}}"><i class="fa fa-circle-o"></i> {{ sub.name }}</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+      </md-list-item>
+    </md-list>
+
+    </md-content>
+  </md-sidenav>
+</div>
