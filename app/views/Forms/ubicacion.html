@@ -1,0 +1,160 @@
+<md-dialog
+  style="min-width: 100%; min-height: 100%;"
+>
+  <md-toolbar>
+    <div
+      flex
+      layout="row"
+      layout-padding
+    >
+      <div flex>
+        <span>
+          {{ ubicaciones.cuerpo.opt }} {{ ubicaciones.cuerpo.titulo }}
+        </span>
+      </div>
+      <md-button
+        ng-if="ubicaciones.cuerpo.btn.disable"
+        class="md-icon-button md-primary md-secondary md-raised"
+        ng-click="ubicaciones.cuerpo.generar()"
+      >
+        <md-icon md-svg-icon="plus-circle"></md-icon>
+      </md-button>
+      <md-button
+        class="md-icon-button md-primary md-secondary md-raised md-warn md-button md-ink-ripple  ng-scope"
+        ng-click="ubicaciones.cuerpo.btn.close()"
+      >
+        <md-icon md-svg-icon="close-circle"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content
+    flex
+    layout="row"
+    layout-gt-sm="column"
+  >
+  <md-list flex>
+    <md-list-item
+      class="md-3-line"
+      ng-repeat="item in ubicaciones.cuerpo.list"
+      md-whiteframe="1dp"
+    >
+      <div
+        flex
+        layout="column"
+      >
+        <div
+          flex
+          layout="column"
+          layout-gt-sm="row"
+        >
+          <md-input-container
+            flex
+          >
+            <label>
+              Nombre
+            </label>
+            <input
+              type="text"
+              ng-model="item.titulo"
+            >
+          </md-input-container>
+          <md-autocomplete
+             ng-if="ubicaciones.cuerpo.titulo==='barrio'"
+             flex
+             md-floating-label="Ciudad"
+             md-item-text="item.titulo"
+             md-selected-item="item.ciudad"
+             md-search-text="ubicaciones.cuerpo.ciudad.searchText[$index]"
+             md-items="item in ubicaciones.cuerpo.ciudad.search($index)"
+             ng-blur= "ubicaciones.cuerpo.btn.blurdata('ciudad')"
+             >
+          <md-item-template>
+            <span
+              md-highlight-text="ubicaciones.cuerpo.ciudad.searchText[$index]"
+              md-highlight-flags="^i"
+              >
+              {{item.titulo}}
+            </span>
+          </md-item-template>
+          </md-autocomplete>
+          <md-autocomplete
+             ng-if="ubicaciones.cuerpo.titulo==='ciudad'"
+             flex
+             md-floating-label="Departamento"
+             md-item-text="item.titulo"
+             md-selected-item="item.departamento"
+             md-search-text="ubicaciones.cuerpo.departamento.searchText[$index]"
+             md-items="item in ubicaciones.cuerpo.departamento.search($index)"
+             ng-blur= "ubicaciones.cuerpo.btn.blurdata('departamento')"
+             >
+          <md-item-template>
+            <span
+              md-highlight-text="ubicaciones.cuerpo.departamento.searchText[$index]"
+              md-highlight-flags="^i"
+              >
+              {{item.titulo}}
+            </span>
+          </md-item-template>
+          </md-autocomplete>
+          <md-autocomplete
+             ng-if="ubicaciones.cuerpo.titulo==='departamento'"
+             flex
+             md-floating-label="Pais"
+             md-item-text="item.titulo"
+             md-selected-item="item.pais"
+             md-search-text="ubicaciones.cuerpo.pais.searchText[$index]"
+             md-items="item in ubicaciones.cuerpo.pais.search($index)"
+             ng-blur= "ubicaciones.cuerpo.btn.blurdata('pais')"
+             >
+          <md-item-template>
+            <span
+              md-highlight-text="ubicaciones.cuerpo.pais.searchText[$index]"
+              md-highlight-flags="^i"
+              >
+              {{item.titulo}}
+            </span>
+          </md-item-template>
+          </md-autocomplete>
+        </div>
+        <div
+          flex
+          layout="column"
+          layout-gt-sm="row"
+        >
+          <div
+              flex
+              layout="column"
+          >
+            <label>Descripcion</label>
+            <div
+                flex
+                layout="column"
+                class="md-full"
+            >
+              <textarea
+                  flex
+                  ui-tinymce
+                  ng-model="item.descripcion"
+                  ui-tinymce="ubicaciones.tinymce.opts"
+                  ng-blur="ubicacion.cuerpo.btn.blurdata('descripcion')"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </md-list-item>
+  </md-list>
+  </md-dialog-content>
+  <md-dialog-actions
+    layout-align="space-between center"
+  >
+    <span>
+    </span>
+    <md-button
+      ng-if="ubicaciones.cuerpo.btn.disable"
+      ng-click="ubicaciones.cuerpo.btn.guardad()"
+    >
+      Agregar
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

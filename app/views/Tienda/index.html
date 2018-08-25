@@ -1,0 +1,224 @@
+<div
+  flex
+  layout="column"
+  ui-view
+>
+  <menu-cms
+    layout="row"
+    cms-slides="tienda.config.data"
+    cms-config="tienda.config.config"
+  >
+  </menu-cms>
+  <md-content
+    flex
+    layout="column"
+    layout-fill
+  >
+    <div
+      flex
+      class="images2"
+    >
+    </div>
+  </md-content>
+  <!-- <div
+    flex
+    layout="column"
+    layout-fill
+  >
+    <div
+      flex="15"
+      layout="column"
+      class="medio"
+      layout-align="center center"
+    >
+      <div>
+        <h2>Tu Compra Segura Con Dilisap</h2>
+      </div>
+    </div> -->
+    <!-- <md-content
+      flex
+      layout="column"
+      layout-fill
+    >
+      <md-content
+        flex
+        layout="column"
+        layout-gt-sm="row"
+        layout-fill
+      >
+        <div
+          layout-padding
+          layout="column"
+          class="categorias"
+        >
+          <div
+            class="titulo"
+            layout-padding
+          >
+            <h2>Categorias</h2>
+          </div>
+          <div
+            flex
+            layout="column"
+            layout-padding
+          >
+            <h6>Electrodomesticos</h6>
+            <h6>Ropa</h6>
+            <h6>Zapatos</h6>
+            <h6>Comias</h6>
+          </div>
+        </div>
+        <div
+          flex
+        >
+          <div
+            flex
+            layout="row"
+            layout-padding
+            layout-gt-sm="row"
+          >
+            <form
+              flex
+              layout="row"
+              ng-submit="tienda.cuerpo.search.restart()"
+            >
+              <md-input-container
+                flex
+              >
+                <label>Buscar Articulo</label>
+                <input
+                  type="text"
+                  ng-model="tienda.cuerpo.search.text"
+                >
+              </md-input-container>
+              <md-button
+                type="submit"
+              >
+                Buscar
+              </md-button>
+            </form>
+          </div> -->
+          <div
+            flex="15"
+            layout="column"
+            class="medio titulo"
+            layout-align="center center"
+          >
+            <div>
+              <h2>Tu Compra Segura Con Dilisap</h2>
+            </div>
+          </div>
+          <div
+            flex
+            layout="row"
+            layout-margin
+          >
+            <div
+              layout-padding
+              layout="column"
+              class="categorias"
+            >
+              <div
+                class="titulo"
+                layout-padding
+              >
+                <h2>Categorias</h2>
+              </div>
+              <div
+                flex
+                layout="column"
+                layout-padding
+              >
+                <h6>Electrodomesticos</h6>
+                <h6>Ropa</h6>
+                <h6>Zapatos</h6>
+                <h6>Comias</h6>
+              </div>
+            </div>
+            <div flex>
+              <div
+                flex
+                layout="row"
+                layout-padding
+                layout-gt-sm="row"
+              >
+                <form
+                  flex
+                  layout="row"
+                  ng-submit="tienda.cuerpo.search.restart()"
+                >
+                  <md-input-container
+                    flex
+                  >
+                    <label>Buscar Articulo</label>
+                    <input
+                      type="text"
+                      ng-model="tienda.cuerpo.search.txt"
+                    >
+                  </md-input-container>
+                  <md-button
+                    type="submit"
+                  >
+                    Buscar
+                  </md-button>
+                </form>
+              </div>
+              <md-grid-list
+                 flex
+                 md-cols-xs="1"
+                 md-cols-sm="1"
+                 md-cols-md="5"
+                 md-cols-gt-md="5"
+                 md-row-height="2:2"
+                 md-row-height-gt-md="1:1"
+                 md-gutter="12px"
+                 md-gutter-gt-sm="8px"
+             >
+               <md-grid-tile
+                   md-colspan-sm="1"
+                   md-colspan-xs="1"
+                   md-whiteframe="1"
+                   ng-repeat="item in tienda.cuerpo.search.items"
+               >
+                 <div
+                     class="md-grid-tile-content images4"
+                     class="md-lazy-load md-lazy-load-thumbnail"
+                 >
+                 <!-- md-lazy-load="{{ tile.imagen.thumbnail }}"
+                 ng-class="{'md-success-loaded': inmuebles.hasLoadedImage[tile.imagen.url]}" -->
+                 <md-grid-tile-footer>
+                    <div
+                        layout="row"
+                        class="md-headline"
+                        layout-align="center center"
+                        ng-click="tienda.cuerpo.search.ver(item, $index, $event)"
+                    >
+                     <h3>{{ item.titulo }}</h3>
+                   </div>
+                 </md-grid-tile-footer>
+                 </div>
+               </md-grid-tile>
+             </md-grid-list>
+            </div>
+         </div>
+           <!-- <div
+             layout="row"
+             layout-align="start center"
+           >
+             <div>
+               <md-button>
+                 Siguiente
+               </md-button>
+             </div>
+             <div>
+               <md-button>
+                 Atras
+               </md-button>
+             </div>
+           </div>
+          </div>
+        </div>
+      </md-content>
+    </md-content> -->
+  <!-- </div> -->
+</div>

@@ -1,0 +1,80 @@
+<div
+    flex
+    layout="column"
+    ui-view
+>
+  <md-subheader
+      md-whiteframe="2"
+      class="md-primary md-hue-1"
+      style="border-radius:10px"
+  >
+    <div
+      flex
+      layout="row"
+      layout-padding
+    >
+      <label flex>
+        Configuracion Generales
+      </label>
+    </div>
+  </md-subheader>
+  <md-content
+    flex
+    layout="row"
+    layout-gt-sm="column"
+  >
+    <md-tabs
+        flex
+        class="md-primary flex"
+        md-stretch-tabs="always"
+        md-selected="selectedIndex"
+        md-border-bottom md-autoselect md-swipe-content
+      >
+      <md-tab flex>
+        <md-tab-label>
+          <label>Empresa</label>
+        </md-tab-label>
+        <md-tab-body>
+          <div
+            flex
+            layout-fill
+            layout="column"
+            layout-margin
+            ng-include="'views/partials/general-empresa.html'">
+
+          </div>
+        </md-tab-body>
+      </md-tab>
+      <md-tab flex>
+        <md-tab-label>
+          <label>General</label>
+        </md-tab-label>
+        <md-tab-body>
+          <div
+            flex
+            layout-fill
+            layout="column"
+            layout-margin
+            ng-include="'views/partials/general-general.html'">
+
+          </div>
+        </md-tab-body>
+      </md-tab>
+      <md-tab flex>
+        <md-tab-label>
+          <label>Dilisap</label>
+        </md-tab-label>
+        <md-tab-body>
+          <div
+            flex
+            layout-fill
+            layout="column"
+            layout-margin
+            ng-include="'views/partials/general-dilisap.html'">
+
+          </div>
+        </md-tab-body>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>

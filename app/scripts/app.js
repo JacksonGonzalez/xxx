@@ -65,31 +65,22 @@
     $mdIconProvider,
     $locationProvider,
     $mdThemingProvider,
-    $urlRouterProvider,
-  ) {
+    $urlRouterProvider)
+    {
     // console.log($sailsProvider);
     // $locationProvider.html5Mode(true);
     // $locationProvider.hashPrefix('!');
-
+    // console.log(location.host);
     if (location.hostname.indexOf('localhost') < 0) {
       var host = location.host.split('.');
-      urlBackend = 'http://api.' + host[host.length - 2] + '.' + host[host.length - 1];
+      // urlBackend = 'http://api.' + host[host.length - 2] + '.' + host[host.length - 1];
+      urlBackend = "http://192.168.1.7:1400";
       $sailsProvider.enviroment = 'production';
     } else {
-      // urlBackend = 'http://192.168.1.4:1400';
-      // urlBackend = 'http://192.168.1.7:1400';
-      // urlBackend = 'http://192.168.1.13:1400';
-      //urlBackend = 'http://192.168.1.16:1400';
-      //urlBackend = 'http://192.168.1.101:1400';
-      // urlBackend = 'http://192.168.1.8:1400';
-      // urlBackend = 'http://192.168.1.2:1400';
-      // urlBackend = 'http://192.168.1.12:1400';
-      // urlBackend = 'http://192.168.1.16:1400';
-      urlBackend = 'http://localhost:1400';
-
-      // urlBackend = 'http://localhost:1337';
+      urlBackend = 'http://192.168.1.7:1400';
       $sailsProvider.enviroment = 'development';
     }
+
     enviroment = $sailsProvider.enviroment;
     $sailsProvider.url = urlBackend;
 
@@ -297,30 +288,51 @@
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
+      // .state({
+      //   url: '/login',
+      //   name: 'login',
+      //   controllerAs: 'login',
+      //   controller: 'LoginCtrl',
+      //   templateUrl: 'views/Login/login.html',
+      //   // resolve: {
+      //   //   Tools: ['Tools', function(Tools) {
+      //   //     return Tools.BlogUrl(urlBackend);
+      //   //   }]
+      //   // }
+      // })
       .state({
         url: '/',
-        name: 'login',
-        controllerAs: 'login',
-        controller: 'LoginCtrl',
-        templateUrl: 'views/Login/login.html',
+        name: 'main',
+        controllerAs: 'main',
+        controller: 'MainCtrl',
+        templateUrl: 'views/index.html',
         resolve: {
           Tools: ['Tools', function(Tools) {
             return Tools.BlogUrl(urlBackend);
           }]
         }
       })
-      // .state({
-      //   url: '/',
-      //   name: 'main',
-      //   controllerAs: 'main',
-      //   controller: 'MainCtrl',
-      //   templateUrl: 'views/main.html',
-      //   // resolve: {
-      //   //   blog: ['Tools', function(Tools) {
-      //   //     return Tools.checkBlog(urlBackend);
-      //   //   }]
-      //   // }
-      // })
+      .state({
+        url: '/tienda',
+        name: 'tienda',
+        controllerAs: 'tienda',
+        controller: 'DashboardTiendaCtrl',
+        templateUrl: 'views/Tienda/index.html',
+      })
+      .state({
+        url: '/carrito',
+        name: 'carrito',
+        controllerAs: 'carrito',
+        controller: 'DashboardCarritoCtrl',
+        templateUrl: 'views/Tienda/carrito.html',
+      })
+      .state({
+        url: '/informacion',
+        name: 'informacion',
+        controllerAs: 'informacion',
+        controller: 'DashboardInformacionCtrl',
+        templateUrl: 'views/informacion.html',
+      })
       .state({
         url: '/dashboard',
         name: 'dashboard',
@@ -339,6 +351,42 @@
         controllerAs: 'producto',
         controller: 'DashboardProductoCtrl',
         templateUrl: 'views/Dashboard/producto.html',
-      });
+      })
+      .state({
+        url: '/materias primas',
+        name: 'dashboard.materiasprimas',
+        controllerAs: 'materiasprimas',
+        controller: 'DashboardMateriasPrimasCtrl',
+        templateUrl: 'views/Dashboard/materiasprimas.html',
+      })
+      .state({
+        url: '/materias primas Procesadas',
+        name: 'dashboard.materiaprocesada',
+        controllerAs: 'materiaprocesada',
+        controller: 'DashboardMateriasProcesadasCtrl',
+        templateUrl: 'views/Dashboard/materiaprocesada.html',
+      })
+      .state({
+        url: '/servicios',
+        name: 'dashboard.servicios',
+        controllerAs: 'servicios',
+        controller: 'DashboardServiciosCtrl',
+        templateUrl: 'views/Dashboard/servicio.html',
+      })
+      .state({
+        url: '/general',
+        name: 'dashboard.general',
+        controllerAs: 'general',
+        controller: 'DashboardGeneralCtrl',
+        templateUrl: 'views/Dashboard/general.html',
+      })
+      .state({
+        url: '/ubicacion',
+        name: 'dashboard.ubicacion',
+        controllerAs: 'ubicacion',
+        controller: 'DashboardUbicacionCtrl',
+        templateUrl: 'views/Dashboard/ubicacion.html',
+      })
+      ;
   }
 })();

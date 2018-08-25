@@ -10,18 +10,13 @@
    */
   angular.module('dilisapApp')
     .controller('IndexCtrl', [
-      '$rootScope',
-      '$mdSidenav',
       Index
     ]);
 
   function Index(
-    $rootScope,
-    $mdSidenav
   ) {
     var
-      vm = this,
-      list = []
+      vm = this
     ;
 
 

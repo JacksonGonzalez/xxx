@@ -16,8 +16,7 @@
   function Login(
   ) {
     var
-      vm = this,
-      list = []
+      vm = this
     ;
 
 

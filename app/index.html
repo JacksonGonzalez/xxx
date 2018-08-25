@@ -29,7 +29,7 @@
     ng-cloak
     layout-fill
     data-status="{{ status }}"
-    layout="row"
+    layout="column"
     flex
   >
   <div
@@ -142,12 +142,28 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/tienda.js"></script>
+        <script src="scripts/controllers/carrito.js"></script>
         <script src="scripts/controllers/articulo.js"></script>
+        <script src="scripts/controllers/showarticulo.js"></script>
+        <script src="scripts/controllers/informacion.js"></script>
+        <script src="scripts/controllers/ubicacion.js"></script>
         <script src="scripts/controllers/index.js"></script>
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/dashboard.js"></script>
         <script src="scripts/controllers/dashboardProducto.js"></script>
+        <script src="scripts/controllers/DashboardUbicacion.js"></script>
+        <script src="scripts/controllers/DashboardMateriasPrimas.js"></script>
+        <script src="scripts/controllers/DashboardMateriasProcesadas.js"></script>
+        <script src="scripts/controllers/DashboardServicios.js"></script>
 
+        <script src="scripts/controllers/DashboardGeneral.js"></script>
+
+
+        <script src="scripts/directives/articuloCms.js"></script>
+        <script src="scripts/directives/menuCms.js"></script>
+        <script src="scripts/directives/searchCms.js"></script>
+        <script src="scripts/directives/footerCms.js"></script>
 
         <script src="scripts/services/factory.model.js"></script>
         <script src="scripts/services/factory.search.js"></script>
@@ -156,11 +172,19 @@
         <script src="scripts/services/factory.model.unidad.js"></script>
         <script src="scripts/services/factory.model.usuario.js"></script>
         <script src="scripts/services/factory.model.barrio.js"></script>
+        <script src="scripts/services/factory.model.pais.js"></script>
+        <script src="scripts/services/factory.model.departamento.js"></script>
         <script src="scripts/services/factory.model.ubicacion.js"></script>
         <script src="scripts/services/factory.model.ciudad.js"></script>
         <script src="scripts/services/factory.model.articulo.js"></script>
         <script src="scripts/services/factory.model.articuloBlog.js"></script>
         <script src="scripts/services/factory.model.articuloprecio.js"></script>
         <!-- endbuild -->
+        <footer class="main-footer">
+          <div class="pull-right hidden-xs">
+            <b>Version</b> 1.0
+          </div>
+          <strong>Copyright &copy; 2018 <a href="www.incanatoit.com">Dilisap</a>.</strong> All rights reserved.
+        </footer>
 </body>
 </html>

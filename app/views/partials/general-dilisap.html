@@ -1,0 +1,153 @@
+<md-subheader
+    md-whiteframe="2"
+    class="md-primary md-hue-1"
+    style="border-radius:10px"
+>
+  <form
+    flex
+    layout="row"
+    ng-submit="general.cuerpo.dilisap.search.restart()"
+    layout-margin
+  >
+    <md-input-container flex>
+      <label>Buscar en Empresa</label>
+      <input type="text" ng-model="general.cuerpo.dilisap.search.txt">
+    </md-input-container>
+    <md-button
+      type = "submit"
+      class="md-icon-button  md-primary md-secondary"
+    >
+      <md-icon md-svg-icon="magnify"></md-icon>
+      <md-tooltip>
+        Buscar en
+      </md-tooltip>
+    </md-button>
+    <md-button
+      ng-click="general.cuerpo.btn.editar($event, '')"
+      class="md-icon-button md-primary md-secondary md-raised"
+    >
+      <md-icon md-svg-icon="plus-circle-outline"></md-icon>
+      <md-tooltip>
+        Agregar
+      </md-tooltip>
+    </md-button>
+  </form>
+</md-subheader>
+<md-content
+  flex
+  layout="row"
+>
+  <md-content
+    flex
+    layout="row"
+    md-whiteframe="2"
+    md-lazy-load-container
+    class="col-lg-8 col-md-8 col-sm-8 col-xs-12 datagrid"
+  >
+    <div class="table-responsive" flex layout="row">
+      <table>
+      <thead>
+          <tr>
+            <th>Empresa</th>
+            <th>url</th>
+            <th>host</th>
+            <th>Agrupado</th>
+            <th>Pais</th>
+            <th>Departamento</th>
+            <th>Ciudad</th>
+            <th>Barrio</th>
+            <th>Direccion</th>
+            <th>Servico</th>
+            <th>Ofrece</th>
+            <th>Tipo</th>
+            <th>Tipo de Contribuyente</th>
+            <th>Identificacion</th>
+            <th>Actividad Economica</th>
+            <th>Telefeno</th>
+            <th>Email</th>
+            <th>Opcion</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr
+          ng-repeat="item in general.cuerpo.dilisap.search.items"
+        >
+          <td>
+            {{ item.titulo }}
+          </td>
+          <td>
+            {{ item.url }}
+          </td>
+          <td>
+            {{ item.host }}
+          </td>
+          <td>
+            {{ item.blogs.titulo }}
+          </td>
+          <td>
+            {{ item.pais.titulo }}
+          </td>
+          <td>
+            {{ item.departamento.titulo }}
+          </td>
+          <td>
+            {{ item.ciudad.titulo }}
+          </td>
+          <td>
+            {{ item.barrio.titulo }}
+          </td>
+          <td>
+            {{ item.direccion }}
+          </td>
+          <td>
+            {{ item.opcion }}
+          </td>
+          <td>
+            {{ item.ofrece }}
+          </td>
+          <td>
+            {{ item.tipo }}
+          </td>
+          <td>
+            {{ item.tipocontribuyente }}
+          </td>
+          <td>
+            {{ item.identificacion }}
+          </td>
+          <td>
+            {{ item.actividadeconomica }}
+          </td>
+          <td>
+            {{ item.telefono }}
+          </td>
+          <td>
+            {{ item.email }}
+          </td>
+          <td
+            layout="column"
+          >
+            <md-button
+              ng-click="general.cuerpo.btn.editar($event, '', item)"
+              class="md-icon-button md-primary md-secondary"
+            >
+              <md-icon md-svg-icon="pen"></md-icon>
+              <md-tooltip>
+                Editar
+              </md-tooltip>
+            </md-button>
+            <md-button
+              ng-click="general.cuerpo.dilisap.eliminar($event, item, $index)"
+              class="md-icon-button md-primary md-secondary md-warn md-button md-ink-ripple  ng-scope"
+            >
+              <md-icon md-svg-icon="close"></md-icon>
+              <md-tooltip>
+                Eliminar
+              </md-tooltip>
+            </md-button>
+          </td>
+        </tr>
+      </tbody>
+      </table>
+    </div>
+  </md-content>
+</md-content>

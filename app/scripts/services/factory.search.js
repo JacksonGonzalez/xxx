@@ -40,11 +40,14 @@
               limit: limit,
               where: {}
             },
+            vm = this,
             rta ={
               text: '',
               items: [],
               numItems: 0,
+              ver: ver,
               selected: [],
+              seleccionado: seleccionado,
               restart: restart,
               eliminar: eliminar,
               clearSearch: clearSearch,
@@ -62,6 +65,16 @@
             }
             ;
             if(where){
+              if (where.limit) {
+                query.limit = where.limit;
+                delete where.limit;
+              }
+              if (where.where) {
+                if (where.where.limit) {
+                  query.limit= where.where.limit;
+                  delete where.where.limit;
+                }
+              }
               query.where = where.where || where;
               // query.sort = getQuerySort(where.sort, modelname);
             }
@@ -89,6 +102,7 @@
 
             function getquerys() {
               // console.log(Model, modelname, where, query, paginate);
+              // console.log(query);
               return Model
               .getquerys(txtquers(query))
               .then(function(list){
@@ -110,6 +124,7 @@
               if (_.isString(rta.text)) {
                 quest.where = quest.where || {};
                 quest.where.or = QueryOr();
+                // console.log(quest);
                 //quest.where = getQueryOr(quest.where)[0];
               } else {
                 delete quest.where.or;
@@ -177,6 +192,8 @@
             function restart() {
               rta.numItems = 0;
               rta.items = {};
+              query.page = 1;
+              paginate = 1;
               getquerys();
             }
             function eliminar(ev, obj, idx) {
@@ -226,7 +243,33 @@
             function getQuerySort() {
 
             }
+            function seleccionado(obj, idx) {
+              var idx = _.findIndex(rta.items, ['id', obj.id]);
+              if (!idx >-1) {
+                rta.selected.push(obj);
+              }else {
+                rta.selected.splice(idx, 1);
+              }
+            }
+            function ver(obj, idx, ev) {
+              $mdDialog.show({
+                controller: 'ShowarticuloCtrl',
+                controllerAs: 'showarticulo',
+                templateUrl: 'views/Forms/articulo.html',
+                parent: angular.element(document.body),
+                locals:{
+                  dialog:obj
+                },
+                targetEvent: ev,
+                clickOutsideToClose:true,
+                fullscreen: this.customFullscreen // Only for -xs, -sm breakpoints.
+              })
+              .then(function(answer) {
+
+              });
+            }
         }
       }
+      ;
     }
 })();

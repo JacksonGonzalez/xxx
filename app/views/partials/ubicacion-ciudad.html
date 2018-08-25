@@ -1,0 +1,97 @@
+<md-subheader
+    md-whiteframe="2"
+    class="md-primary md-hue-1"
+    style="border-radius:10px"
+>
+  <form
+    flex
+    layout="row"
+    ng-submit="ubicacion.cuerpo.ciudad.search.restart()"
+    layout-margin
+  >
+    <md-input-container flex>
+      <label>Buscar Ciudad</label>
+      <input type="text" ng-model="ubicacion.cuerpo.ciudad.search.txt">
+    </md-input-container>
+    <md-button
+      type = "submit"
+      class="md-icon-button  md-primary md-secondary"
+    >
+      <md-icon md-svg-icon="magnify"></md-icon>
+      <md-tooltip>
+        Buscar Ciudad
+      </md-tooltip>
+    </md-button>
+    <md-button
+      ng-click="ubicacion.cuerpo.btn.editar($event, 'ciudad')"
+      class="md-icon-button md-primary md-secondary md-raised"
+    >
+      <md-icon md-svg-icon="plus-circle-outline"></md-icon>
+      <md-tooltip>
+        Agregar Ciudad
+      </md-tooltip>
+    </md-button>
+  </form>
+</md-subheader>
+<md-content
+  flex
+  layout="row"
+>
+  <md-content
+    flex
+    layout="row"
+    md-whiteframe="2"
+    md-lazy-load-container
+    class="col-lg-8 col-md-8 col-sm-8 col-xs-12 datagrid"
+  >
+    <div class="table-responsive" flex layout="row">
+      <table>
+      <thead>
+          <tr>
+            <th>Ciudad</th>
+            <th>Departamento</th>
+            <th>Descripcion</th>
+            <th>Opciono</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr
+          ng-repeat="item in ubicacion.cuerpo.ciudad.search.items"
+        >
+          <td>
+            {{ item.titulo }}
+          </td>
+          <td>
+            {{ item.departamento.titulo }}
+          </td>
+          <td>
+            <span ng-bind-html="item.descripcion"></span>
+          </td>
+          <td
+            layout="column"
+          >
+            <md-button
+              ng-click="ubicacion.cuerpo.btn.editar($event, 'ciudad', item)"
+              class="md-icon-button md-primary md-secondary"
+            >
+              <md-icon md-svg-icon="pen"></md-icon>
+              <md-tooltip>
+                Editar
+              </md-tooltip>
+            </md-button>
+            <md-button
+              ng-click="ubicacion.cuerpo.ciudad.search.eliminar($event, item, $index)"
+              class="md-icon-button md-primary md-secondary md-warn md-button md-ink-ripple  ng-scope"
+            >
+              <md-icon md-svg-icon="close"></md-icon>
+              <md-tooltip>
+                Eliminar
+              </md-tooltip>
+            </md-button>
+          </td>
+        </tr>
+      </tbody>
+      </table>
+    </div>
+  </md-content>
+</md-content>

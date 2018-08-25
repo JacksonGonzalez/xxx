@@ -27,11 +27,12 @@
     $mdToast,
     Usuario,
     $state,
-    Blog,
+    Blog
     ) {
     var rta = {
       BlogUrl:BlogUrl,
       toast: toast,
+      dialog: dialog,
       hide: hide,
       cancel: cancel,
       answer: answer
@@ -101,6 +102,21 @@
     }
     function toast(obj) {
       $mdToast.showSimple(obj);
+    }
+    function dialog(query) {
+      return $mdDialog.show({
+        controller: query.controller,
+        controllerAs: query.controllerAs,
+        templateUrl: query.templateUrl,
+        parent: angular.element(document.body),
+        locals:{
+          dialog: query.dialog
+        },
+        targetEvent: query.ev,
+        clickOutsideToClose:true,
+        fullscreen: vm.customFullscreen // Only for -xs, -sm breakpoints.
+      })
+      ;
     }
     function hide() {
       return $mdDialog.hide();

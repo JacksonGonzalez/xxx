@@ -38,29 +38,98 @@
       },
       menu:{
         list: []
-      }
+      },
+      empresa: $rootScope.blog.titulo
     };
 
-    vm.cuerpo.menu.list=[
+    vm.cuerpo.menu.list=
+    [
       {
         name: 'Inventario',
+        icon: 'application',
         sublist:[
           {
-            name: 'producto',
+            name: 'Producto',
             sref: 'dashboard.producto'
           },
           {
-            name: 'materias primas',
-            sref: ''
+            name: 'Materias Primas',
+            sref: 'dashboard.materiasprimas'
           },
           {
-            name: 'servicios',
-            sref: ''
+            name: 'Materias Primas Procesadas',
+            sref: 'dashboard.materiaprocesada'
+          },
+          {
+            name: 'Servicios',
+            sref: 'dashboard.servicios'
+          }
+        ],
+      },
+      {
+        name: 'Contabilidad',
+        sublist:[
+          {
+            name: 'hola'
+          }
+        ]
+      },
+      {
+        name: 'Caja',
+        sublist:[
+          {
+            name: 'Factura'
+          },
+          {
+            name: 'Recibos'
+          },
+          {
+            name: 'Compras'
+          },
+          {
+            name: 'Gastos / Vals'
+          }
+        ]
+      },
+      {
+        name: 'Personas',
+        sublist:[
+          {
+            name: 'Clientes'
+          },
+          {
+            name: 'Empleados'
+          },
+          {
+            name: 'Todos'
+          }
+        ]
+      },
+      {
+        name: 'Configuracion',
+        sublist:[
+          {
+            name: 'General',
+            sref: 'dashboard.general'
+          },
+          {
+            name: 'Redes Sociales'
+          },
+          {
+            name: 'Sucursales'
+          },
+          {
+            name: 'Bodegas'
+          },
+          {
+            name: 'ubicacion',
+            sref: 'dashboard.ubicacion'
           }
         ]
       }
     ]
     ;
+    // console.log(vm.cuerpo.menu.list);
 
     function close(id){
       this.hasOpen = false;

@@ -72,10 +72,6 @@
             </md-input-container>
             <md-input-container flex>
               <label>Tipo</label>
-              <!-- <input
-                type="text"
-                ng-model="item.tipo"
-              > -->
               <md-select
                 ng-model="item.tipo"
                 class="md-no-underline"
@@ -227,8 +223,29 @@
               >
               </md-datepicker>
             </md-input-container> -->
-
             <md-input-container flex>
+              <label>Ubicacion</label>
+              <md-select
+                ng-model="item.ubicacion"
+                class="md-no-underline"
+                ng-blur= "articulo.cuerpo.btn.blurdata('ubicacion')"
+              >
+                <!-- <md-option
+                  ng-click=""
+                >
+                  Crear
+                </md-option> -->
+                <md-option
+                  ng-repeat="ubc in articulo.cuerpo.ubicacion.list"
+                  ng-value="ubc.id"
+                >
+                  {{ ubc.titulo }}
+                </md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container
+              flex
+            >
               <label>Iva</label>
               <input
                 type="number"
@@ -285,26 +302,25 @@
             layout="column"
             layout-gt-sm="row"
           >
-            <md-input-container flex>
-              <label>Ubicacion</label>
-              <md-select
-                ng-model="item.ubicacion"
-                class="md-no-underline"
-                ng-blur= "articulo.cuerpo.btn.blurdata('ubicacion')"
+            <div
+                flex
+                layout="column"
+            >
+              <label>Descripcion</label>
+              <div
+                  flex
+                  layout="column"
+                  class="md-full"
               >
-                <!-- <md-option
-                  ng-click=""
-                >
-                  Crear
-                </md-option> -->
-                <md-option
-                  ng-repeat="ubc in articulo.cuerpo.ubicacion.list"
-                  ng-value="ubc.id"
-                >
-                  {{ ubc.titulo }}
-                </md-option>
-              </md-select>
-            </md-input-container>
+                <textarea
+                    flex
+                    ui-tinymce
+                    ng-model="item.descripcion"
+                    ui-tinymce="articulo.tinymce.opts"
+                    ng-blur="articulo.cuerpo.btn.blurdata('descripcion')"
+                ></textarea>
+              </div>
+            </div>
           </div>
         </div>
       </md-list-item>

@@ -53,7 +53,7 @@
         blurdata: blurdata,
         disable: true,
       },
-      titulo: dialog.opciono,
+      titulo: dialog.titulo,
       opt: 'Agregar',
       generar: generar,
       list:[{
@@ -66,6 +66,20 @@
       listClone: {},
       unidad:{
         blurunidad: blurunidad
+      },
+      tinymce:{
+        opts:{
+          setup: function(editor){
+            editor.on('blur', function(ev){
+              // console.log(ev)
+              console.log("hey");
+              // if (vm.data.id && id) {
+              //   // Tools.open.toast('Actualizado');
+              //   return savePartial('contenido');
+              // }
+            });
+          }
+        }
       },
       ciudad:{
         searchText: [],
@@ -163,7 +177,7 @@
       }
     }
     function close() {
-      return $mdDialog.cancel();;
+      return $mdDialog.cancel();
     }
     function blurdata(obj) {
       // console.log(obj, vm.cuerpo.list[0], vm.cuerpo.listClone);
@@ -175,10 +189,12 @@
         if (data[obj] !== clone[obj] || obj === ['tipounidad']) {
           // console.log("si");
           var query = {
-            id: data.id,
-            [obj]: data[obj]
+            id: data.id
           }
           ;
+          if (obj) {
+            query[obj]= data[obj];
+          }
           if (obj === 'titulo') {
               query.slug = _.kebabCase(query.titulo);
           }
@@ -258,7 +274,7 @@
         Articulo.create(item)
         .then(function(rta){
           // console.log(rta);
-          return createdArt(rta, item);
+          createdArt(rta, item);
           return rta;
         }, function(err) {
           console.error(err);
@@ -312,6 +328,7 @@
 
         })
       )
+      ;
 
     }
     function codigogenerar(){

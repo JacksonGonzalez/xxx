@@ -19,6 +19,7 @@
     var obj = {
       list:[]
     }
+    ;
     list();
     return obj;
     function list() {

@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "@uirouter/angularjs": "^1.0.19",
-    "bower-npm-install": "^0.5.11"
+    "bower-npm-install": "^0.5.11",
+    "grunt-build": "^0.1.1"
   }
 }

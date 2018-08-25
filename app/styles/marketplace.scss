@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Bitter');
+.titulo a{
+  color: white;
+  font-size: 17px;
+}
+.titulo h5{
+  color: white;
+}
+.grip-center h1{
+  color: white;
+}
+.grip-center h1, p{
+  color: white;
+}
+.menu{
+  background: black;
+}
+// .logo{
+//   background-image: url('../images/logo.jpg');
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   height:50px;
+//   width:50px;
+// }
+.images1{
+  background-image: url('../images/images1.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height:100%;
+  width:100%;
+}
+.images2{
+  background-image: url('../images/images2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height:100%;
+  width:100%;
+}
+.images3{
+  background-image: url('../images/images3.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height:100%;
+  width:100%;
+}
+.images4{
+  background-image: url('../images/images4.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height:100%;
+  width:100%;
+}
+.categorias{
+  background: #d4cccc;
+}
+.titulo{
+  color: white;
+  border-bottom: 1px solid #e4e4e4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Bitter', serif;
+}
+.medio{
+  background: #4e4c4c;
+}
+.search{
+  background: #d4cccc;
+}

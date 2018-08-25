@@ -1,8 +1,5 @@
 // bower:scss
 // endbower
-@import "AdminLTE.css";
-@import "bootstrap.min.css";
-
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -12,9 +9,13 @@
 
 body {
   padding: 0;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 label {
-  font-size: 16px;
+  font-size: 12px;
+}
+.md-sidenav{
+  width: 25%;
 }
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -96,3 +97,7 @@ label {
     border-bottom: 0;
   }
 }
+@import "AdminLTE.scss";
+@import "tabla.scss";
+@import "marketplace.scss";
+@import "bootstrap.min.scss";
