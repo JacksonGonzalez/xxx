@@ -10,6 +10,7 @@
    */
   angular.module('dilisapApp')
     .service('Tools', [
+      'UsuarioBlog',
       '$rootScope',
       '$mdDialog',
       '$locale',
@@ -21,6 +22,7 @@
     ]);
 
   function Tools(
+    UsuarioBlog,
     $rootScope,
     $mdDialog,
     $locale,
@@ -29,14 +31,15 @@
     $state,
     Blog
     ) {
-    var rta = {
-      BlogUrl:BlogUrl,
-      toast: toast,
-      dialog: dialog,
-      hide: hide,
-      cancel: cancel,
-      answer: answer
-    }
+    var
+      rta = {
+        BlogUrl:BlogUrl,
+        toast: toast,
+        dialog: dialog,
+        hide: hide,
+        cancel: cancel,
+        answer: answer
+      }
     ;
     return rta;
 
@@ -80,16 +83,16 @@
           $rootScope.urlFile = urlBackend + '/archivo';
           $rootScope.urlFiles = $rootScope.urlFile + '/download/' + rta.id + '/';
         }
-        return Usuario
+        return UsuarioBlog
          .getquerys({
            where:{
-             id:"5b6a50b6ad50ec65ece9c52f"
+             id:"5b8c5ce5f104f9dc9bc77192"
              // nombre: 'test2',
              // slugapellido: 'men'
            }
          })
          .then(function(rta){
-           // console.log(rta);
+           console.log(rta);
            rta = rta.list[0];
            $rootScope.user=rta;
            // $state.go('dashboard');
@@ -120,14 +123,14 @@
     }
     function hide() {
       return $mdDialog.hide();
-    };
+    }
 
     function cancel() {
       return $mdDialog.cancel();
-    };
+    }
 
     function answer(answer) {
       return $mdDialog.hide(answer);
-    };
+    }
   }
 })();

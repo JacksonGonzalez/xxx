@@ -1,0 +1,136 @@
+<div
+  flex
+  layout="column"
+>
+  <md-content
+    flex
+    layout="row"
+  >
+    <md-content
+      flex
+      md-whiteframe="1"
+      layout="row"
+      class="col-lg-8 col-md-8 col-sm-8 col-xs-12 datagrid"
+    >
+      <div
+        class="table-responsive"
+        flex
+        layout="column"
+      >
+        <div
+          flex
+          class="table-responsive"
+          layout="row"
+        >
+        <table>
+          <thead>
+            <tr>
+                <th>
+                  Foto
+                </th>
+                <th>
+                  Codigo
+                </th>
+                <th>
+                  Titulo
+                </th>
+                <th>
+                  Ubicacion
+                </th>
+                <th>
+                  Precio Venta
+                </th>
+                <th>
+                  Vistas
+                </th>
+                <th>
+                  Cantidad Total
+                </th>
+                <th>
+                  Unidad
+                </th>
+                <th>
+                  Categorias
+                </th>
+                <th>
+                  Cantidad Adquirir
+                </th>
+                <th>
+                  Opciones
+                </th>
+              </tr>
+          </thead>
+          <tbody>
+            <tr
+                ng-repeat="item in idx.cuerpo.producto.search.selected"
+                class="md-3-line"
+                ng-class="{'check': item.check}"
+              >
+                <td>
+                  <img
+                    class="md-avatar images2"
+                    height="100px"
+                    width="100px"
+                  >
+                </td>
+                <td>
+                  {{ item.codigo }}
+                </td>
+                <td>
+                  {{ item.titulo }}
+                </td>
+                <td>
+                  {{ item.ubicacion.titulo }}
+                </td>
+                <td>
+                  {{ item.precioventa }}
+                </td>
+                <td>
+                  {{ item.vistas }}
+                </td>
+                <td>
+                  {{ item.cantidadtotal || 0 }}
+                </td>
+                <td>
+                  {{ item.unidad }}
+                </td>
+                <td>
+                  <div ng-repeat="categoria in item.categoria">
+                    {{ categoria.titulo }}
+                  </div>
+                </td>
+                <td>
+                  <md-input-container>
+                    <label>Cantidad Adquirir</label>
+                    <input
+                      type="number"
+                      ng-model="item.cantidadadquiridad"
+                      ng-blur="idx.cuerpo.blurprecio(item, idx)"
+                    >
+                  </md-input-container>
+                </td>
+                <td>
+                  <md-button
+                    class="md-icon-button md-primary md-secondary md-raised"
+                    ng-click="idx.cuerpo.producto.search.seleccionado(item, idx)"
+                    >
+                    <span
+                      ng-show="!item.check"
+                    >
+                      <md-icon md-svg-icon="check"></md-icon>
+                    </span>
+                    <span
+                      ng-show="item.check"
+                    >
+                      <md-icon md-svg-icon="close"></md-icon>
+                    </span>
+                  </md-button>
+                </td>
+              </tr>
+          </tbody>
+          </table>
+        </div>
+      </div>
+    </md-content>
+  </md-content>
+</div>

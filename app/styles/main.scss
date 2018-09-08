@@ -14,9 +14,6 @@ body {
 label {
   font-size: 12px;
 }
-.md-sidenav{
-  width: 25%;
-}
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
@@ -43,6 +40,10 @@ label {
 .grid {
   width: 500px;
   height: 250px;
+}
+.dialog{
+  min-width: 100%;
+  min-height: 100%;
 }
 /* Custom page footer */
 .footer {
@@ -97,7 +98,24 @@ label {
     border-bottom: 0;
   }
 }
-@import "AdminLTE.scss";
+.check {
+  background: #cecece;
+}
+.checkmenu{
+  border: 1px solid #cecece;
+  border-radius: 5px;
+}
+.curso{
+  margin-right: 5px;
+  cursor: pointer;
+}
+.menuname{
+  font-size: 14px;
+}
+.tables th{
+  padding: 5px;
+}
+// @import "AdminLTE.scss";
 @import "tabla.scss";
 @import "marketplace.scss";
 @import "bootstrap.min.scss";

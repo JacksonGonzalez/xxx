@@ -1,0 +1,85 @@
+<div
+    flex
+    layout="column"
+    ui-view
+    layout-margin
+    md-whiteframe="1dp"
+>
+  <div
+    layout="column"
+    layout-margin
+  >
+    <form
+      layout="row"
+      ng-submit="historial.cuerpo.search.restart()"
+    >
+      <md-input-container
+        flex
+      >
+        <label>Buscar historial</label>
+        <input
+          type="text"
+          ng-model="historial.cuerpo.search.text"
+        >
+      </md-input-container>
+      <md-button
+        type="submit"
+      >
+        Buscar
+      </md-button>
+    </form>
+  </div>
+  <md-content
+    flex
+    layout="row"
+  >
+    <md-content
+      flex
+      layout="row"
+      md-whiteframe="2"
+      md-lazy-load-container
+      class="col-lg-8 col-md-8 col-sm-8 col-xs-12 datagrid"
+    >
+      <div class="table-responsive" flex layout="row">
+        <table>
+        <thead>
+            <tr>
+              <th>Historial</th>
+              <th>Pais</th>
+              <th>Departamento</th>
+              <th>Ciudad</th>
+              <th>Barrio</th>
+              <th>Ofrece</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr
+            ng-repeat="item in historial.cuerpo.barrio.search.items"
+            ng-click="historial.cuerpo.search.seleccionado(item, idx)"
+            ng-class="{'check': item.check}"
+          >
+            <td>
+              {{ item.titulo }}
+            </td>
+            <td>
+              {{ item.pais.titulo }}
+            </td>
+            <td>
+              {{ item.departamento.titulo }}
+            </td>
+            <td>
+              {{ item.ciudad.titulo }}
+            </td>
+            <td>
+              {{ item.barrio.titulo }}
+            </td>
+            <td>
+              {{ item.ofrece }}
+            </td>
+          </tr>
+        </tbody>
+        </table>
+      </div>
+    </md-content>
+  </md-content>
+</div>

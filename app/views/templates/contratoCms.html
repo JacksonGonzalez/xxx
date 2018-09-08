@@ -1,0 +1,139 @@
+<md-content
+    flex
+    layout="column"
+    ui-view
+    layout-margin
+    md-whiteframe="4dp"
+>
+  <div
+    layout="row"
+    md-whiteframe="1dp"
+  >
+    <form
+      flex
+      layout="row"
+      ng-submit="contratoCms.search.restart()"
+      layout-margin
+    >
+      <md-input-container
+        flex
+      >
+        <label>Buscar {{ config.titulo }}</label>
+        <input
+          type="text"
+          ng-model="contratoCms.search.text"
+        >
+      </md-input-container>
+      <md-button
+        class="md-icon-button  md-primary md-secondary md-raised"
+        type="submit"
+      >
+        <md-icon md-svg-icon="magnify"></md-icon>
+        <md-tooltip>
+          Buscar
+        </md-tooltip>
+      </md-button>
+      <md-button
+        ng-click="contratoCms.btn.crear($event)"
+        class="md-icon-button md-primary md-secondary md-raised"
+      >
+        <md-icon md-svg-icon="plus-circle-outline"></md-icon>
+        <md-tooltip>
+          Agregar
+        </md-tooltip>
+      </md-button>
+      <md-button
+        ng-if="contratoCms.search.selected.length"
+        ng-click="contratoCms.search.eliminar($event)"
+        class="md-icon-button md-primary md-secondary md-warn md-button md-ink-ripple ng-scope md-raised"
+      >
+        <md-icon md-svg-icon="close"></md-icon>
+        <md-tooltip>
+          Eliminar
+        </md-tooltip>
+      </md-button>
+    </form>
+  </div>
+  <md-content
+    flex
+    layout="row"
+  >
+    <md-content
+      flex
+      layout="row"
+      md-whiteframe="2"
+      md-lazy-load-container
+      class="col-lg-8 col-md-8 col-sm-8 col-xs-12 datagrid"
+    >
+      <div class="table-responsive" flex layout="row">
+        <table>
+        <thead>
+            <tr>
+              <th>N* {{ config.titulo }}</th>
+              <th>Total</th>
+              <th>Total a Pagar</th>
+              <th>Caja</th>
+              <th>Fecha de Creado</th>
+              <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr
+            ng-repeat="item in contratoCms.search.items"
+            ng-class="{'check': item.check}"
+          >
+          <!-- ng-click="contratoCms.cuerpo.search.seleccionado(item)" -->
+            <td>
+              {{ item.numero }}
+            </td>
+            <td>
+              {{ item.valor }}
+            </td>
+            <td>
+              {{ item.valortotal }}
+            </td>
+            <td>
+              {{ item.caja }}
+            </td>
+            <td>
+              {{ item.createdAt | amDateFormat:'DD/MM/YYYY' }}
+            </td>
+            <td>
+              <md-button
+                ng-click="contratoCms.btn.crear($event, item)"
+                class="md-icon-button md-primary md-secondary md-raised"
+              >
+                <md-icon md-svg-icon="eye"></md-icon>
+                <md-tooltip>
+                  Ver
+                </md-tooltip>
+              </md-button>
+              <md-button
+                class="md-icon-button md-primary md-raised"
+                ng-click="contratoCms.search.seleccionado(item)"
+              >
+                <div
+                  ng-show="!item.check"
+                >
+                  <md-icon md-svg-icon="check"></md-icon>
+                  <md-tooltip>
+                    Seleccionar
+                  </md-tooltip>
+                </div>
+                <div
+                  ng-show="item.check"
+                >
+                  <md-icon md-svg-icon="close"></md-icon>
+                  <md-tooltip>
+                    deseleccionar
+                  </md-tooltip>
+                </div>
+              </md-button>
+            </td>
+          </tr>
+        </tbody>
+        </table>
+      </div>
+    </md-content>
+  </md-content>
+</md-content>

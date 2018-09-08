@@ -1,0 +1,95 @@
+<md-dialog
+  class="dialog"
+>
+  <md-toolbar>
+    <div
+      flex
+      layout="row"
+      layout-padding
+    >
+      <div flex>
+        Agregar {{ idx.cuerpo.titulo }}
+      </div>
+      <!-- <md-button
+        ng-if="contratoCms.cuerpo.btn.disable"
+        class="md-icon-button md-primary md-secondary md-raised"
+        ng-click="contratoCms.cuerpo.generar()"
+      >
+        <md-icon md-svg-icon="plus-circle"></md-icon>
+      </md-button> -->
+      <md-button
+        class="md-icon-button md-primary md-secondary md-raised md-warn md-button md-ink-ripple  ng-scope"
+        ng-click="idx.cuerpo.btn.close()"
+      >
+        <md-icon md-svg-icon="close-circle"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content
+    flex
+    layout="column"
+    layout-fill
+  >
+    <md-tabs
+      ng-init="idx=persona"
+      flex
+      layout="column"
+      class="md-primary flex"
+      md-stretch-tabs="always"
+      md-selected="selectedIndex"
+      md-border-bottom md-autoselect md-swipe-content
+    >
+      <md-tab flex>
+        <md-tab-label>
+          <label>Hoja de Vida</label>
+        </md-tab-label>
+        <md-tab-body>
+          <section
+            flex
+            layout="row"
+            layout-margin
+            ng-include="'views/partials/persona-hojavida.html'">
+
+          </section>
+        </md-tab-body>
+      </md-tab>
+      <md-tab
+        flex
+      >
+        <md-tab-label>
+          <label>Movimientos</label>
+        </md-tab-label>
+        <md-tab-body>
+          <div
+            flex
+            layout-fill
+            layout="row"
+            md-whiteframe="1dp"
+            ng-include="'views/partials/persona-movimiento.html'">
+
+          </div>
+        </md-tab-body>
+      </md-tab>
+    </md-tabs>
+  </md-dialog-content>
+  <md-dialog-actions
+    layout="row"
+    layout-align="space-around center"
+  >
+    <div class="">
+
+    </div>
+    <div class="">
+
+    </div>
+    <div>
+      <md-button
+        ng-if="idx.cuerpo.btn.disable"
+        class="md-icon-button md-primary md-secondary md-raised md-button md-ink-ripple  ng-scope"
+        ng-click="idx.cuerpo.btn.saved()"
+      >
+        <md-icon md-svg-icon="content-save"></md-icon>
+      </md-button>
+    </div>
+  </md-dialog-actions>
+</md-dialog>

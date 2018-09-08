@@ -27,6 +27,7 @@
       'ui-leaflet',
       'ui.tinymce',
       'ngFileUpload',
+      'ui.bootstrap',
       'angularMoment',
       'luegg.directives',
       'chart.js',
@@ -67,17 +68,15 @@
     $mdThemingProvider,
     $urlRouterProvider)
     {
-    // console.log($sailsProvider);
-    // $locationProvider.html5Mode(true);
-    // $locationProvider.hashPrefix('!');
-    // console.log(location.host);
+
     if (location.hostname.indexOf('localhost') < 0) {
       var host = location.host.split('.');
       // urlBackend = 'http://api.' + host[host.length - 2] + '.' + host[host.length - 1];
-      urlBackend = "http://192.168.1.7:1400";
+      urlBackend = "http://192.168.1.8:1400";
       $sailsProvider.enviroment = 'production';
     } else {
-      urlBackend = 'http://192.168.1.7:1400';
+      // urlBackend = 'http://192.168.1.8:1400';
+      urlBackend = 'http://localhost:1400';
       $sailsProvider.enviroment = 'development';
     }
 
@@ -87,18 +86,6 @@
     $sailsProvider.headers = {
       token: null
     };
-
-    // mdLazyLoadConfigProvider.setOptions({
-    //   offset: 100, // how early you want to load image (default = 100)
-    //   errorClass: 'md-error-loading', // in case of loading image failure what class should be added (default = null)
-    //   successClass: 'md-success-loading' // in case of loading image success what class should be added (default = null)
-    //   // function fired on loading error
-    //   //onError: function(image){},
-    //   // function fired on loading success
-    //   //onSuccess: function(image){},
-    //   // if scrollable container is not $window then provide it here
-    //   //container: angular.element(document.querySelector('.scrollable'))
-    // });
 
     configStyle($mdIconProvider, $mdThemingProvider);
     $stateProvider.decorator('data', ngMetaProvider.mergeNestedStateData);
@@ -167,14 +154,14 @@
     }
 
     $rootScope.urlBackend = urlBackend;
-    // $rootScope.gtsm = $mdMedia('gt-sm');
-    // $rootScope.addToClean(
-    //   $rootScope.$watch(function() {
-    //     return $mdMedia('gt-sm');
-    //   }, function(newValue) {
-    //     $rootScope.gtsm = newValue;
-    //   })
-    // );
+    $rootScope.gtsm = $mdMedia('gt-sm');
+    $rootScope.addToClean(
+      $rootScope.$watch(function() {
+        return $mdMedia('gt-sm');
+      }, function(newValue) {
+        $rootScope.gtsm = newValue;
+      })
+    );
     $rootScope
       .$on('$destroy', function() {
         _.forEach($rootScope.cleanOn, function(clean) {
@@ -271,9 +258,12 @@
       //   .accentPalette('accent')
       // ;
       $mdThemingProvider.theme('default')
-        .primaryPalette('green')
+        .primaryPalette('pink')
         .accentPalette('blue')
       ;
+      $mdThemingProvider.theme('docs-dark', 'default')
+      .primaryPalette('yellow')
+      .dark();
     /*$mdThemingProvider.theme('default')
       .primaryPalette('red')
       .accentPalette('blue-grey')
@@ -353,14 +343,14 @@
         templateUrl: 'views/Dashboard/producto.html',
       })
       .state({
-        url: '/materias primas',
+        url: '/materiasprimas',
         name: 'dashboard.materiasprimas',
         controllerAs: 'materiasprimas',
         controller: 'DashboardMateriasPrimasCtrl',
         templateUrl: 'views/Dashboard/materiasprimas.html',
       })
       .state({
-        url: '/materias primas Procesadas',
+        url: '/materiasprimasProcesadas',
         name: 'dashboard.materiaprocesada',
         controllerAs: 'materiaprocesada',
         controller: 'DashboardMateriasProcesadasCtrl',
@@ -373,6 +363,59 @@
         controller: 'DashboardServiciosCtrl',
         templateUrl: 'views/Dashboard/servicio.html',
       })
+      .state({
+        url: '/bodegas',
+        name: 'dashboard.bodegas',
+        controllerAs: 'bodegas',
+        controller: 'DashboardBodegasCtrl',
+        templateUrl: 'views/Dashboard/bodegas.html',
+      })
+      .state({
+        url: '/historial',
+        name: 'dashboard.historial',
+        controllerAs: 'historial',
+        controller: 'DashboardHistorialCtrl',
+        templateUrl: 'views/Dashboard/historial.html',
+      })
+
+
+      .state({
+        url: '/fasturas',
+        name: 'dashboard.fasturas',
+        controllerAs: 'fasturas',
+        controller: 'DashboardFasturasCtrl',
+        templateUrl: 'views/Dashboard/fasturas.html',
+      })
+      .state({
+        url: '/recibos',
+        name: 'dashboard.recibos',
+        controllerAs: 'recibos',
+        controller: 'DashboardRecibosCtrl',
+        templateUrl: 'views/Dashboard/recibos.html',
+      })
+      .state({
+        url: '/compras',
+        name: 'dashboard.compras',
+        controllerAs: 'compras',
+        controller: 'DashboardComprasCtrl',
+        templateUrl: 'views/Dashboard/compras.html',
+      })
+
+      .state({
+        url: '/cliente',
+        name: 'dashboard.cliente',
+        controllerAs: 'clientes',
+        controller: 'DashboardClientesCtrl',
+        templateUrl: 'views/Dashboard/cliente.html',
+      })
+      .state({
+        url: '/empleados',
+        name: 'dashboard.empleados',
+        controllerAs: 'empleados',
+        controller: 'DashboardEmpleadosCtrl',
+        templateUrl: 'views/Dashboard/empleado.html',
+      })
+
       .state({
         url: '/general',
         name: 'dashboard.general',

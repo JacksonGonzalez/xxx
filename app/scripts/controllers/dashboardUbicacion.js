@@ -63,8 +63,24 @@
     function editar(ev, opt, obj) {
       if (!obj) {
         var obj = {};
+        vm.cuerpo.barrio.search.itemselec = {};
+        vm.cuerpo.ciudad.search.itemselec = {};
+        vm.cuerpo.departamento.search.itemselec = {};
+        vm.cuerpo.pais.search.itemselec = {};
+      }else {
+        if (opt === 'barrio') {
+          obj=vm.cuerpo.barrio.search.itemselec;
+        }else if (opt === 'ciudad') {
+          obj=vm.cuerpo.ciudad.search.itemselec;
+        }else if (opt === 'departamento') {
+          obj=vm.cuerpo.departamento.search.itemselec;
+        }else {
+          obj=vm.cuerpo.pais.search.itemselec;
+        }
       }
-      obj.titulo = opt;
+      obj.ops = opt;
+      obj.opciono = opt;
+      console.log(obj);
       $mdDialog.show({
         controller: 'UbicacionCtrl',
         controllerAs: 'ubicaciones',

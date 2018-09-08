@@ -61,12 +61,16 @@
           }
           // console.log(ArticuloBlog);
         }
+        console.log(vm.cuerpo.search);
         function editar(ev, obj) {
           // console.log(obj);
           if (!obj) {
             var obj = {};
+            vm.cuerpo.search.itemselec = {};
+          }else {
+              obj=vm.cuerpo.search.itemselec;
           }
-          obj.titulo = scope.config.titulo;
+          // obj.titulo = scope.config.titulo;
           obj.opciono = scope.config.opciono;
           $mdDialog.show({
             controller: 'ArticuloCtrl',

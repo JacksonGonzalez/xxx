@@ -1,5 +1,5 @@
 <md-dialog
-  style="min-width: 100%; min-height: 100%;"
+  class="dialog"
 >
   <md-toolbar>
     <div
@@ -31,7 +31,7 @@
   <md-dialog-content
     flex
     layout="row"
-    layout-gt-sm="column"
+    layout-gt-xs="column"
   >
     <md-list flex>
       <md-list-item
@@ -263,7 +263,7 @@
                flex
                md-floating-label="Ciudad"
                md-item-text="item.titulo"
-               md-selected-item="articulo.item.ciudad"
+               md-selected-item="item.ciudad"
                md-search-text="articulo.cuerpo.ciudad.searchText[$index]"
                md-items="item in articulo.cuerpo.ciudad.search($index)"
                ng-blur= "articulo.cuerpo.btn.blurdata('ciudad')"

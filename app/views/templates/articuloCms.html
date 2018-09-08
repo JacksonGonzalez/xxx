@@ -1,244 +1,237 @@
-<!-- <md-subheader
-    md-whiteframe="2"
-    class="md-primary md-hue-1"
-    style="border-radius:10px"
->
-  <form
-    flex
-    layout="row"
-    ng-submit="articuloCms.search.restart()"
-    layout-margin
-  >
-    <md-input-container flex>
-      <label>Buscar {{ articuloCms.titulo}}</label>
-      <input type="text" ng-model="articuloCms.search.txt">
-    </md-input-container>
-    <md-button
-      type = "submit"
-      class="md-icon-button  md-primary md-secondary md-raised"
-    >
-      <md-icon md-svg-icon="magnify"></md-icon>
-      <md-tooltip>
-        Buscar {{ articuloCms.titulo}}
-      </md-tooltip>
-    </md-button>
-    <md-button
-      ng-click="articuloCms.btn.editar($event)"
-      class="md-icon-button md-primary md-secondary md-raised"
-    >
-      <md-icon
-       md-svg-icon="plus-circle-outline"
-      >
-    </md-button>
-  </form>
-</md-subheader> -->
-<div
-  layout="column"
->
-  <form
-    flex
-    layout="row"
-    ng-submit="articuloCms.search.restart()"
-    layout-margin
-  >
-    <md-input-container flex>
-      <label>Buscar {{ articuloCms.titulo}}</label>
-      <input type="text" ng-model="articuloCms.search.txt">
-    </md-input-container>
-    <md-button
-      type = "submit"
-      class="md-icon-button  md-primary md-secondary md-raised"
-    >
-      <md-icon md-svg-icon="magnify"></md-icon>
-      <md-tooltip>
-        Buscar {{ articuloCms.titulo}}
-      </md-tooltip>
-    </md-button>
-    <md-button
-      ng-click="articuloCms.btn.editar($event)"
-      class="md-icon-button md-primary md-secondary md-raised"
-    >
-      <md-icon
-       md-svg-icon="plus-circle-outline"
-      >
-    </md-button>
-    <md-button
-      ng-click="articuloCms.btn.editar($event)"
-      class="md-icon-button md-primary md-secondary md-raised"
-    >
-      <md-icon
-       md-svg-icon="pen"
-      >
-    </md-button>
-    <md-button
-      ng-click="articuloCms.search.eliminar($event, item, $index)"
-      class="md-icon-button md-primary md-secondary md-warn md-button md-ink-ripple ng-scope md-raised"
-    >
-      <md-icon
-       md-svg-icon="close"
-      >
-    </md-button>
-  </form>
-</div>
 <md-content
   flex
-  layout="row"
+  layout="column"
+  md-whiteframe="4dp"
+  layout-margin
 >
+  <div
+    layout="column"
+    md-whiteframe="1dp"
+  >
+    <form
+      flex
+      layout="row"
+      ng-submit="articuloCms.search.restart()"
+      layout-margin
+    >
+      <md-input-container flex>
+        <label>Buscar {{ articuloCms.titulo}}</label>
+        <input type="text" ng-model="articuloCms.search.txt">
+      </md-input-container>
+      <md-button
+        type = "submit"
+        class="md-icon-button  md-primary md-secondary md-raised"
+      >
+        <md-icon md-svg-icon="magnify"></md-icon>
+        <md-tooltip>
+          Buscar {{ articuloCms.titulo}}
+        </md-tooltip>
+      </md-button>
+      <md-button
+        ng-click="articuloCms.btn.editar($event)"
+        class="md-icon-button md-primary md-secondary md-raised"
+      >
+        <md-icon
+         md-svg-icon="plus-circle-outline"
+        >
+        <md-tooltip>
+          Agregar
+        </md-tooltip>
+      </md-button>
+      <md-button
+        ng-if="articuloCms.search.itemselec.id"
+        ng-click="articuloCms.btn.editar($event, true)"
+        class="md-icon-button md-primary md-secondary md-raised"
+      >
+        <md-icon
+         md-svg-icon="pen"
+        >
+        <md-tooltip>
+          Editar
+        </md-tooltip>
+      </md-button>
+      <md-button
+        ng-if="articuloCms.search.selected.length"
+        ng-click="articuloCms.search.eliminar($event, item, $index)"
+        class="md-icon-button md-primary md-secondary md-warn md-button md-ink-ripple ng-scope md-raised"
+      >
+        <md-icon
+         md-svg-icon="close"
+        >
+        <md-tooltip>
+          Eliminar
+        </md-tooltip>
+      </md-button>
+    </form>
+  </div>
   <md-content
     flex
-    md-whiteframe="2"
     layout="row"
-    class="col-lg-8 col-md-8 col-sm-8 col-xs-12 datagrid"
   >
-    <div class="table-responsive" flex layout="row">
-    <table>
-      <thead>
-        <tr>
-            <th>
-              Foto
-            </th>
-            <th>
-              Codigo
-            </th>
-            <th>
-              Titulo
-            </th>
-            <th>
-              Estado
-            </th>
-            <th>
-              Ubicacion
-            </th>
-            <th>
-              Precio Venta
-            </th>
-            <th>
-              Vistas
-            </th>
-            <th>
-              Cantidad Total
-            </th>
-            <th>
-              Unidad
-            </th>
-            <th>
-              Categorias
-            </th>
-            <th>
-              Megustas
-            </th>
-            <th>
-              No Megustas
-            </th>
-            <th>
-              Creado
-            </th>
-            <th>
-              Actualizado
-            </th>
-            <!-- <th>
-              Opciones
-            </th> -->
-          </tr>
-      </thead>
-      <tfoot>
-        <tr>
-            <td colspan="15">
-              <div id="paging">
-                <ul>
-                  <li>
-                    <md-button
-                      class="md-primary md-secondary md-raised md-warn md-button md-ink-ripple  ng-scope"
-                      ng-if="articuloCms.search.numItems > articuloCms.search.items.length"
-                      ng-click="articuloCms.search.scrollpaginate()"
-                    >
-                      <md-icon md-svg-icon="chevron-double-down"></md-icon>
-                      <md-tooltip>
-                        Ver Mas
-                      </md-tooltip>
-                    </md-button>
-                  </li>
-                </ul>
-              </div>
-            </tr>
-          </tfoot>
-      <tbody>
-        <tr
-            ng-repeat="item in articuloCms.search.items"
-            ng-click="articuloCms.search.seleccionado(item, idx)"
-            class="md-3-line"
-          >
-            <td>
-              <img
-                class="md-avatar images2"
-                height="100px"
-                width="100px"
+    <md-content
+      flex
+      md-whiteframe="1"
+      layout="row"
+      class="col-lg-8 col-md-8 col-sm-8 col-xs-12 datagrid"
+    >
+      <div
+        class="table-responsive"
+        flex
+        layout="column"
+      >
+        <div
+          flex
+          class="table-responsive"
+          layout="row"
+        >
+        <table>
+          <thead>
+            <tr>
+                <th>
+                  Foto
+                </th>
+                <th>
+                  Codigo
+                </th>
+                <th>
+                  Titulo
+                </th>
+                <th>
+                  Estado
+                </th>
+                <th>
+                  Ubicacion
+                </th>
+                <th>
+                  Precio Venta
+                </th>
+                <th>
+                  Vistas
+                </th>
+                <th>
+                  Cantidad Total
+                </th>
+                <th>
+                  Unidad
+                </th>
+                <th>
+                  Categorias
+                </th>
+                <th>
+                  Megustas
+                </th>
+                <th>
+                  No Megustas
+                </th>
+                <th>
+                  Creado
+                </th>
+                <th>
+                  Actualizado
+                </th>
+                <!-- <th>
+                  Opciones
+                </th> -->
+              </tr>
+          </thead>
+          <!-- <tfoot>
+            <tr>
+                <td colspan="15">
+                  <div id="paging">
+                    <ul>
+                      <li>
+                        <md-button
+                          class="md-primary md-secondary md-raised md-warn md-button md-ink-ripple  ng-scope"
+                          ng-if="articuloCms.search.numItems > articuloCms.search.items.length"
+                          ng-click="articuloCms.search.scrollpaginate()"
+                        >
+                          <md-icon md-svg-icon="chevron-double-down"></md-icon>
+                          <md-tooltip>
+                            Ver Mas
+                          </md-tooltip>
+                        </md-button>
+                      </li>
+                    </ul>
+                  </div>
+                </tr>
+              </tfoot> -->
+          <tbody>
+            <tr
+                ng-repeat="item in articuloCms.search.items"
+                ng-click="articuloCms.search.seleccionado(item, idx)"
+                class="md-3-line"
+                ng-class="{'check': item.check}"
               >
-            </td>
-            <td>
-              {{ item.codigo }}
-            </td>
-            <td>
-              {{ item.titulo }}
-            </td>
-            <td>
-              {{ item.estado }}
-            </td>
-            <td>
-              {{ item.ubicacion.titulo }}
-            </td>
-            <td>
-              {{ item.precioventa }}
-            </td>
-            <td>
-              {{ item.vistas }}
-            </td>
-            <td>
-              {{ item.cantidadtotal || 0 }}
-            </td>
-            <td>
-              {{ item.unidad }}
-            </td>
-            <td>
-              <div ng-repeat="categoria in item.categoria">
-                {{ categoria.titulo }}
-              </div>
-            </td>
-            <td>
-              {{ item.megusta }}
-            </td>
-            <td>
-              {{ item.nomegusta }}
-            </td>
-            <td>
-              {{ item.createdAt | amDateFormat:'DD/MM/YYYY' }}
-            </td>
-            <td>
-              {{ item.updatedAt | amDateFormat:'DD/MM/YYYY' }}
-            </td>
-            <!-- <td
-              layout="column"
+                <td>
+                  <img
+                    class="md-avatar images2"
+                    height="100px"
+                    width="100px"
+                  >
+                </td>
+                <td>
+                  {{ item.codigo }}
+                </td>
+                <td>
+                  {{ item.titulo }}
+                </td>
+                <td>
+                  {{ item.estado }}
+                </td>
+                <td>
+                  {{ item.ubicacion.titulo }}
+                </td>
+                <td>
+                  {{ item.precioventa }}
+                </td>
+                <td>
+                  {{ item.vistas }}
+                </td>
+                <td>
+                  {{ item.cantidadtotal || 0 }}
+                </td>
+                <td>
+                  {{ item.unidad }}
+                </td>
+                <td>
+                  <div ng-repeat="categoria in item.categoria">
+                    {{ categoria.titulo }}
+                  </div>
+                </td>
+                <td>
+                  {{ item.megusta }}
+                </td>
+                <td>
+                  {{ item.nomegusta }}
+                </td>
+                <td>
+                  {{ item.createdAt | amDateFormat:'DD/MM/YYYY' }}
+                </td>
+                <td>
+                  {{ item.updatedAt | amDateFormat:'DD/MM/YYYY' }}
+                </td>
+              </tr>
+          </tbody>
+          </table>
+        </div>
+        <div
+          layout="column"
+          layout-align="center center"
+        >
+          <div>
+            <md-button
+              class="md-primary md-secondary md-raised md-warn md-button md-ink-ripple  ng-scope"
+              ng-if="articuloCms.search.numItems > articuloCms.search.items.length"
+              ng-click="articuloCms.search.scrollpaginate()"
             >
-              <md-button
-                ng-click="articuloCms.btn.editar($event, item)"
-                class="md-icon-button md-primary md-secondary"
-              >
-                <md-icon
-                 md-svg-icon="pen"
-                >
-              </md-button>
-              <md-button
-                ng-click="articuloCms.search.eliminar($event, item, $index)"
-                class="md-icon-button md-primary md-secondary md-warn md-button md-ink-ripple  ng-scope"
-              >
-                <md-icon
-                 md-svg-icon="close"
-                >
-              </md-button>
-            </td> -->
-          </tr>
-      </tbody>
-      </table>
-    </div>
+              <md-icon md-svg-icon="chevron-double-down"></md-icon>
+              <md-tooltip>
+                Ver Mas
+              </md-tooltip>
+            </md-button>
+          </div>
+        </div>
+      </div>
+    </md-content>
   </md-content>
 </md-content>

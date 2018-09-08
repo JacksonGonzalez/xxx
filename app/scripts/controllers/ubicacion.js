@@ -44,7 +44,7 @@
         blurdata: blurdata,
         disable: true,
       },
-      titulo: dialog.titulo,
+      titulo: dialog.ops,
       opt: 'Agregar',
       list: [{}],
       generar: generar,
@@ -137,7 +137,7 @@
         ;
     }
     function close() {
-      return $mdDialog.cancel();;
+      return $mdDialog.cancel();
     }
     function blurdata(obj) {
       // console.log(obj, vm.cuerpo.list[0], vm.cuerpo.listClone);
@@ -146,6 +146,7 @@
           data = vm.cuerpo.list[0],
           clone = vm.cuerpo.listClone
         ;
+        // console.log(data, clone);
         if (data[obj] !== clone[obj] || obj === ['tipounidad']) {
           // console.log("si");
           var query = {
@@ -154,15 +155,19 @@
           ;
           if (obj) {
             query[obj] = data[obj];
+            // if (obj === 'ciudad') {
+            //     query.ciudad = data[obj].id;
+            // }
+            if (obj === 'titulo') {
+                query.slug = _.kebabCase(query.titulo);
+            }
           }
-          if (obj === 'titulo') {
-              query.slug = _.kebabCase(query.titulo);
-          }
-          articuloupdate(query, obj);
+          guardad(query, obj);
         }
       }
     }
-    function guardad() {
+    function guardad(opt, com) {
+      // console.log(opt, com);
       var
         libro = null,
         promises = []
@@ -176,58 +181,73 @@
       }else {
         libro = Pais;
       }
-      if (libro) {
-        _.forEach(vm.cuerpo.list, function(item, idx){
-          if (item.titulo) {
-            promises.push(
-              libro.getquerys({
-                slug: _.kebabCase(item.titulo)
-              })
-              .then(function(rta){
-                // console.log(rta);
-                rta = rta.list[0];
-                if (!rta) {
-                  var data = {
-                    titulo: item.titulo,
-                    slug: _.kebabCase(item.titulo),
-                    descripcion: item.descripcion
+      if (!opt) {
+        if (libro) {
+          _.forEach(vm.cuerpo.list, function(item, idx){
+            if (item.titulo) {
+              promises.push(
+                libro.getquerys({
+                  slug: _.kebabCase(item.titulo)
+                })
+                .then(function(rta){
+                  // console.log(rta);
+                  rta = rta.list[0];
+                  if (!rta) {
+                    var data = {
+                      titulo: item.titulo,
+                      slug: _.kebabCase(item.titulo),
+                      descripcion: item.descripcion
+                    }
+                    ;
+                    if (item.ciudad) {
+                      data.ciudad= item.ciudad;
+                    }
+                    if (item.departamento) {
+                      data.departamento = item.departamento;
+                    }
+                    if (item.pais) {
+                      data.pais = item.pais;
+                    }
+                    // console.log(data);
+                    promises.push(
+                      libro.create(data)
+                      .then(function(rta){
+                        // console.log(rta);
+                        return rta;
+                      })
+                    )
+                    ;
                   }
-                  ;
-                  if (item.ciudad) {
-                    data.ciudad= item.ciudad;
-                  }
-                  if (item.departamento) {
-                    data.departamento = item.departamento;
-                  }
-                  if (item.pais) {
-                    data.pais = item.pais;
-                  }
-                  // console.log(data);
-                  promises.push(
-                    libro.create(data)
-                    .then(function(rta){
-                      // console.log(rta);
-                      return rta;
-                    })
-                  )
-                  ;
-                }
-                return rta;
-              })
-            )
-            ;
-          }else {
-            vm.cuerpo.list.splice(idx, 1);
+                  return rta;
+                })
+              )
+              ;
+            }else {
+              vm.cuerpo.list.splice(idx, 1);
+            }
+          })
+          ;
+      }
+      $q
+      .all(promises)
+      .then(function(){
+          Tools.toast('Creado '+vm.cuerpo.titulo);
+          vm.cuerpo.btn.disable=false;
+      })
+      ;
+    }else {
+      console.log(opt);
+      promises.push(
+        libro.actializar(opt)
+        .then(function(rta){
+          // console.log(rta);
+          if (rta.id) {
+            Tools.toast('Actualizado '+com);
           }
         })
-        ;
-        $q
-        .all(promises)
-        .then(function(){
-          Tools.toast('Creado '+vm.cuerpo.titulo);
-        })
-        ;
-      }
+      )
+      ;
+    }
     }
   }
 })();

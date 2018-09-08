@@ -19,6 +19,7 @@
         data: {},
         config: {}
       }
+      ;
       this.awesomeThings = [
         'HTML5 Boilerplate',
         'AngularJS',

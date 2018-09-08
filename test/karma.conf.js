@@ -32,6 +32,7 @@ module.exports = function(config) {
       'bower_components/angular-sails/dist/angular-sails.js',
       'bower_components/tinymce/tinymce.js',
       'bower_components/angular-ui-tinymce/src/tinymce.js',
+      'bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js',
       'bower_components/angular-simple-logger/dist/angular-simple-logger.js',
       'bower_components/leaflet/dist/leaflet-src.js',
       'bower_components/ui-leaflet/dist/ui-leaflet.js',

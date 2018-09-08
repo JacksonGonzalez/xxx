@@ -11,6 +11,7 @@
     "angular-sanitize": "^1.4.0",
     "angular-sails": "^1.1.4",
     "angular-ui-tinymce": "latest",
+    "angular-ui-bootstrap-bower": "0.13.4",
     "ui-leaflet": "^2.0.0",
     "angular-moment": "^1.0.1",
     "angular-ui-router": "^1.0.3",

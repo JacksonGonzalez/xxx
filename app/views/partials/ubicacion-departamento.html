@@ -1,7 +1,11 @@
-<md-subheader
-    md-whiteframe="2"
-    class="md-primary md-hue-1"
-    style="border-radius:10px"
+<div
+  flex
+  layout="column"
+  layout-margin
+  md-whiteframe="1"
+>
+<div
+  layout="row"
 >
   <form
     flex
@@ -31,8 +35,26 @@
       Agregar Departamento
     </md-tooltip>
     </md-button>
+    <md-button
+      ng-click="ubicacion.cuerpo.btn.editar($event, 'departamento', true)"
+      class="md-icon-button md-primary md-secondary md-raised"
+    >
+      <md-icon md-svg-icon="pen"></md-icon>
+      <md-tooltip>
+        Editar
+      </md-tooltip>
+    </md-button>
+    <md-button
+      ng-click="ubicacion.cuerpo.departamento.search.eliminar($event, item, $index)"
+      class="md-icon-button md-primary md-secondary md-warn md-button md-ink-ripple  ng-scope md-raised"
+    >
+      <md-icon md-svg-icon="close"></md-icon>
+      <md-tooltip>
+        Eliminar
+      </md-tooltip>
+    </md-button>
   </form>
-</md-subheader>
+</div>
 <md-content
   flex
   layout="row"
@@ -50,12 +72,14 @@
           <th>Departamento</th>
           <th>Pais</th>
           <th>Descripcion</th>
-          <th>Opcion</th>
+          <!-- <th>Opcion</th> -->
         </tr>
     </thead>
     <tbody>
       <tr
         ng-repeat="item in ubicacion.cuerpo.departamento.search.items"
+        ng-click="ubicacion.cuerpo.departamento.search.seleccionado(item, idx)"
+        ng-class="{'check': item.check}"
       >
         <td>
           {{ item.titulo }}
@@ -66,7 +90,7 @@
         <td>
           <span ng-bind-html="item.descripcion"></span>
         </td>
-        <td
+        <!-- <td
           layout="column"
         >
           <md-button
@@ -87,10 +111,11 @@
               Eliminar
             </md-tooltip>
           </md-button>
-        </td>
+        </td> -->
       </tr>
     </tbody>
     </table>
   </div>
   </md-content>
 </md-content>
+</div>

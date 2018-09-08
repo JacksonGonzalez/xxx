@@ -7,6 +7,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.7.94/css/materialdesignicons.min.css">
+    <link href="styles/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -103,6 +105,7 @@
     <script src="bower_components/angular-sails/dist/angular-sails.js"></script>
     <script src="bower_components/tinymce/tinymce.js"></script>
     <script src="bower_components/angular-ui-tinymce/src/tinymce.js"></script>
+    <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
     <script src="bower_components/leaflet/dist/leaflet-src.js"></script>
     <script src="bower_components/ui-leaflet/dist/ui-leaflet.js"></script>
@@ -138,13 +141,15 @@
       <!-- Bootstrap 3.3.5 -->
       <!-- <script src="assets/js/bootstrap.min.js"></script> -->
       <!-- AdminLTE App -->
-      <script src="assets/js/app.min.js"></script>
+      <!-- <script src="assets/js/app.min.js"></script> -->
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/tienda.js"></script>
         <script src="scripts/controllers/carrito.js"></script>
         <script src="scripts/controllers/articulo.js"></script>
+        <script src="scripts/controllers/persona.js"></script>
+        <script src="scripts/controllers/contrato.js"></script>
         <script src="scripts/controllers/showarticulo.js"></script>
         <script src="scripts/controllers/informacion.js"></script>
         <script src="scripts/controllers/ubicacion.js"></script>
@@ -156,11 +161,22 @@
         <script src="scripts/controllers/DashboardMateriasPrimas.js"></script>
         <script src="scripts/controllers/DashboardMateriasProcesadas.js"></script>
         <script src="scripts/controllers/DashboardServicios.js"></script>
+        <script src="scripts/controllers/DashboardBodegas.js"></script>
+        <script src="scripts/controllers/DashboardHistorial.js"></script>
+
+        <script src="scripts/controllers/DashboardFasturas.js"></script>
+        <script src="scripts/controllers/DashboardRecibos.js"></script>
+        <script src="scripts/controllers/DashboardCompras.js"></script>
+
+        <script src="scripts/controllers/DashboardClientes.js"></script>
+        <script src="scripts/controllers/DashboardEmpleados.js"></script>
 
         <script src="scripts/controllers/DashboardGeneral.js"></script>
 
 
         <script src="scripts/directives/articuloCms.js"></script>
+        <script src="scripts/directives/contratoCms.js"></script>
+        <script src="scripts/directives/personaCms.js"></script>
         <script src="scripts/directives/menuCms.js"></script>
         <script src="scripts/directives/searchCms.js"></script>
         <script src="scripts/directives/footerCms.js"></script>
@@ -169,22 +185,26 @@
         <script src="scripts/services/factory.search.js"></script>
         <script src="scripts/services/factory.model.blog.js"></script>
         <script src="scripts/services/factory.model.tools.js"></script>
+        <script src="scripts/services/factory.model.rol.js"></script>
+        <script src="scripts/services/factory.model.contrato.js"></script>
         <script src="scripts/services/factory.model.unidad.js"></script>
         <script src="scripts/services/factory.model.usuario.js"></script>
+        <script src="scripts/services/factory.model.usuarioblog.js"></script>
+        <script src="scripts/services/factory.model.usuariorol.js"></script>
         <script src="scripts/services/factory.model.barrio.js"></script>
         <script src="scripts/services/factory.model.pais.js"></script>
+        <script src="scripts/services/factory.model.pago.js"></script>
+        <script src="scripts/services/factory.model.extra.js"></script>
         <script src="scripts/services/factory.model.departamento.js"></script>
         <script src="scripts/services/factory.model.ubicacion.js"></script>
         <script src="scripts/services/factory.model.ciudad.js"></script>
+        <script src="scripts/services/factory.model.categoria.js"></script>
         <script src="scripts/services/factory.model.articulo.js"></script>
+        <script src="scripts/services/factory.model.contratousuario.js"></script>
+        <script src="scripts/services/factory.model.contratoarticulo.js"></script>
+        <script src="scripts/services/factory.model.contratopago.js"></script>
         <script src="scripts/services/factory.model.articuloBlog.js"></script>
         <script src="scripts/services/factory.model.articuloprecio.js"></script>
         <!-- endbuild -->
-        <footer class="main-footer">
-          <div class="pull-right hidden-xs">
-            <b>Version</b> 1.0
-          </div>
-          <strong>Copyright &copy; 2018 <a href="www.incanatoit.com">Dilisap</a>.</strong> All rights reserved.
-        </footer>
 </body>
 </html>

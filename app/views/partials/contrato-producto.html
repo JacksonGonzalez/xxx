@@ -1,0 +1,187 @@
+<div
+  flex
+  layout="column"
+  layout-margin
+>
+  <div
+    layout="row"
+    layout-margin
+  >
+    <form
+      flex
+      layout="row"
+      ng-submit="idx.cuerpo.producto.search.restart()"
+    >
+      <md-input-container
+        flex
+      >
+        <label>Buscar Producto</label>
+        <input
+          type="text"
+          ng-keyup="idx.cuerpo.producto.search.restart()"
+          ng-model="idx.cuerpo.producto.search.txt"
+        >
+      </md-input-container>
+      <md-button
+        type="submit"
+      >
+        Buscar
+      </md-button>
+    </form>
+  </div>
+  <md-content
+    flex
+    layout="row"
+  >
+    <md-content
+      flex
+      md-whiteframe="1"
+      layout="row"
+      class="col-lg-8 col-md-8 col-sm-8 col-xs-12 datagrid"
+    >
+      <div
+        class="table-responsive"
+        flex
+        layout="column"
+      >
+        <div
+          flex
+          class="table-responsive"
+          layout="row"
+        >
+        <table>
+          <thead>
+            <tr>
+                <th>
+                  Foto
+                </th>
+                <th>
+                  Codigo
+                </th>
+                <th>
+                  Titulo
+                </th>
+                <th>
+                  Ubicacion
+                </th>
+                <th>
+                  Precio Venta
+                </th>
+                <th>
+                  Vistas
+                </th>
+                <th>
+                  Cantidad Total
+                </th>
+                <th>
+                  Unidad
+                </th>
+                <th>
+                  Categorias
+                </th>
+                <th>
+                  Cantidad Adquirir
+                </th>
+                <th>
+                  Opciones
+                </th>
+              </tr>
+          </thead>
+          <tfoot>
+            <tr>
+                <td colspan="15">
+                  <div id="paging">
+                    <ul>
+                      <li>
+                        <md-button
+                          class="md-primary md-secondary md-raised md-warn md-button md-ink-ripple  ng-scope"
+                          ng-if="idx.cuerpo.producto.search.numItems > idx.cuerpo.producto.search.items.length"
+                          ng-click="idx.cuerpo.producto.search.scrollpaginate()"
+                        >
+                          <md-icon md-svg-icon="chevron-double-down"></md-icon>
+                          <md-tooltip>
+                            Ver Mas
+                          </md-tooltip>
+                        </md-button>
+                      </li>
+                    </ul>
+                  </div>
+                </tr>
+              </tfoot>
+          <tbody>
+            <tr
+                ng-repeat="item in idx.cuerpo.producto.search.items"
+                class="md-3-line"
+                ng-class="{'check': item.check}"
+              >
+                <td>
+                  <img
+                    class="md-avatar images2"
+                    height="100px"
+                    width="100px"
+                  >
+                </td>
+                <td>
+                  {{ item.codigo }}
+                </td>
+                <td>
+                  {{ item.titulo }}
+                </td>
+                <td>
+                  {{ item.ubicacion.titulo }}
+                </td>
+                <td>
+                  {{ item.precioventa }}
+                </td>
+                <td>
+                  {{ item.vistas }}
+                </td>
+                <td>
+                  {{ item.cantidadtotal || 0 }}
+                </td>
+                <td>
+                  {{ item.unidad }}
+                </td>
+                <td>
+                  <div ng-repeat="categoria in item.categoria">
+                    {{ categoria.titulo }}
+                  </div>
+                </td>
+                <td>
+                  <md-input-container>
+                    <label>Cantidad Adquirir</label>
+                    <input
+                      type="number"
+                      ng-disabled="!item.check"
+                      ng-model="item.cantidadadquiridad"
+                      ng-blur="idx.cuerpo.blurprecio(item, idx, true)"
+                    >
+                  </md-input-container>
+                </td>
+                <td>
+                  <div>
+                    <md-button
+                      class="md-icon-button md-primary md-secondary md-raised"
+                      ng-click="idx.cuerpo.producto.search.seleccionado(item)"
+                      >
+                      <label
+                        ng-show="!item.check"
+                      >
+                        <md-icon md-svg-icon="check"></md-icon>
+                      </label>
+                      <label
+                        ng-show="item.check"
+                      >
+                        <md-icon md-svg-icon="close"></md-icon>
+                      </label>
+                    </md-button>
+                  </div>
+                </td>
+              </tr>
+          </tbody>
+          </table>
+        </div>
+      </div>
+    </md-content>
+  </md-content>
+</div>

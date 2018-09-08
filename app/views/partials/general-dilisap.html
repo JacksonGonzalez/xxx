@@ -1,4 +1,4 @@
-<md-subheader
+<!-- <md-subheader
     md-whiteframe="2"
     class="md-primary md-hue-1"
     style="border-radius:10px"
@@ -32,7 +32,39 @@
       </md-tooltip>
     </md-button>
   </form>
-</md-subheader>
+</md-subheader> -->
+<div
+  layout="column"
+  layout-margin
+>
+  <form
+    layout="row"
+    ng-submit="general.cuerpo.dilisap.search.restart()"
+  >
+    <md-input-container flex>
+      <label>Buscar en Empresa</label>
+      <input type="text" ng-model="general.cuerpo.dilisap.search.txt">
+    </md-input-container>
+    <md-button
+      type = "submit"
+      class="md-icon-button  md-primary md-secondary"
+    >
+      <md-icon md-svg-icon="magnify"></md-icon>
+      <md-tooltip>
+        Buscar en
+      </md-tooltip>
+    </md-button>
+    <md-button
+      ng-click="general.cuerpo.btn.editar($event, '')"
+      class="md-icon-button md-primary md-secondary md-raised"
+    >
+      <md-icon md-svg-icon="plus-circle-outline"></md-icon>
+      <md-tooltip>
+        Agregar
+      </md-tooltip>
+    </md-button>
+  </form>
+</div>
 <md-content
   flex
   layout="row"

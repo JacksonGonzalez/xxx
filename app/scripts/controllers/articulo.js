@@ -97,13 +97,19 @@
     }
     ;
     // console.log(vm.cuerpo, Ubicacion);
+    // console.log(dialog);
     getubicacion();
     if (dialog) {
       if (dialog.id) {
         vm.cuerpo.opt = 'Editar';
         dialog.listipodeunidad= Unidad.list;
-        vm.cuerpo.list[0]=dialog;
+        
+        var clone = _.clone(dialog);
+        vm.cuerpo.list[0]=clone;
         vm.cuerpo.listClone = _.clone(dialog);
+        if (clone.ubicacion) {
+          vm.cuerpo.list[0].ubicacion = clone.ubicacion.id;
+        }
         vm.cuerpo.btn.disable = false;
         blurunidad(dialog);
       }
@@ -186,6 +192,7 @@
           data = vm.cuerpo.list[0],
           clone = vm.cuerpo.listClone
         ;
+        console.log(obj);
         if (data[obj] !== clone[obj] || obj === ['tipounidad']) {
           // console.log("si");
           var query = {
@@ -198,6 +205,7 @@
           if (obj === 'titulo') {
               query.slug = _.kebabCase(query.titulo);
           }
+          console.log(query);
           articuloupdate(query, obj);
         }
       }

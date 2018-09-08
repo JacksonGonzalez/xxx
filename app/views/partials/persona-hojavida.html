@@ -1,0 +1,954 @@
+<section
+  flex
+  layout="column"
+  layout-fill
+>
+  <div
+    layout="column"
+    layout-align="center center"
+  >
+    <h3>Hoja de Vida</h3>
+    <img
+      md-whiteframe="4dp"
+      ng-src="{{ idx.cuerpo.logo }}"
+      height="100px"
+      width="100px"
+      class="img-thumbnail"
+    >
+  </div>
+  <div
+    layout-padding
+    layout="column"
+    layout-align="center center"
+  >
+    <h4>Datos Personales</h4>
+  </div>
+  <div
+    layout="column"
+    layout-margin
+    layout-padding
+    md-whiteframe="4dp"
+  >
+    <div
+      layout="row"
+    >
+    <!-- md-theme="docs-dark" -->
+      <!-- <md-input-container
+        flex
+      >
+        <label><md-icon md-svg-icon="account-star"></md-icon>Nombre</label>
+        <input
+          type="text"
+          ng-model="idx.cuerpo.data.nombre"
+          ng-blur="idx.cuerpo.btn.blur('nombre')"
+        >
+      </md-input-container> -->
+      <md-autocomplete
+         flex
+         md-floating-label="Nombre"
+         md-item-text="item.nombre"
+         md-selected-item="idx.cuerpo.data.nombre"
+         md-search-text="idx.cuerpo.consulta.searchText"
+         md-selected-item-change="idx.cuerpo.consulta.itemChange('cliente', $event)"
+         md-items="item in idx.cuerpo.consulta.search()"
+         ng-blur="idx.cuerpo.btn.blur('nombre')"
+         >
+      <md-item-template>
+        <span
+          md-highlight-text="idx.cuerpo.consulta.searchText"
+          md-highlight-flags="^i"
+          >
+          {{item.nombre}}
+        </span>
+      </md-item-template>
+      </md-autocomplete>
+
+      <md-input-container
+        flex
+      >
+        <label><md-icon md-svg-icon="account"></md-icon>Apellido</label>
+        <input
+          type="text"
+          ng-model="idx.cuerpo.data.apellido"
+          ng-blur="idx.cuerpo.btn.blur('apellido')"
+        >
+      </md-input-container>
+    </div>
+    <div
+      layout="row"
+    >
+      <md-input-container
+        flex
+      >
+        <label><md-icon md-svg-icon="account-box-outline"></md-icon>Tipo Documento</label>
+        <md-select
+          ng-model="idx.cuerpo.data.doctipo"
+          ng-blur="idx.cuerpo.btn.blur('doctipo')"
+          class="md-no-underline"
+        >
+          <md-option
+            value="cc"
+          >
+            CC
+          </md-option>
+          <md-option
+            value="exc"
+          >
+            Exc
+          </md-option>
+        </md-select>
+      </md-input-container>
+      <md-input-container
+        flex
+      >
+        <label><md-icon md-svg-icon="account-card-details"></md-icon>Documento</label>
+        <input
+          type="text"
+          ng-model="idx.cuerpo.data.documento"
+          ng-blur="idx.cuerpo.btn.blur('documento')"
+        >
+      </md-input-container>
+    </div>
+    <div
+      layout="row"
+    >
+      <md-input-container
+        flex
+      >
+        <label>Fecha de Nacimiento</label>
+        <md-datepicker
+          flex
+          ng-model="idx.cuerpo.data.fechadenacimiento"
+          ng-blur="idx.cuerpo.btn.blur('fechadenacimiento')"
+          md-is-open="ctrl.isOpen"
+        >
+        </md-datepicker>
+      </md-input-container>
+      <md-autocomplete
+         flex
+         md-floating-label="Departamento"
+         md-item-text="item.titulo"
+         md-selected-item="idx.cuerpo.data.departamentonacimiento"
+         md-search-text="idx.cuerpo.departamento.searchText"
+         md-items="item in idx.cuerpo.departamento.search()"
+         ng-blur="idx.cuerpo.btn.blur('departamento')"
+         >
+      <md-item-template>
+        <span
+          md-highlight-text="idx.cuerpo.departamento.searchText"
+          md-highlight-flags="^i"
+          >
+          {{item.titulo}}
+        </span>
+      </md-item-template>
+      </md-autocomplete>
+      <md-autocomplete
+         flex
+         md-floating-label="Ciudad / Municipio"
+         md-item-text="item.titulo"
+         md-selected-item="idx.cuerpo.data.ciudadnacimiento"
+         md-search-text="idx.cuerpo.ciudad.searchText"
+         md-items="item in idx.cuerpo.ciudad.search()"
+         ng-blur="idx.cuerpo.btn.blur('ciudadnacimiento')"
+         >
+      <md-item-template>
+        <span
+          md-highlight-text="idx.cuerpo.ciudad.searchText"
+          md-highlight-flags="^i"
+          >
+          {{item.titulo}}
+        </span>
+      </md-item-template>
+      </md-autocomplete>
+    </div>
+    <div
+      layout="row"
+    >
+      <md-input-container
+        flex
+      >
+        <label><md-icon md-svg-icon="account-settings"></md-icon>Estado Civil</label>
+        <md-select
+          ng-model="idx.cuerpo.data.estadocivil"
+          ng-blur="idx.cuerpo.btn.blur('estadocivil')"
+          class="md-no-underline"
+        >
+          <md-option
+            value="soltero"
+          >
+            Soltera/o
+          </md-option>
+          <md-option
+            value="casado"
+          >
+            Casada/o
+          </md-option>
+          <md-option
+            value="viudo"
+          >
+            Viuda/o
+          </md-option>
+          <md-option
+            value="divorciado"
+          >
+            Divorciada/o
+          </md-option>
+        </md-select>
+      </md-input-container>
+      <md-input-container
+        flex
+      >
+        <label><md-icon md-svg-icon="map-marker"></md-icon>Direccion</label>
+        <input
+          type="text"
+          ng-blur="idx.cuerpo.btn.blur('direccion')"
+          ng-model="idx.cuerpo.data.direccion"
+        >
+      </md-input-container>
+      <md-autocomplete
+         flex
+         md-floating-label="Ciudad"
+         md-item-text="item.titulo"
+         md-selected-item="idx.cuerpo.data.ciudad"
+         md-search-text="idx.cuerpo.direccion.searchText"
+         md-items="item in idx.cuerpo.direccion.search(true)"
+         ng-blur="idx.cuerpo.btn.blur('ciudad')"
+         >
+      <md-item-template>
+        <span
+          md-highlight-text="idx.cuerpo.direccion.searchText"
+          md-highlight-flags="^i"
+          >
+          {{item.titulo}}
+        </span>
+      </md-item-template>
+      </md-autocomplete>
+    </div>
+    <div
+      layout="row"
+    >
+      <md-input-container
+        flex
+      >
+        <label><md-icon md-svg-icon="phone-in-talk"></md-icon>Telefono</label>
+        <input
+          type="number"
+          ng-model="idx.cuerpo.data.telefono"
+          ng-blur="idx.cuerpo.btn.blur('telefono')"
+        >
+      </md-input-container>
+      <md-input-container
+        flex
+      >
+        <label><md-icon md-svg-icon="at"></md-icon>Email</label>
+        <input
+          type="text"
+          required
+          ng-blur="idx.cuerpo.btn.blur('email')"
+          ng-model="idx.cuerpo.data.email"
+        >
+      </md-input-container>
+    </div>
+    <div
+      layout="row"
+      layout-align="center center"
+      ng-if="idx.cuerpo.titulo !== 'cliente'"
+    >
+      <md-button
+        class="md-primary md-raised md-button"
+        ng-click="idx.cuerpo.btn.ocultar=!idx.cuerpo.btn.ocultar"
+      >
+        <label ng-if="!idx.cuerpo.btn.ocultar">Mas Informacion</label>
+        <label ng-if="idx.cuerpo.btn.ocultar">Ocultar Informacion</label>
+      </md-button>
+    </div>
+  </div>
+  <div
+    layout="column"
+    ng-if="idx.cuerpo.btn.ocultar"
+  >
+    <div
+      layout-padding
+      layout="column"
+      layout-align="center center"
+    >
+      <h4>Estudios</h4>
+    </div>
+    <div
+      layout="column"
+      layout-margin
+      layout-padding
+      md-whiteframe="4dp"
+    >
+      <div
+        layout="column"
+      >
+        <div
+          flex
+          layout="row"
+          md-whiteframe="1dp"
+          layout-padding
+        >
+          <md-input-container
+            flex
+          >
+            <label><md-icon md-svg-icon="file-document"></md-icon>Estudios Primarios</label>
+            <input
+              type="text"
+              ng-model="idx.cuerpo.data.estudiosprimarios.titulo"
+            >
+          </md-input-container>
+        </div>
+        <div
+          flex
+          layout="row"
+        >
+          <md-input-container
+            flex
+          >
+            <label>Direccion</label>
+            <input
+              type="text"
+              ng-model="idx.cuerpo.data.estudiosprimarios.direccion"
+            >
+          </md-input-container>
+          <md-input-container
+            flex
+          >
+            <label>Año Inicio</label>
+            <input
+              type="text"
+              ng-model="idx.cuerpo.data.estudiosprimarios.fechainicio"
+            >
+          </md-input-container>
+          <div
+            layout-padding
+          >
+            <h5>Hasta</h5>
+          </div>
+          <md-input-container
+            flex
+          >
+            <label>Año Final</label>
+            <input
+              type="text"
+              ng-model="idx.cuerpo.data.estudiosprimarios.fechafinal"
+            >
+          </md-input-container>
+        </div>
+        <div
+          flex
+          layout="row"
+          md-whiteframe="1dp"
+          layout-padding
+        >
+          <md-input-container
+            flex
+          >
+            <label><md-icon md-svg-icon="file-document"></md-icon>Estudios Secundarios</label>
+            <input
+              type="text"
+              ng-model="idx.cuerpo.data.estudiosprimarios.estudio"
+            >
+          </md-input-container>
+        </div>
+        <div
+          flex
+          layout="row"
+        >
+          <md-input-container
+            flex
+          >
+            <label>Direccion</label>
+            <input
+              type="text"
+              ng-model="idx.cuerpo.data.estudiosprimarios.direccion"
+            >
+          </md-input-container>
+          <md-input-container
+            flex
+          >
+            <label>Año Inicio</label>
+            <input
+              type="text"
+              ng-model="idx.cuerpo.data.estudiosprimarios.fechainicio"
+            >
+          </md-input-container>
+          <div
+            layout-padding
+          >
+            <h5>Hasta</h5>
+          </div>
+          <md-input-container
+            flex
+          >
+            <label>Año Final</label>
+            <input
+              type="text"
+              ng-model="idx.cuerpo.data.estudiosprimarios.fechafinal"
+            >
+          </md-input-container>
+        </div>
+      </div>
+      <div
+        layout="row"
+      >
+        <div
+          flex
+          layout="column"
+        >
+          <div
+            layout="row"
+            layout-align="space-between center"
+          >
+            <div>
+
+            </div>
+            <h4>Estudios Superiores</h4>
+            <div>
+              <md-button
+                class="md-icon-button md-primary md-raised"
+                ng-click="idx.cuerpo.estudios.push({})"
+              >
+                <md-icon md-svg-icon="plus-circle"></md-icon>
+              </md-button>
+            </div>
+          </div>
+          <md-list
+            flex
+            layout="column"
+          >
+            <md-list-item
+              flex
+              ng-repeat="item in idx.cuerpo.estudios"
+            >
+              <div
+                flex
+                layout="column"
+                md-whiteframe="4dp"
+                layout-padding
+                layout-margin
+              >
+                <div
+                  flex
+                  layout="row"
+                >
+                  <md-input-container
+                    flex
+                  >
+                    <label>Titulo</label>
+                    <input
+                      type="text"
+                      ng-model="idx.cuerpo.data.estudiosprimarios"
+                    >
+                  </md-input-container>
+                  <md-input-container
+                    flex
+                  >
+                    <label>Tipo de Estudio</label>
+                    <md-select
+                      ng-model="item.tipo"
+                      class="md-no-underline"
+                    >
+                      <md-option
+                        value="cursosrapido"
+                      >
+                        Cursos Rapido
+                      </md-option>
+                      <md-option
+                        value="tecnico"
+                      >
+                        Tecnico
+                      </md-option>
+                      <md-option
+                        value="Tecnologo"
+                      >
+                        Tecnologo
+                      </md-option>
+                      <md-option
+                        value="Ingenieria"
+                      >
+                        Ingenieria
+                      </md-option>
+                    </md-select>
+                  </md-input-container>
+                </div>
+                <div
+                  flex
+                  layout="row"
+                >
+                  <div flex-gt-xs>
+                    <h5>Fecha de Inicio</h5>
+                    <md-datepicker
+                      flex
+                      ng-model="item.fechainicio"
+                      md-is-open="ctrl.isOpens2"
+                    >
+                    </md-datepicker>
+                  </div>
+                  <div
+                    flex
+                    layout-padding
+                  >
+                    <label>
+                        <input type="checkbox" ng-model="item.encurso">
+                        <span ng-if="!item.encurso">Finalizo</span>
+                        <span ng-if="item.encurso">Encurso</span>
+                    </label>
+                  </div>
+                  <div flex-gt-xs>
+                    <h5>Fecha de Terminado</h5>
+                    <md-datepicker
+                      flex
+                      ng-disabled="!item.encurso"
+                      ng-model="item.fechafinal"
+                      md-is-open="val.isOpens3"
+                    >
+                    </md-datepicker>
+                  </div>
+                </div>
+                <div
+                  flex
+                  layout="column"
+                >
+                  <div
+                      flex
+                      layout="column"
+                  >
+                    <label>Descripcion</label>
+                    <div
+                        flex
+                        layout="column"
+                        class="md-full"
+                    >
+                      <textarea
+                          flex
+                          ui-tinymce
+                          ng-model="item.descripcion"
+                          ui-tinymce="articulo.tinymce.opts"
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div
+                    layout="row"
+                    layout-align="space-between center"
+                  >
+                    <div>
+
+                    </div>
+                    <div>
+
+                    </div>
+                    <md-button
+                      class="md-icon-button md-primary md-raised"
+                      ng-click="idx.cuerpo.estudios.splice($index, 1)"
+                    >
+                      <md-icon md-svg-icon="close"></md-icon>
+                    </md-button>
+                  </div>
+                </div>
+              </div>
+            </md-list-item>
+          </md-list>
+        </div>
+      </div>
+    </div>
+    <div
+      layout-padding
+      layout="row"
+      layout-align="space-between center"
+    >
+      <div>
+
+      </div>
+      <h4>Seminarios y Otros</h4>
+      <div>
+        <md-button
+          class="md-icon-button md-primary md-raised"
+          ng-click="idx.cuerpo.seminarios.push({})"
+        >
+          <md-icon md-svg-icon="plus-circle"></md-icon>
+        </md-button>
+      </div>
+    </div>
+    <div
+      layout="column"
+      layout-margin
+      layout-padding
+      md-whiteframe="4dp"
+    >
+      <md-list
+        flex
+        layout="column"
+      >
+        <md-list-item
+          flex
+          ng-repeat="item in idx.cuerpo.seminarios"
+        >
+          <div
+            flex
+            layout="column"
+            md-whiteframe="4dp"
+            layout-padding
+            layout-margin
+          >
+            <div
+              layout="row"
+            >
+              <md-input-container
+                flex
+              >
+                <label>Titulo</label>
+                <input
+                  type="text"
+                  ng-model="item.titulo"
+                >
+              </md-input-container>
+              <div
+                flex="20"
+              >
+                <h5>Fecha</h5>
+                <md-datepicker
+                  flex
+                  ng-model="item.fecha"
+                  md-is-open="val.isOpens4"
+                >
+                </md-datepicker>
+              </div>
+            </div>
+            <div
+              layout="column"
+            >
+              <div
+                  flex
+                  layout="column"
+              >
+                <label>Descripcion</label>
+                <div
+                    flex
+                    layout="column"
+                    class="md-full"
+                >
+                  <textarea
+                      flex
+                      ui-tinymce
+                      ng-model="item.descripcion"
+                      ui-tinymce="articulo.tinymce.opts"
+                  ></textarea>
+                </div>
+              </div>
+              <div
+                layout="row"
+                layout-align="space-between center"
+              >
+                <div>
+
+                </div>
+                <div>
+
+                </div>
+                <md-button
+                  class="md-icon-button md-primary md-raised"
+                  ng-click="idx.cuerpo.seminarios.splice($index, 1)"
+                >
+                  <md-icon md-svg-icon="close"></md-icon>
+                </md-button>
+              </div>
+            </div>
+          </div>
+        </md-list-item>
+      </md-list>
+    </div>
+    <div
+      layout-padding
+      layout="row"
+      layout-align="space-between center"
+    >
+      <div>
+
+      </div>
+      <h4>Experiencia Laboral</h4>
+      <div>
+        <md-button
+          class="md-icon-button md-primary md-raised"
+          ng-click="idx.cuerpo.experiencia.agregar()"
+        >
+          <md-icon md-svg-icon="plus-circle"></md-icon>
+        </md-button>
+      </div>
+    </div>
+    <div
+      layout="column"
+      layout-margin
+      layout-padding
+      md-whiteframe="4dp"
+    >
+      <md-list
+        flex
+        layout="column"
+      >
+        <md-list-item
+          flex
+          ng-repeat="item in idx.cuerpo.experiencia.list"
+          ng-init="val = $index"
+      >
+        <div
+          flex
+          layout="column"
+          md-whiteframe="4dp"
+          layout-padding
+          layout-margin
+        >
+          <div
+            layout="row"
+          >
+            <md-input-container
+              flex
+            >
+              <label>Nombre de la Empresa</label>
+              <input
+                type="text"
+                ng-model="item.titulo"
+              >
+            </md-input-container>
+          </div>
+          <div
+            layout="row"
+          >
+            <md-chips
+                flex
+                md-transform-chip="idx.cuerpo.cargo.transformChip($chip, val)"
+                ng-model="item.cargo"
+                placeholder="Cargo..."
+                secondary-placeholder="+ Cargos"
+                md-removable="true"
+                md-require-match="false"
+                md-on-select = "idx.cuerpo.cargo.onSelect(val)"
+                md-autocomplete-snap
+                md-on-add="idx.cuerpo.cargo.onAdd($chip, 'cargo', val)"
+                md-on-remove="idx.cuerpo.cargo.onRemove($chip, 'cargo')"
+            >
+              <md-autocomplete
+                  style="width:500px"
+                  md-selected-item="idx.cuerpo.cargo.selectedItem[val]"
+                  md-search-text="idx.cuerpo.cargo.searchText[val]"
+                  md-items="item in idx.cuerpo.cargo.querySearch(val, 'cargo')"
+                  md-item-text="item.nombre"
+                  placeholder="Cargos..."
+                  secondary-placeholder="+ Otra Invitado"
+              >
+                    <span
+                        md-highlight-text="idx.cuerpo.cargo.searchText[val]"
+                    >
+                      {{item.titulo}}
+                    </span>
+              </md-autocomplete>
+              <md-chip-template>
+                <strong>{{ $chip.titulo }}</strong>
+              </md-chip-template>
+            </md-chips>
+          </div>
+          <div
+            layout="row"
+          >
+            <md-chips
+                flex
+                md-transform-chip="idx.cuerpo.cargo.transformChip($chip, val)"
+                ng-model="item.funciones"
+                placeholder="Funciones..."
+                secondary-placeholder="+ Funcioness"
+                md-on-select = "idx.cuerpo.funciones.onSelect(val)"
+                md-autocomplete-snap
+                md-on-add="idx.cuerpo.funciones.onAdd($chip, 'funciones', val)"
+                md-on-remove="idx.cuerpo.funciones.onRemove($chip, 'funciones')"
+            >
+              <md-autocomplete
+                  style="width:500px"
+                  md-selected-item="idx.cuerpo.funciones.selectedItem[val]"
+                  md-search-text="idx.cuerpo.funciones.searchText[val]"
+                  md-items="item in idx.cuerpo.funciones.querySearch(val, 'funciones')"
+                  md-item-text="item.titulo"
+                  placeholder="Funcioness..."
+                  secondary-placeholder="+ Otras Funciones"
+              >
+                    <span
+                        md-highlight-text="idx.cuerpo.funciones.searchText[val]"
+                    >
+                      {{item.titulo }}
+                    </span>
+              </md-autocomplete>
+              <md-chip-template>
+                <strong>{{ $chip.titulo }}</strong>
+              </md-chip-template>
+            </md-chips>
+          </div>
+          <div
+            layout="row"
+          >
+            <md-input-container
+              flex
+            >
+              <label>Jefe inmediato</label>
+              <input
+                type="text"
+                ng-model="item.jefe"
+              >
+            </md-input-container>
+            <md-input-container
+              flex
+            >
+              <label>Numero / Telefono</label>
+              <input
+                type="number"
+                ng-model="item.telefono"
+              >
+            </md-input-container>
+          </div>
+          <div
+            flex
+            layout="row"
+          >
+            <div flex-gt-xs>
+              <h5>Fecha de Inicio</h5>
+              <md-datepicker
+                flex
+                ng-model="item.fechainicio"
+                md-is-open="ctrl.isOpens5"
+              >
+              </md-datepicker>
+            </div>
+            <div
+              flex
+              layout-padding
+            >
+              <label>
+                  <input type="checkbox" ng-model="item.encurso">
+                  <span ng-if="!item.encurso">Finalizo</span>
+                  <span ng-if="item.encurso">Actualmente</span>
+              </label>
+            </div>
+            <div flex-gt-xs>
+              <h5>Fecha de Terminado</h5>
+              <md-datepicker
+                flex
+                ng-disabled="!item.encurso"
+                ng-model="item.fechafinal"
+                md-is-open="val.isOpens1"
+              >
+              </md-datepicker>
+            </div>
+          </div>
+          <div
+            layout="row"
+            layout-align="space-between center"
+          >
+            <div>
+
+            </div>
+            <div>
+
+            </div>
+            <md-button
+              class="md-icon-button md-primary md-raised"
+              ng-click="idx.cuerpo.experiencia.eliminar($index, item)"
+            >
+              <md-icon md-svg-icon="close"></md-icon>
+            </md-button>
+          </div>
+        </div>
+        </md-list-item>
+      </md-list>
+    </div>
+    <div
+      layout-padding
+      layout="column"
+      layout-align="center center"
+    >
+      <h4>Referencias Familiares</h4>
+    </div>
+    <div
+      layout="column"
+      layout-margin
+      layout-padding
+      md-whiteframe="4dp"
+    >
+      <md-list
+        flex
+        layout="column"
+      >
+        <md-list-item
+          flex
+          ng-repeat="item in idx.cuerpo.referencia"
+          ng-init="val = $index"
+        >
+          <div
+            flex
+            layout="column"
+            md-whiteframe="4dp"
+            layout-padding
+            layout-margin
+          >
+            <div
+              layout="row"
+            >
+              <div
+                layout-padding
+              >
+                <span>{{ $index+1 }}.</span>
+              </div>
+              <md-input-container
+                flex
+              >
+                <label>Nombre</label>
+                <input
+                  type="string"
+                  ng-model="item.titulo"
+                >
+              </md-input-container>
+              <md-input-container
+                flex
+              >
+                <label>Empresa</label>
+                <input
+                  type="string"
+                  ng-model="item.empresa"
+                >
+              </md-input-container>
+              <md-input-container
+                flex
+              >
+                <label>Telefono</label>
+                <input
+                  type="string"
+                  ng-model="item.telefono"
+                >
+              </md-input-container>
+            </div>
+            <div
+              layout="row"
+            >
+              <div
+                  flex
+                  layout="column"
+              >
+                <label>Descripcion</label>
+                <div
+                    flex
+                    layout="column"
+                    class="md-full"
+                >
+                  <textarea
+                      flex
+                      ui-tinymce
+                      ng-model="item.descripcion"
+                      ui-tinymce="articulo.tinymce.opts"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </md-list-item>
+      </md-list>
+    </div>
+  </div>
+</section>

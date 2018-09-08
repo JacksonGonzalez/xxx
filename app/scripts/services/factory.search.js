@@ -47,6 +47,7 @@
               numItems: 0,
               ver: ver,
               selected: [],
+              itemselec: {},
               seleccionado: seleccionado,
               restart: restart,
               eliminar: eliminar,
@@ -76,6 +77,9 @@
                 }
               }
               query.where = where.where || where;
+              query.sort = {
+                createdAt: 'desc'
+              };
               // query.sort = getQuerySort(where.sort, modelname);
             }
             getquerys();
@@ -99,18 +103,46 @@
               getquerys();
 
             }
-
+            function cheking(opt) {
+              _.forEach(vm.cuerpo.producto.search.items, function(item){
+                  _.forEach(vm.cuerpo.producto.search.selected, function(val){
+                      if (val.id === item.id) {
+                        item.check = true;
+                        if (opt) {
+                          val.cantidadadquiridad = item.cantidadadquiridad;
+                        }else {
+                          item.cantidadadquiridad = val.cantidadadquiridad;
+                        }
+                      }else {
+                        // item.check = false;
+                      }
+                  })
+                  ;
+              })
+              ;
+            }
             function getquerys() {
               // console.log(Model, modelname, where, query, paginate);
-              // console.log(query);
               return Model
               .getquerys(txtquers(query))
               .then(function(list){
+                console.log(txtquers(query));
                 // console.log(list);
                 rta.numItems = list.count;
                 list = list.list;
                 if (list) {
                   rta.items = _.unionBy(rta.items || [], list, 'id');
+                  if (rta.selected.length) {
+                    _.forEach(rta.selected, function(item){
+                      _.forEach(rta.items, function(val){
+                        if (item.id === val.id) {
+                          val.check = true;
+                        }
+                      })
+                      ;
+                    })
+                    ;
+                  }
                 }
               })
               ;
@@ -165,6 +197,26 @@
                    }
                  );
                   break;
+                  case 'Persona':
+                  search.push(
+                    {
+                      documento:{
+                        contains: rta.txt || ''
+                      }
+                    },
+                    {
+                      slugnombre:{
+                        contains: rta.txt || ''
+                      }
+                    },
+                    {
+                      slugapellido:{
+                        contains: rta.txt || ''
+                      }
+                    }
+                  )
+                  ;
+                  break;
                   default:
                     search.push(
                       {
@@ -196,7 +248,7 @@
               paginate = 1;
               getquerys();
             }
-            function eliminar(ev, obj, idx) {
+            function eliminar(ev) {
               // console.log(obj, idx);
               var confirm = $mdDialog.confirm()
               .title('Seguro Deseas Elimiar?')
@@ -209,7 +261,8 @@
               $mdDialog.show(confirm)
               .then(function(ops) {
                   // console.log(ops);
-                  if (ops) {
+                if (ops) {
+                  _.forEach(rta.selected,function(obj, idx){
                     var data = {
                       id: obj.id,
                       estado: 'borrado'
@@ -224,7 +277,9 @@
                       }
                     })
                     ;
-                  }
+                  })
+                  ;
+                }
               })
               ;
             }
@@ -243,12 +298,24 @@
             function getQuerySort() {
 
             }
-            function seleccionado(obj, idx) {
-              var idx = _.findIndex(rta.items, ['id', obj.id]);
-              if (!idx >-1) {
-                rta.selected.push(obj);
-              }else {
-                rta.selected.splice(idx, 1);
+            function seleccionado(obj) {
+              console.log(obj);
+              if (obj) {
+                obj.check = !obj.check;
+                obj.title = obj.titulo;
+                obj.totalprecio = 0;
+                if (obj.check) {
+                  rta.itemselec = obj;
+                }
+                var idx = _.findIndex(rta.selected, ['id', obj.id]);
+                // console.log(idx);
+                if (idx >-1) {
+                  // console.log("elimina");
+                  rta.selected.splice(idx, 1);
+                }else {
+                  // console.log("entra");
+                  rta.selected.push(obj);
+                }
               }
             }
             function ver(obj, idx, ev) {

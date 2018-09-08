@@ -5,142 +5,106 @@
     ng-class="{'md-sidenav-left-visible': dashboard.cuerpo.sidenav.hasOpen}"
 >
   <md-sidenav
-      class="md-sidenav"
-      md-whiteframe="4"
+      md-whiteframe="4dp"
       md-component-id="left"
       class="md-sidenav-left"
-      md-is-locked-open="dashboard.cuerpo.sidenav.hasOpen"
       layout="column"
   >
     <md-toolbar
         md-whiteframe="2"
+        layout="row"
     >
       <div
-          class="md-toolbar-tools"
-          layout-align="space-between center"
+        flex
+        class="md-toolbar-tools"
+        layout-align="space-between center"
       >
-      <span>Empresa {{ dashboard.cuerpo.empresa }}</span>
-    </div>
+        <span>Empresa {{ dashboard.cuerpo.empresa }}</span>
+      </div>
+      <div>
+        <md-button
+          class="md-icon-button md-primary md-secondary md-warn md-button md-ink-ripple  ng-scope"
+          ng-click="dashboard.cuerpo.sidenav.close('left')"
+        >
+          <md-icon md-svg-icon="close"></md-icon>
+        </md-button>
+      </div>
     </md-toolbar>
     <md-content
         flex
         md-lazy-load-container
     >
-    <md-list
-      flex
-    >
-      <!-- <md-list-item
-        class="md-3-line"
-        ng-repeat="item in dashboard.cuerpo.menu.list"
-      >
-          <div
-            class="md-list-item-text sidebar"
-            layout="column"
-          >
-            <ul class="sidebar-menu">
-              <li class="header"></li>
-              <li class="treeview">
-                <a>
-                  <i class="fa fa-laptop" style="font-size: 19px">
-                    <span>{{ item.name }}</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                  </i>
-                </a>
-                <ul class="treeview-menu" ng-repeat="sub in item.sublist">
-                  <li><a ui-sref="{{sub.sref}}"><i class="fa fa-circle-o"></i> {{ sub.name }}</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-      </md-list-item> -->
       <div
         flex
         layout-padding
         layout="column"
       >
-        <section class="sidebar" flex>
-          <!-- Sidebar user panel -->
-
-          <!-- sidebar menu: : style can be found in sidebar.less -->
-          <ul class="sidebar-menu">
-            <!-- <li class="header"></li> -->
-            <li
-              class="treeview"
+        <div
+          flex="20"
+          layout="column"
+          style="background:#cacaca; border-radius: 5px;"
+        >
+          <div
+            flex
+          >
+            <img
+              style="
+                background-repeat: no-repeat;
+                background-size: cover;
+                height:30%;
+                width:30%;"
+              ng-src="{{dashboard.cuerpo.image}}"
+              class="md-avatar"
+            />
+          </div>
+        </div>
+        <div
+          layout-margin
+          md-whiteframe="1"
+        >
+          <md-list flex>
+            <md-list-item
+              class="md-1-line"
               ng-repeat="item in dashboard.cuerpo.menu.list"
+              ng-class="{'checkmenu': item.check}"
             >
-              <a>
-                <i class="fa fa-laptop"></i>
-                <span>
-                  {{ item.name }}
-                  <md-icon
-                    class="md-icon-button md-secondary"
-                    ng-if="item.icon"
-                    md-svg-icon="{{item.icon}}"
+              <div
+                class="curso"
+                layout="column"
+              >
+                <h4
+                  layout="column"
+                  class="curso"
+                  ng-click="dashboard.cuerpo.menu.select($index)"
+                >
+                  <div
+                    flex
+                    class="curso"
                   >
-                  </md-icon>
-                </span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu" ng-repeat="sub in item.sublist">
-                <li>
-                  <a ui-sref="{{sub.sref}}">
-                    <i class="fa fa-circle-o"></i>
-                      {{ sub.name }}
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            <!-- <li class="treeview">
-              <a href="#">
-                <i class="fa fa-th"></i>
-                <span>Compras</span>
-                 <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="{{ url('compras/ingreso') }}"><i class="fa fa-circle-o"></i> Ingresos</a></li>
-                <li><a href="{{ url('compras/proveedor') }}"><i class="fa fa-circle-o"></i> Proveedores</a></li>
-              </ul>
-            </li>
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-shopping-cart"></i>
-                <span>Ventas</span>
-                 <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="{{ url('ventas/venta') }}"><i class="fa fa-circle-o"></i> Ventas</a></li>
-                <li><a href="{{ url('ventas/cliente') }}"><i class="fa fa-circle-o"></i> Clientes</a></li>
-              </ul>
-            </li>
-
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-folder"></i> <span>Acceso</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="{{ url('seguridad/usuario') }}"><i class="fa fa-circle-o"></i> Usuarios</a></li>
-
-              </ul>
-            </li> -->
-             <li>
-              <a href="#">
-                <i class="fa fa-plus-square"></i> <span>Ayuda</span>
-                <small class="label pull-right bg-red">PDF</small>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-info-circle"></i> <span>Acerca De...</span>
-                <small class="label pull-right bg-yellow">IT</small>
-              </a>
-            </li>
-
-          </ul>
-        </section>
+                    <span class="menuname">{{ item.name }}</span>
+                  </div>
+                </h4>
+                <h4
+                  ng-repeat="sub in item.sublist"
+                  ui-sref="{{sub.sref}}"
+                  ng-if="item.check"
+                  ng-class="{'checkmenu': sub.check}"
+                  ng-click="dashboard.cuerpo.menu.checkmenu($index, item)"
+                  layout="column"
+                  layout-margin
+                >
+                  <div
+                    flex
+                    class="curso"
+                  >
+                    <span class="menuname">{{ sub.name }}</span>
+                  </div>
+                </h4>
+              </div>
+            </md-list-item>
+          </md-list>
+        </div>
       </div>
-    </md-list>
     </md-content>
   </md-sidenav>
   <div
@@ -148,34 +112,58 @@
       layout="column"
   >
     <md-toolbar
-        md-whiteframe="3"
+        md-whiteframe="4dp"
         class="md-primary md-hue-2"
+        layout="row"
     >
-      <div class="md-toolbar-tools">
-        <div
-            layout="row"
-            layout-align="center center"
-        >
-          <md-button
-              ng-show="!gtsm"
+      <div
+        flex
+        layout="column"
+      >
+        <div class="md-toolbar-tools">
+          <div
+              layout="row"
+              layout-align="center center"
+          >
+            <!-- <md-button
+                ng-show="!gtsm"
+                ng-click="dashboard.cuerpo.sidenav.open('left')"
+                class="md-icon-button"
+            >
+              <md-icon md-svg-icon="menu" ></md-icon>
+            </md-button> -->
+            <md-button
               ng-click="dashboard.cuerpo.sidenav.open('left')"
               class="md-icon-button"
-          >
-            <md-icon md-svg-icon="menu" ></md-icon>
-          </md-button>
-          <md-button
-              ng-if="gtsm"
-              ng-click="dashboard.cuerpo.sidenav.hasOpen = !dashboard.cuerpo.sidenav.hasOpen;"
-              class="md-icon-button"
-          >
-            <md-icon md-svg-icon="{{ dashboard.cuerpo.sidenav.hasOpen?'menu-left':'menu' }}"></md-icon>
-            <md-tooltip>
-              {{ dashboard.cuerpo.sidenav.hasOpen?'Cerrar':'Abrir' }} Menú
-            </md-tooltip>
-          </md-button>
-          <h3>
-            Bienvenido a Dilisap
-          </h3>
+            >
+              <md-icon md-svg-icon="menu" ></md-icon>
+            </md-button>
+            <!-- <md-button
+                ng-if="gtsm"
+                ng-click="dashboard.cuerpo.sidenav.hasOpen = !dashboard.cuerpo.sidenav.hasOpen;"
+                class="md-icon-button"
+            >
+              <md-icon md-svg-icon="{{ dashboard.cuerpo.sidenav.hasOpen?'menu-left':'menu' }}"></md-icon>
+              <md-tooltip>
+                {{ dashboard.cuerpo.sidenav.hasOpen?'Cerrar':'Abrir' }} Menú
+              </md-tooltip>
+            </md-button> -->
+            <h3>
+              Bienvenido a Dilisap
+            </h3>
+          </div>
+        </div>
+      </div>
+      <div
+        layout="row"
+        layout-padding
+      >
+        <div
+          flex
+          class="curso"
+          ng-click="dashboard.cuerpo.sidenav.open('right')"
+        >
+          <span>Jose</span>
         </div>
       </div>
     </md-toolbar>
@@ -186,5 +174,34 @@
     >
       <span>Principal</span>
     </md-content>
+    <!-- <footer class="main-footer">
+      <div class="pull-right hidden-xs">
+        <b>Version</b> 1.0
+      </div>
+      <strong>Copyright &copy; 2018 <a href="www.incanatoit.com">Dilisap</a>.</strong> All rights reserved.
+    </footer> -->
   </div>
+  <md-sidenav
+      md-whiteframe="4dp"
+      class="md-sidenav-right"
+      md-component-id="right"
+      layout="column"
+  >
+    <md-toolbar
+        md-whiteframe="2"
+    >
+      <div
+          class="md-toolbar-tools"
+          layout-align="space-between center"
+      >
+      <span>Mensajes</span>
+    </div>
+    </md-toolbar>
+    <md-content
+        flex
+        md-lazy-load-container
+    >
+
+    </md-content>
+  </md-sidenav>
 </div>
