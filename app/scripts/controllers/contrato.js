@@ -60,7 +60,7 @@
             nit: $rootScope.blog.nit || '1009991',
           },
           data:{
-            fecha: new Date(),
+            fecha: moment().format('DD/MM/YYYY'),
             numero: codigogenerar() || '123',
             usuario:{},
             blog: $rootScope.blog.id,
@@ -195,7 +195,7 @@
           }, paginate);
         }
         function getproducto(idx, opt) {
-          console.log(opt);
+          // console.log(opt);
           var
             txt = vm.cuerpo.producto.searchText[idx],
             query = {}
@@ -208,6 +208,9 @@
             }
           }
           query.tipo = opt;
+          if (dialog.opciono === 'factura' || dialog.opciono === 'recibo' ) {
+            query.estado = 'activo';
+          }
           return ArticuloBlog
             .getquerys(query)
             .then(function(rta){
@@ -327,6 +330,7 @@
             default:
 
           }
+          // console.log(vm.cuerpo);
         }
         function searchTextChange() {
 
@@ -354,7 +358,8 @@
           //   query.sucursalblog= $rootScope.blog.id;
           // }
           // query.rol = "";
-          return UsuarioRol
+          query.blog=$rootScope.blog.id;
+          return UsuarioBlog
             .getquerys(query)
             .then(function(rta){
               console.log(rta);

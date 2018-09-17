@@ -256,12 +256,15 @@
           data.blog = query.blog.id || query.blog;
           delete query.blog;
         }
+        // console.log(getFullUrl(url), query, data)
         if (data.id) {
           return lib
             .delete(getFullUrl(url), data)
             .then(function(rta) {
+              // console.log(rta)
               var data = getDataRta(rta);
               $rootScope.$emit('destroyed.' + modelname, data);
+              // console.log(modelname);
               $rootScope.$emit('destroyed.' + modelname + '.' + data.id, data);
               return data;
             });
@@ -297,8 +300,6 @@
         function loadList(query, count) {
           return getModel(base, query || {})
             .then(function(rta) {
-              lista = _.unionBy(lista, rta, 'id');
-
               return {
                 count: count,
                 list: rta
@@ -332,6 +333,7 @@
         return postModel(base, data)
           .then(function(rta) {
             var data = getDataRta(rta);
+            console.log(modelname, data);
             $rootScope.$emit('created.' + modelname, data);
             $rootScope.$emit('created.' + modelname + '.' + data.id, data);
             return data;
@@ -388,6 +390,7 @@
        * @return {*|Promise|{}}
        */
       function removeItem(elem, association, item) {
+        console.log(item);
         var
           promises = [],
           _url = [
@@ -395,13 +398,16 @@
             (elem.id || elem),
             association
           ];
+          console.log(item);
         if (_.isArray(item)) {
           for (var h = 0; h < item.length; h++) {
             _url[3] = item[h].id || item[h];
             promises
               .push(deleteModel(_url.join('/')));
           }
+          console.log(item);
         } else if (_.isObject(item) && item && item.id) {
+          console.log(item);
           _url.push(item.id || item);
           promises
             .push(deleteModel(_url.join('/')));
@@ -411,6 +417,7 @@
 
         return $q.all(promises).then(function(rta) {
           _.forEach(promises, function(item, key) {
+            console.log(item, key, rta);
             getDataRta(rta[key]);
           });
           return rta;

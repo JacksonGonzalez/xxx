@@ -72,256 +72,288 @@
 
     vm.cuerpo.menu.list=
     [
-      {
-        name: 'Tienda',
-        icon: '',
-        sublist:[
-          {
-            name: 'Ver Tienda',
-            sref: ''
-          },
-          {
-            name: 'Configuracion',
-            sref: ''
-          }
-        ]
-      },
+      // {
+      //   name: 'Tienda',
+      //   icon: '',
+      //   sublist:[
+      //     {
+      //       name: 'Ver Tienda',
+      //       sref: ''
+      //     },
+      //     {
+      //       name: 'Configuracion',
+      //       sref: ''
+      //     }
+      //   ]
+      // },
       {
         name: 'Inventario',
+        disable: true,
         icon: 'application',
         sublist:[
           {
             name: 'Producto',
             icon: '',
+            disable: true,
             sref: 'dashboard.producto'
           },
           {
             name: 'Materias Primas',
             icon: '',
+            disable: true,
             sref: 'dashboard.materiasprimas'
           },
           {
             name: 'Materias Procesadas',
             icon: '',
+            disable: true,
             sref: 'dashboard.materiaprocesada'
           },
           {
             name: 'Servicios',
             icon: '',
+            disable: true,
             sref: 'dashboard.servicios'
           },
           {
             name: 'Bodegas',
             icon: '',
+            disable: true,
             sref: 'dashboard.bodegas'
           },
           {
             name: 'Historial',
             icon: '',
+            disable: true,
             sref: 'dashboard.historial'
           }
         ],
       },
       {
         name: 'Administracion Contable',
+        disable: true,
         sublist:[
           {
             name: 'Planes de Administracion',
             icon: '',
+            disable: false,
             sref: ''
           },
           {
             name: 'Contabilidad',
             icon: '',
+            disable: false,
             sref: ''
           },
           {
             name: 'Estadisticas',
             icon: '',
+            disable: false,
             sref: ''
           }
         ]
       },
       {
         name: 'Caja',
+        disable: true,
         sublist:[
           {
             name: 'Factura',
             icon: '',
+            disable: true,
             sref: 'dashboard.fasturas'
           },
           {
             name: 'Recibos',
             icon: '',
+            disable: true,
             sref: 'dashboard.recibos'
           },
           {
             name: 'Compras',
             icon: '',
+            disable: true,
             sref: 'dashboard.compras'
           },
           {
             name: 'Gastos / Vals',
             icon: '',
+            disable: false,
             sref: ''
           },
           {
             name: 'Contrato',
             icon: '',
+            disable: false,
             sref: ''
           },
           {
             name: 'Activos Fijos',
             icon: '',
+            disable: false,
             sref: ''
           }
         ]
       },
-      {
-        name: 'Agenda',
-        sublist:[
-          {
-            name: 'Agenda',
-            icon: '',
-            sref: ''
-          },
-          {
-            name: 'Cadena de Produccion',
-            icon: '',
-            sref: ''
-          },
-          {
-            name: 'Lista de Agenda',
-            icon: '',
-            sref: ''
-          }
-        ]
-      },
-      {
-        name: 'Notas',
-        icon: '',
-        sublist:[
-          {
-            name: 'Notas Rapidas',
-            icon: '',
-            sref: ''
-          }
-        ]
-      },
+      // {
+      //   name: 'Agenda',
+      //   sublist:[
+      //     {
+      //       name: 'Agenda',
+      //       icon: '',
+      //       sref: ''
+      //     },
+      //     {
+      //       name: 'Cadena de Produccion',
+      //       icon: '',
+      //       sref: ''
+      //     },
+      //     {
+      //       name: 'Lista de Agenda',
+      //       icon: '',
+      //       sref: ''
+      //     }
+      //   ]
+      // },
+      // {
+      //   name: 'Notas',
+      //   icon: '',
+      //   sublist:[
+      //     {
+      //       name: 'Notas Rapidas',
+      //       icon: '',
+      //       sref: ''
+      //     }
+      //   ]
+      // },
       {
         name: 'Cadena de Produccion',
         icon: '',
+        disable: true,
         sublist:[
           {
-            name: 'Cadena de Produccion',
+            name: 'Ingrediente de Produccion',
             icon: '',
-            sref: ''
+            sref: 'dashboard.ingrediente',
+            disable: true
           }
+          // {
+          //   name: 'Cadena de Produccion',
+          //   icon: '',
+          //   sref: ''
+          // }
         ]
       },
+      // {
+      //   name: 'Bancos',
+      //   icon: '',
+      //   sublist:[
+      //     {
+      //       name: 'Bancos',
+      //       icon: '',
+      //       sref: ''
+      //     }
+      //   ]
+      // },
+      // {
+      //   name: 'Archivos',
+      //   sublist:[
+      //     {
+      //       name: 'Galerias / Carpetas',
+      //       icon: '',
+      //       sref: ''
+      //     }
+      //   ]
+      // },
+      // {
+      //   name: 'Sprint',
+      //   icon: '',
+      //   sublist:[
+      //     {
+      //       name: 'listas de Actividades',
+      //       icon: '',
+      //       sref: ''
+      //     },
+      //     {
+      //       name: 'Actividades de Cadena de Produccion',
+      //       icon: '',
+      //       sref: ''
+      //     },
+      //     {
+      //       name: 'Estadisticas',
+      //       icon: '',
+               // disable: false,
+      //       sref: ''
+      //     }
+      //   ]
+      // },
       {
-        name: 'Bancos',
-        icon: '',
-        sublist:[
-          {
-            name: 'Bancos',
-            icon: '',
-            sref: ''
-          }
-        ]
-      },
-      {
-        name: 'Archivos',
-        sublist:[
-          {
-            name: 'Galerias / Carpetas',
-            icon: '',
-            sref: ''
-          }
-        ]
-      },
-      {
-        name: 'Sprint',
-        icon: '',
-        sublist:[
-          {
-            name: 'listas de Actividades',
-            icon: '',
-            sref: ''
-          },
-          {
-            name: 'Actividades de Cadena de Produccion',
-            icon: '',
-            sref: ''
-          },
-          {
-            name: 'Estadisticas',
-            icon: '',
-            sref: ''
-          }
-        ]
-      },
-      {
-        name: 'Personas',
+        name: 'Recusos Humanos',
+        disable: true,
         sublist:[
           {
             name: 'Clientes',
             icon: '',
+            disable: true,
             sref: 'dashboard.cliente'
           },
           {
             name: 'Empleados',
             icon: '',
+            disable: true,
             sref: 'dashboard.empleados'
           },
           {
             name: 'Prospectos',
             icon: '',
-            sref: ''
+            disable: true,
+            sref: 'dashboard.prospectos'
           },
           {
             name: 'Proveedores',
             icon: '',
-            sref: ''
-          },
-          {
-            name: 'Nomina',
-            icon: '',
-            sref: ''
-          },
-          {
-            name: 'Todos',
-            icon: '',
-            sref: ''
+            disable: true,
+            sref: 'dashboard.proveedores'
           }
+          // {
+          //   name: 'Todos',
+          //   icon: '',
+          //   sref: ''
+          // }
         ]
       },
       {
         name: 'Configuracion',
+        disable: true,
         sublist:[
           {
             name: 'General',
             icon: '',
+            disable: true,
             sref: 'dashboard.general'
           },
           {
             name: 'Redes Sociales',
             icon: '',
+            disable: false,
             sref: ''
           },
           {
             name: 'Sucursales',
             icon: '',
+            disable: false,
             sref: ''
           },
           {
             name: 'Bodegas',
             icon: '',
+            disable: false,
             sref: ''
           },
           {
             name: 'ubicacion',
             icon: '',
+            disable: true,
             sref: 'dashboard.ubicacion'
           }
         ]
@@ -329,10 +361,12 @@
       {
         name: 'Papelera',
         icon: '',
+        disable: true,
         sublist:[
           {
             name: 'Papelera',
             icon: '',
+            disable: false,
             sref: ''
           }
         ]

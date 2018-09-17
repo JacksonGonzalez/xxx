@@ -402,6 +402,14 @@
       })
 
       .state({
+        url: '/ingrediente-de-produccion',
+        name: 'dashboard.ingrediente',
+        controllerAs: 'ingrediente',
+        controller: 'DashboardIngredienteCtrl',
+        templateUrl: 'views/Dashboard/ingrediente.html',
+      })
+
+      .state({
         url: '/cliente',
         name: 'dashboard.cliente',
         controllerAs: 'clientes',
@@ -414,6 +422,27 @@
         controllerAs: 'empleados',
         controller: 'DashboardEmpleadosCtrl',
         templateUrl: 'views/Dashboard/empleado.html',
+      })
+      .state({
+        url: '/prospectos',
+        name: 'dashboard.prospectos',
+        controllerAs: 'prospectos',
+        controller: 'DashboardProspectosCtrl',
+        templateUrl: 'views/Dashboard/prospectos.html',
+      })
+      .state({
+        url: '/proveedores',
+        name: 'dashboard.proveedores',
+        controllerAs: 'proveedores',
+        controller: 'DashboardProveedoresCtrl',
+        templateUrl: 'views/Dashboard/proveedores.html',
+      })
+      .state({
+        url: '/todos',
+        name: 'dashboard.todos',
+        controllerAs: 'todos',
+        controller: 'DashboardTodosCtrl',
+        templateUrl: 'views/Dashboard/todos.html',
       })
 
       .state({

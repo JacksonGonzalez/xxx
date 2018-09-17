@@ -7,7 +7,16 @@
     layout="column"
     layout-align="center center"
   >
-    <h3>Hoja de Vida</h3>
+    <h3
+      ng-if="idx.cuerpo.disable"
+    >
+      Hoja de Vida
+    </h3>
+    <h3
+      ng-if="!idx.cuerpo.disable"
+    >
+      <span>Registro de {{ idx.cuerpo.titulo }}</span>
+    </h3>
     <img
       md-whiteframe="4dp"
       ng-src="{{ idx.cuerpo.logo }}"
@@ -252,20 +261,20 @@
     <div
       layout="row"
       layout-align="center center"
-      ng-if="idx.cuerpo.titulo !== 'cliente'"
+      ng-if="idx.cuerpo.disable"
     >
       <md-button
         class="md-primary md-raised md-button"
         ng-click="idx.cuerpo.btn.ocultar=!idx.cuerpo.btn.ocultar"
       >
-        <label ng-if="!idx.cuerpo.btn.ocultar">Mas Informacion</label>
-        <label ng-if="idx.cuerpo.btn.ocultar">Ocultar Informacion</label>
+        <label ng-show="!idx.cuerpo.btn.ocultar">Mas Informacion</label>
+        <label ng-show="idx.cuerpo.btn.ocultar">Ocultar Informacion</label>
       </md-button>
     </div>
   </div>
   <div
     layout="column"
-    ng-if="idx.cuerpo.btn.ocultar"
+    ng-show="idx.cuerpo.btn.ocultar"
   >
     <div
       layout-padding
@@ -296,6 +305,7 @@
             <input
               type="text"
               ng-model="idx.cuerpo.data.estudiosprimarios.titulo"
+              ng-blur="idx.cuerpo.btn.blur('titulo', 'estudiosprimarios')"
             >
           </md-input-container>
         </div>
@@ -310,31 +320,52 @@
             <input
               type="text"
               ng-model="idx.cuerpo.data.estudiosprimarios.direccion"
+              ng-blur="idx.cuerpo.btn.blur('direccion', 'estudiosprimarios')"
             >
           </md-input-container>
-          <md-input-container
+          <div flex-gt-xs>
+            <h5>Fecha de Inicio</h5>
+            <md-datepicker
+              flex
+              ng-model="idx.cuerpo.data.estudiosprimarios.fechainicio"
+              ng-blur="idx.cuerpo.btn.blur('fechainicio', 'estudiosprimarios')"
+            >
+            </md-datepicker>
+          </div>
+          <!-- <md-input-container
             flex
           >
             <label>Año Inicio</label>
             <input
               type="text"
               ng-model="idx.cuerpo.data.estudiosprimarios.fechainicio"
+              ng-blur="idx.cuerpo.btn.blur('fechainicio', 'estudiosprimarios')"
             >
-          </md-input-container>
+          </md-input-container> -->
           <div
             layout-padding
           >
             <h5>Hasta</h5>
           </div>
-          <md-input-container
+          <div flex-gt-xs>
+            <h5>Fecha Final</h5>
+            <md-datepicker
+              flex
+              ng-model="idx.cuerpo.data.estudiosprimarios.fechafinal"
+              ng-blur="idx.cuerpo.btn.blur('fechafinal', 'estudiosprimarios')"
+            >
+            </md-datepicker>
+          </div>
+          <!-- <md-input-container
             flex
           >
             <label>Año Final</label>
             <input
               type="text"
               ng-model="idx.cuerpo.data.estudiosprimarios.fechafinal"
+              ng-blur="idx.cuerpo.btn.blur('fechafinal', 'estudiosprimarios')"
             >
-          </md-input-container>
+          </md-input-container> -->
         </div>
         <div
           flex
@@ -348,7 +379,8 @@
             <label><md-icon md-svg-icon="file-document"></md-icon>Estudios Secundarios</label>
             <input
               type="text"
-              ng-model="idx.cuerpo.data.estudiosprimarios.estudio"
+              ng-model="idx.cuerpo.data.estudiossecundarios.titulo"
+              ng-blur="idx.cuerpo.btn.blur('titulo', 'estudiossecundarios')"
             >
           </md-input-container>
         </div>
@@ -362,32 +394,53 @@
             <label>Direccion</label>
             <input
               type="text"
-              ng-model="idx.cuerpo.data.estudiosprimarios.direccion"
+              ng-model="idx.cuerpo.data.estudiossecundarios.direccion"
+              ng-blur="idx.cuerpo.btn.blur('direccion', 'estudiossecundarios')"
             >
           </md-input-container>
-          <md-input-container
+          <!-- <md-input-container
             flex
           >
             <label>Año Inicio</label>
             <input
               type="text"
-              ng-model="idx.cuerpo.data.estudiosprimarios.fechainicio"
+              ng-model="idx.cuerpo.data.estudiossecundarios.fechainicio"
+              ng-blur="idx.cuerpo.btn.blur('fechainicio', 'estudiossecundarios')"
             >
-          </md-input-container>
+          </md-input-container> -->
+          <div flex-gt-xs>
+            <h5>Fecha Inicial</h5>
+            <md-datepicker
+              flex
+              ng-model="idx.cuerpo.data.estudiossecundarios.fechainicio"
+              ng-blur="idx.cuerpo.btn.blur('fechainicio', 'estudiossecundarios')"
+            >
+            </md-datepicker>
+          </div>
           <div
             layout-padding
           >
             <h5>Hasta</h5>
           </div>
-          <md-input-container
+          <!-- <md-input-container
             flex
           >
             <label>Año Final</label>
             <input
               type="text"
-              ng-model="idx.cuerpo.data.estudiosprimarios.fechafinal"
+              ng-model="idx.cuerpo.data.estudiossecundarios.fechafinal"
+              ng-blur="idx.cuerpo.btn.blur('fechafinal', 'estudiossecundarios')"
             >
-          </md-input-container>
+          </md-input-container> -->
+          <div flex-gt-xs>
+            <h5>Fecha Final</h5>
+            <md-datepicker
+              flex
+              ng-model="idx.cuerpo.data.estudiossecundarios.fechafinal"
+              ng-blur="idx.cuerpo.btn.blur('fechafinal', 'estudiossecundarios')"
+            >
+            </md-datepicker>
+          </div>
         </div>
       </div>
       <div
@@ -439,7 +492,8 @@
                     <label>Titulo</label>
                     <input
                       type="text"
-                      ng-model="idx.cuerpo.data.estudiosprimarios"
+                      ng-model="item.titulo"
+                      ng-blur="idx.cuerpo.btn.blur('titulo', 'estudios', $index)"
                     >
                   </md-input-container>
                   <md-input-container
@@ -449,6 +503,7 @@
                     <md-select
                       ng-model="item.tipo"
                       class="md-no-underline"
+                      ng-blur="idx.cuerpo.btn.blur('tipo', 'estudios', $index)"
                     >
                       <md-option
                         value="cursosrapido"
@@ -461,12 +516,12 @@
                         Tecnico
                       </md-option>
                       <md-option
-                        value="Tecnologo"
+                        value="tecnologo"
                       >
                         Tecnologo
                       </md-option>
                       <md-option
-                        value="Ingenieria"
+                        value="ingenieria"
                       >
                         Ingenieria
                       </md-option>
@@ -483,6 +538,7 @@
                       flex
                       ng-model="item.fechainicio"
                       md-is-open="ctrl.isOpens2"
+                      ng-blur="idx.cuerpo.btn.blur('fechainicio', 'estudios', $index)"
                     >
                     </md-datepicker>
                   </div>
@@ -503,6 +559,7 @@
                       ng-disabled="!item.encurso"
                       ng-model="item.fechafinal"
                       md-is-open="val.isOpens3"
+                      ng-blur="idx.cuerpo.btn.blur('fechafinal', 'estudios', $index)"
                     >
                     </md-datepicker>
                   </div>
@@ -602,6 +659,7 @@
                 <input
                   type="text"
                   ng-model="item.titulo"
+                  ng-blur="idx.cuerpo.btn.blur('titulo', 'seminarios', $index)"
                 >
               </md-input-container>
               <div
@@ -610,8 +668,8 @@
                 <h5>Fecha</h5>
                 <md-datepicker
                   flex
-                  ng-model="item.fecha"
-                  md-is-open="val.isOpens4"
+                  ng-model="item.fechainicio"
+                  ng-blur="idx.cuerpo.btn.blur('fechainicio', 'seminarios', $index)"
                 >
                 </md-datepicker>
               </div>
@@ -709,6 +767,7 @@
               <input
                 type="text"
                 ng-model="item.titulo"
+                ng-blur="idx.cuerpo.btn.blur('titulo', 'experiencia', $index)"
               >
             </md-input-container>
           </div>
@@ -725,8 +784,8 @@
                 md-require-match="false"
                 md-on-select = "idx.cuerpo.cargo.onSelect(val)"
                 md-autocomplete-snap
-                md-on-add="idx.cuerpo.cargo.onAdd($chip, 'cargo', val)"
-                md-on-remove="idx.cuerpo.cargo.onRemove($chip, 'cargo')"
+                md-on-add="idx.cuerpo.cargo.onAdd($chip, 'cargo', val, item)"
+                md-on-remove="idx.cuerpo.cargo.onRemove($chip, 'cargo', item)"
             >
               <md-autocomplete
                   style="width:500px"
@@ -759,8 +818,8 @@
                 secondary-placeholder="+ Funcioness"
                 md-on-select = "idx.cuerpo.funciones.onSelect(val)"
                 md-autocomplete-snap
-                md-on-add="idx.cuerpo.funciones.onAdd($chip, 'funciones', val)"
-                md-on-remove="idx.cuerpo.funciones.onRemove($chip, 'funciones')"
+                md-on-add="idx.cuerpo.funciones.onAdd($chip, 'funciones', val, item)"
+                md-on-remove="idx.cuerpo.funciones.onRemove($chip, 'funciones', item)"
             >
               <md-autocomplete
                   style="width:500px"
@@ -791,7 +850,8 @@
               <label>Jefe inmediato</label>
               <input
                 type="text"
-                ng-model="item.jefe"
+                ng-model="item.empleador"
+                ng-blur="idx.cuerpo.btn.blur('empleador', 'experiencia', $index)"
               >
             </md-input-container>
             <md-input-container
@@ -801,6 +861,7 @@
               <input
                 type="number"
                 ng-model="item.telefono"
+                ng-blur="idx.cuerpo.btn.blur('telefono', 'experiencia', $index)"
               >
             </md-input-container>
           </div>
@@ -813,7 +874,7 @@
               <md-datepicker
                 flex
                 ng-model="item.fechainicio"
-                md-is-open="ctrl.isOpens5"
+                ng-blur="idx.cuerpo.btn.blur('fechainicio', 'experiencia', $index)"
               >
               </md-datepicker>
             </div>
@@ -833,7 +894,7 @@
                 flex
                 ng-disabled="!item.encurso"
                 ng-model="item.fechafinal"
-                md-is-open="val.isOpens1"
+                ng-blur="idx.cuerpo.btn.blur('fechafinal', 'experiencia', $index)"
               >
               </md-datepicker>
             </div>
@@ -861,10 +922,21 @@
     </div>
     <div
       layout-padding
-      layout="column"
-      layout-align="center center"
+      layout="row"
+      layout-align="space-between center"
     >
+      <div>
+
+      </div>
       <h4>Referencias Familiares</h4>
+      <div>
+        <md-button
+          class="md-icon-button md-primary md-raised"
+          ng-click="idx.cuerpo.referencia.push({})"
+        >
+          <md-icon md-svg-icon="plus-circle"></md-icon>
+        </md-button>
+      </div>
     </div>
     <div
       layout="column"
@@ -903,6 +975,7 @@
                 <input
                   type="string"
                   ng-model="item.titulo"
+                  ng-blur="idx.cuerpo.btn.blur('titulo', 'referencia', $index)"
                 >
               </md-input-container>
               <md-input-container
@@ -912,6 +985,7 @@
                 <input
                   type="string"
                   ng-model="item.empresa"
+                  ng-blur="idx.cuerpo.btn.blur('empresa', 'referencia', $index)"
                 >
               </md-input-container>
               <md-input-container
@@ -921,6 +995,7 @@
                 <input
                   type="string"
                   ng-model="item.telefono"
+                  ng-blur="idx.cuerpo.btn.blur('telefono', 'referencia', $index)"
                 >
               </md-input-container>
             </div>
@@ -945,6 +1020,23 @@
                   ></textarea>
                 </div>
               </div>
+            </div>
+            <div
+              layout="row"
+              layout-align="space-between center"
+            >
+              <div>
+
+              </div>
+              <div>
+
+              </div>
+              <md-button
+                class="md-icon-button md-primary md-raised"
+                ng-click="idx.cuerpo.referencia.splice($index, 1)"
+              >
+                <md-icon md-svg-icon="close"></md-icon>
+              </md-button>
             </div>
           </div>
         </md-list-item>

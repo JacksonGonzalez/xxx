@@ -103,7 +103,7 @@
       if (dialog.id) {
         vm.cuerpo.opt = 'Editar';
         dialog.listipodeunidad= Unidad.list;
-        
+
         var clone = _.clone(dialog);
         vm.cuerpo.list[0]=clone;
         vm.cuerpo.listClone = _.clone(dialog);
@@ -162,10 +162,11 @@
           };
         }
       }
+      console.log(query);
       return Barrio
         .getquerys(query)
         .then(function(rta){
-          // console.log(rta);
+          console.log(rta);
           return rta.list;
         })
         ;

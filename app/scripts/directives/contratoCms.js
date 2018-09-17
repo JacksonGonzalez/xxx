@@ -46,7 +46,7 @@
         scope.contratoCms = vm.cuerpo;
         getlist();
         function getlist() {
-          vm.cuerpo.search = new Search()(Contrato, 'contrato',scope.config.search,paginate);
+          vm.cuerpo.search = new Search()(Contrato, scope.config.opciono,scope.config.search,paginate);
           // console.log(vm.cuerpo.search);
         }
 
@@ -55,7 +55,7 @@
             var obj = {};
             vm.cuerpo.search.itemselec = {};
           }else {
-              vm.cuerpo.search.seleccionado(obj);
+              // vm.cuerpo.search.seleccionado(obj);
               obj=vm.cuerpo.search.itemselec;
           }
           // console.log(obj);

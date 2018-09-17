@@ -17,7 +17,8 @@
     )
   {
     var obj = {
-      list:[]
+      list:[],
+      conversion: conversion
     }
     ;
     list();
@@ -75,6 +76,20 @@
       ]
       ;
       obj.list = unidad;
+    }
+    function conversion(query) {
+      console.log(query);
+      if (query.tipounidad && query.unidad && query.dbunidad && query.cantidad && query.lisunidad) {
+        var
+          idx = 0,
+          data = ''
+        ;
+        idx = _.findIndex(query.lisunidad, ['unidad', query.dbunidad]);
+        if (idx >-1) {
+          data = query.lisunidad[idx];
+        }
+        // TODO terminar esto
+      }
     }
 
   }

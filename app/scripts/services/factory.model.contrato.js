@@ -13,6 +13,7 @@
       'ContratoArticulo',
       'ContratoUsuario',
       'ContratoPago',
+      'ArticuloBlog',
       '$mdDialog',
       'Model',
       'Tools',
@@ -24,6 +25,7 @@
     ContratoArticulo,
     ContratoUsuario,
     ContratoPago,
+    ArticuloBlog,
     $mdDialog,
     Model,
     Tools,
@@ -64,6 +66,9 @@
                     ContratoArticulo.create(data)
                     .then(function(val){
                       // console.log(val);
+                      if (val.id) {
+                        addarticulo(val, data);
+                      }
                       return val;
                     })
                    )
@@ -167,6 +172,40 @@
           Tools.toast(_.capitalize(query.tipo)+" Registrada");
           return rta;
         })
+        ;
+      }
+      function addarticulo(val, data) {
+        console.log(val, data);
+        var
+          promises = []
+        ;
+        promises.push(
+          ArticuloBlog
+          .getquerys({
+            id: val.articuloblog
+          })
+          .then(function(articulo){
+            console.log(articulo);
+            articulo = articulo.list[0];
+            if (articulo) {
+              var total = 0;
+              if (articulo.cantidadtotal >= val.cantidad) {
+                total = articulo.cantidadtotal-val.cantidad;
+              }
+              promises.push(
+                ArticuloBlog
+                .actializar({
+                  id: articulo.id,
+                  cantidadtotal: total
+                })
+                .then(function(item){
+                  console.log(item);
+                })
+              )
+              ;
+            }
+          })
+        )
         ;
       }
   }

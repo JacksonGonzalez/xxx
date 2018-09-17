@@ -11,7 +11,7 @@
     <form
       flex
       layout="row"
-      ng-submit="articuloCms.search.restart()"
+      ng-keyup="articuloCms.search.restart()"
       layout-margin
     >
       <md-input-container flex>
@@ -19,7 +19,7 @@
         <input type="text" ng-model="articuloCms.search.txt">
       </md-input-container>
       <md-button
-        type = "submit"
+        ng-click="articuloCms.search.restart()"
         class="md-icon-button  md-primary md-secondary md-raised"
       >
         <md-icon md-svg-icon="magnify"></md-icon>
@@ -43,9 +43,7 @@
         ng-click="articuloCms.btn.editar($event, true)"
         class="md-icon-button md-primary md-secondary md-raised"
       >
-        <md-icon
-         md-svg-icon="pen"
-        >
+        <md-icon md-svg-icon="eye"></md-icon>
         <md-tooltip>
           Editar
         </md-tooltip>
@@ -105,9 +103,9 @@
                 <th>
                   Precio Venta
                 </th>
-                <th>
+                <!-- <th>
                   Vistas
-                </th>
+                </th> -->
                 <th>
                   Cantidad Total
                 </th>
@@ -117,12 +115,12 @@
                 <th>
                   Categorias
                 </th>
-                <th>
+                <!-- <th>
                   Megustas
                 </th>
                 <th>
                   No Megustas
-                </th>
+                </th> -->
                 <th>
                   Creado
                 </th>
@@ -184,9 +182,9 @@
                 <td>
                   {{ item.precioventa }}
                 </td>
-                <td>
+                <!-- <td>
                   {{ item.vistas }}
-                </td>
+                </td> -->
                 <td>
                   {{ item.cantidadtotal || 0 }}
                 </td>
@@ -198,12 +196,12 @@
                     {{ categoria.titulo }}
                   </div>
                 </td>
-                <td>
+                <!-- <td>
                   {{ item.megusta }}
                 </td>
                 <td>
                   {{ item.nomegusta }}
-                </td>
+                </td> -->
                 <td>
                   {{ item.createdAt | amDateFormat:'DD/MM/YYYY' }}
                 </td>

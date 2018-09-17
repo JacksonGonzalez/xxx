@@ -356,6 +356,7 @@
                   type="text"
                   ng-disabled="idx.cuerpo.data.id"
                   ng-model="item.precioventa"
+                  ng-blur="idx.cuerpo.blurprecio(item, idx)"
                 >
               </md-input-container>
               <md-input-container
@@ -365,7 +366,6 @@
                 <input
                   disabled
                   type="text"
-                  ng-disabled="idx.cuerpo.data.id"
                   ng-model="item.totalprecio"
                 >
               </md-input-container>

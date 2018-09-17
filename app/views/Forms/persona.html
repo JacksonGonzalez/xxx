@@ -57,6 +57,42 @@
         flex
       >
         <md-tab-label>
+          <label>Archivos</label>
+        </md-tab-label>
+        <md-tab-body>
+          <div
+            flex
+            layout-fill
+            layout="row"
+            md-whiteframe="1dp"
+            ng-include="'views/partials/persona-archivo.html'">
+
+          </div>
+        </md-tab-body>
+      </md-tab>
+      <md-tab
+        flex
+        ng-if="!idx.cuerpo.btn.disable"
+      >
+        <md-tab-label>
+          <label>Roles</label>
+        </md-tab-label>
+        <md-tab-body>
+          <div
+            flex
+            layout-fill
+            layout="row"
+            md-whiteframe="1dp"
+            ng-include="'views/partials/persona-roles.html'">
+
+          </div>
+        </md-tab-body>
+      </md-tab>
+      <md-tab
+        flex
+        ng-if="!idx.cuerpo.btn.disable"
+      >
+        <md-tab-label>
           <label>Movimientos</label>
         </md-tab-label>
         <md-tab-body>
@@ -66,6 +102,24 @@
             layout="row"
             md-whiteframe="1dp"
             ng-include="'views/partials/persona-movimiento.html'">
+
+          </div>
+        </md-tab-body>
+      </md-tab>
+      <md-tab
+        flex
+        ng-if="!idx.cuerpo.btn.disable && idx.cuerpo.disable"
+      >
+        <md-tab-label>
+          <label>Nomina</label>
+        </md-tab-label>
+        <md-tab-body>
+          <div
+            flex
+            layout-fill
+            layout="row"
+            md-whiteframe="1dp"
+            ng-include="'views/partials/persona-nomina.html'">
 
           </div>
         </md-tab-body>

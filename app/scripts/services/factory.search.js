@@ -28,12 +28,12 @@
       return function(opsiones) {
         var
           hideTotalToast = !!(opsiones && opsiones.hideTotalToast),
-          limit = (opsiones && config.limit) || 10
+          limit = (opsiones && config.limit) || 20
         ;
 
         return getfil;
 
-        function getfil(Model, modelname, where, paginate) {
+        function getfil(Model, modelname, where, paginate, nameevent) {
           var
             query = {
               page: 1,
@@ -83,6 +83,29 @@
               // query.sort = getQuerySort(where.sort, modelname);
             }
             getquerys();
+            $rootScope.$on('created.'+nameevent, function(event, data){
+              console.log(data);
+              if (data.id) {
+                return Model
+                .getquerys({
+                  id: data.id
+                })
+                .then(function(data){
+                  // console.log(data);
+                  data = data.list[0];
+                  if (data) {
+                    if (rta.items[0]) {
+                      rta.items.unshift(data);
+                    }else {
+                      rta.items.push(data);
+                    }
+                    rta.numItems=rta.numItems+1;
+                  }
+                })
+                ;
+              }
+            })
+            ;
             return rta;
 
             function isEndScroll() {
@@ -168,7 +191,10 @@
               // console.log(rta);
               var search = [];
               switch (modelname) {
-                case 'Articulo':
+                case 'materiaprima':
+                case 'materiaprocesada':
+                case 'producto':
+                case 'servicio':
                   search.push(
                    {
                     titulo: {
@@ -197,7 +223,10 @@
                    }
                  );
                   break;
-                  case 'Persona':
+                  case 'persona':
+                  case 'empleado':
+                  case  'cliente':
+                  case 'proveedores':
                   search.push(
                     {
                       documento:{
@@ -217,6 +246,29 @@
                   )
                   ;
                   break;
+                  case 'factura':
+                  case 'recibo':
+                  case 'compra':
+                  // console.log(rta);
+                  search.push(
+                    {
+                      numero:{
+                        contains: rta.txt || ''
+                      }
+                    },
+                    {
+                      valor:{
+                        contains: rta.txt || ''
+                      }
+                    },
+                    {
+                      valortotal:{
+                        contains: rta.txt || ''
+                      }
+                    }
+                  )
+                  ;
+                    break;
                   default:
                     search.push(
                       {

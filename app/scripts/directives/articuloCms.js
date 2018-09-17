@@ -57,7 +57,7 @@
           vm.gets = get;
           get();
           function get() {
-            vm.cuerpo.search = new Search()(ArticuloBlog, 'Articulo',scope.config.search, paginate);
+            vm.cuerpo.search = new Search()(ArticuloBlog, scope.config.opciono,scope.config.search, paginate, 'articuloblog');
           }
           // console.log(ArticuloBlog);
         }

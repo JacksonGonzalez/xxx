@@ -12,7 +12,7 @@
     <form
       flex
       layout="row"
-      ng-keyup="personaCms.search.restart()"
+      ng-keyup="ingrediente.cuerpo.search.restart()"
       layout-margin
     >
       <md-input-container
@@ -21,12 +21,12 @@
         <label>Buscar {{ config.titulo }}</label>
         <input
           type="text"
-          ng-model="personaCms.search.txt"
+          ng-model="ingrediente.cuerpo.search.txt"
         >
       </md-input-container>
       <md-button
         class="md-icon-button  md-primary md-secondary md-raised"
-        ng-click="personaCms.search.restart()"
+        ng-click="ingrediente.cuerpo.search.restart()"
       >
         <md-icon md-svg-icon="magnify"></md-icon>
         <md-tooltip>
@@ -34,7 +34,7 @@
         </md-tooltip>
       </md-button>
       <md-button
-        ng-click="personaCms.btn.crear($event)"
+        ng-click="ingrediente.cuerpo.btn.crear($event)"
         class="md-icon-button md-primary md-secondary md-raised"
       >
         <md-icon md-svg-icon="plus-circle-outline"></md-icon>
@@ -43,8 +43,8 @@
         </md-tooltip>
       </md-button>
       <md-button
-        ng-if="personaCms.search.selected.length"
-        ng-click="personaCms.btn.crear($event, true)"
+        ng-if="ingrediente.cuerpo.search.selected.length"
+        ng-click="ingrediente.cuerpo.btn.crear($event, true)"
         class="md-icon-button md-primary md-secondary md-raised"
       >
         <md-icon md-svg-icon="eye"></md-icon>
@@ -53,8 +53,8 @@
         </md-tooltip>
       </md-button>
       <md-button
-        ng-if="personaCms.search.selected.length"
-        ng-click="personaCms.search.eliminar($event)"
+        ng-if="ingrediente.cuerpo.search.selected.length"
+        ng-click="ingrediente.cuerpo.search.eliminar($event)"
         class="md-icon-button md-primary md-secondary md-warn md-button md-ink-ripple ng-scope md-raised"
       >
         <md-icon md-svg-icon="close"></md-icon>
@@ -89,23 +89,24 @@
           <thead>
               <tr>
                 <th>Foto</th>
-                <th>Documento</th>
-                <th>Nombre {{ config.titulo }}</th>
-                <th>Apellido</th>
-                <th>Email</th>
-                <th>Telefono</th>
-                <th>Direccion</th>
+                <th>Ingrediente</th>
+                <th>Estado</th>
+                <th>Cantidad</th>
+                <th>Costo Insumos</th>
+                <th>Costo Manual</th>
+                <th>Costo Total</th>
+                <!-- <th>Descripcion</th> -->
                 <th>Creado</th>
                 <!-- <th>Opciones</th> -->
               </tr>
           </thead>
           <tbody>
             <tr
-              ng-repeat="item in personaCms.search.items"
-              ng-click="personaCms.search.seleccionado(item)"
+              ng-repeat="item in ingrediente.cuerpo.search.items"
+              ng-click="ingrediente.cuerpo.search.seleccionado(item)"
               ng-class="{'check': item.check}"
             >
-            <!-- ng-click="personaCms.cuerpo.search.seleccionado(item)" -->
+            <!-- ng-click="ingrediente.cuerpo.cuerpo.search.seleccionado(item)" -->
               <td>
                 <!-- {{ item.usuarioblog.foto }} -->
                 <img
@@ -115,29 +116,32 @@
                 >
               </td>
               <td>
-                {{ item.usuarioblog.documento }}
+                {{ item.titulo }}
               </td>
               <td>
-                {{ item.usuarioblog.nombre }}
+                {{ item.estado }}
               </td>
               <td>
-                {{ item.usuarioblog.apellido }}
+                {{ item.cantidad }}
               </td>
               <td>
-                {{ item.usuarioblog.email }}
+                {{ item.costoinsumos }}
               </td>
               <td>
-                {{ item.usuarioblog.telefono }}
+                {{ item.costomanual }}
               </td>
               <td>
-                {{ item.usuarioblog.direccion}}
+                {{ item.costototal }}
               </td>
+              <!-- <td>
+                {{ item.descripcion }}
+              </td> -->
               <td>
                 {{ item.createdAt | amDateFormat:'DD/MM/YYYY' }}
               </td>
               <!-- <td>
                 <md-button
-                  ng-click="personaCms.btn.crear($event, item)"
+                  ng-click="ingrediente.cuerpo.btn.crear($event, item)"
                   class="md-icon-button md-primary md-secondary md-raised"
                 >
                   <md-icon md-svg-icon="eye"></md-icon>
@@ -147,7 +151,7 @@
                 </md-button>
                 <md-button
                   class="md-icon-button md-primary md-raised"
-                  ng-click="personaCms.search.seleccionado(item)"
+                  ng-click="ingrediente.cuerpo.search.seleccionado(item)"
                 >
                   <label
                     ng-show="!item.check"
@@ -178,8 +182,8 @@
           <div>
             <md-button
               class="md-primary md-secondary md-raised md-warn md-button md-ink-ripple  ng-scope"
-              ng-if="personaCms.search.numItems > personaCms.search.items.length"
-              ng-click="personaCms.search.scrollpaginate()"
+              ng-if="ingrediente.cuerpo.search.numItems > ingrediente.cuerpo.search.items.length"
+              ng-click="ingrediente.cuerpo.search.scrollpaginate()"
             >
               <md-icon md-svg-icon="chevron-double-down"></md-icon>
               <md-tooltip>

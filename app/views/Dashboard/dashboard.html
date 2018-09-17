@@ -67,6 +67,7 @@
               class="md-1-line"
               ng-repeat="item in dashboard.cuerpo.menu.list"
               ng-class="{'checkmenu': item.check}"
+              ng-show="item.disable"
             >
               <div
                 class="curso"
@@ -79,7 +80,7 @@
                 >
                   <div
                     flex
-                    class="curso"
+                    class="curso men"
                   >
                     <span class="menuname">{{ item.name }}</span>
                   </div>
@@ -92,6 +93,8 @@
                   ng-click="dashboard.cuerpo.menu.checkmenu($index, item)"
                   layout="column"
                   layout-margin
+                  class="men"
+                  ng-show="sub.disable"
                 >
                   <div
                     flex

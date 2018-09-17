@@ -48,21 +48,28 @@
         scope.personaCms = vm.cuerpo;
         getlist();
         function getlist() {
-          return Rol
-            .getquerys({
-              where:{
-                slug: scope.config.search.where.rol
-              }
-            })
-            .then(function(rta){
-              // console.log(rta);
-              rta = rta.list[0];
-              if (rta) {
-                scope.config.search.where.rol= rta.id;
-                vm.cuerpo.search = new Search()(UsuarioRol, 'Persona',scope.config.search,paginate);
-              }
-            })
-            ;
+          if (scope.config.search.where.rol) {
+            return Rol
+              .getquerys({
+                where:{
+                  slug: scope.config.search.where.rol
+                }
+              })
+              .then(function(rta){
+                // console.log(rta);
+                rta = rta.list[0];
+                if (rta) {
+                  scope.config.search.where.rol= rta.id;
+                  list();
+                }
+              })
+              ;
+          }else {
+            list();
+          }
+          function list() {
+            vm.cuerpo.search = new Search()(UsuarioRol, scope.config.opciono,scope.config.search,paginate, 'usuariorol');
+          }
         }
 
         function crear(ev, obj) {
@@ -70,7 +77,7 @@
             var obj = {};
             vm.cuerpo.search.itemselec = {};
           }else {
-              vm.cuerpo.search.seleccionado(obj);
+              // vm.cuerpo.search.seleccionado(obj);
               obj=vm.cuerpo.search.itemselec;
           }
           // console.log(obj);
@@ -89,10 +96,9 @@
             fullscreen: vm.customFullscreen // Only for -xs, -sm breakpoints.
           })
           .then(function(answer) {
-
+            // console.log(answer);
           });
         }
-
       }
     };
   }

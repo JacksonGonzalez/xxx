@@ -1,0 +1,413 @@
+<md-dialog
+  class="dialog"
+>
+  <md-toolbar>
+    <div
+      flex
+      layout="row"
+      layout-padding
+    >
+      <div
+        flex
+      >
+        <span>
+          Agregar Ingrediente de Produccion
+        </span>
+      </div>
+      <md-button
+        ng-if="ingrediente.cuerpo.btn.disable"
+        class="md-icon-button md-primary md-secondary md-raised"
+        ng-click="ingrediente.cuerpo.generate()"
+      >
+        <md-icon md-svg-icon="plus-circle"></md-icon>
+      </md-button>
+      <md-butto
+        class="md-icon-button md-primary md-secondary md-raised md-warn md-button md-ink-ripple  ng-scope"
+        ng-click="ingrediente.cuerpo.btn.close()"
+      >
+        <md-icon md-svg-icon="close-circle"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+
+  <md-dialog-content
+    flex
+    layout="column"
+  >
+    <div
+      layout="column"
+      layout-margin
+      layout-padding
+    >
+      <div
+        layout-margin
+        layout-padding
+        layout="column"
+        layout-align="center center"
+      >
+        <h4>Registro de Ingredientes</h4>
+      </div>
+    </div>
+    <md-list
+      flex
+      layout-margin
+    >
+      <md-list-item
+        class="md-3-line"
+        ng-repeat="item in ingrediente.cuerpo.list"
+        md-whiteframe="1dp"
+      >
+        <div
+          flex
+          layout="column"
+        >
+          <div
+            flex
+            layout="column"
+            layout-align-sm="row"
+          >
+            <md-input-container
+              flex
+            >
+              <label>Nombre</label>
+              <input
+                type="text"
+                ng-model="item.titulo"
+                ng-blur="ingrediente.cuerpo.btn.blur(item, $index, 'titulo')"
+              >
+            </md-input-container>
+          </div>
+          <div
+            flex
+            layout="column"
+            layout-gt-sm="row"
+          >
+            <md-input-container
+              flex
+            >
+              <label>Estado</label>
+              <md-select
+                ng-model="item.estado"
+                class="md-no-underline"
+                ng-blur="ingrediente.cuerpo.btn.blur(item, $index, 'estado')"
+              >
+                <md-option
+                  value="activo"
+                >
+                  Activo
+                </md-option>
+                <md-option
+                  value="inactivo"
+                >
+                  Inactivo
+                </md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container flex>
+              <label>Tipo</label>
+              <md-select
+                ng-model="item.tipoingrediente"
+                class="md-no-underline"
+                ng-blur="ingrediente.cuerpo.btn.blur(item, $index, 'tipo')"
+              >
+                <md-option
+                  value="producto"
+                >
+                  Producto
+                </md-option>
+                <md-option
+                  value="materiprocesada"
+                >
+                  Materia Primas Procesadas
+                </md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container
+              flex
+            >
+              <label>Cantidad</label>
+              <input
+                type="number"
+                ng-model="item.cantidad"
+                ng-blur="ingrediente.cuerpo.btn.blur(item, $index, 'cantidad')"
+              >
+            </md-input-container>
+          </div>
+          <div
+            flex
+            layout="column"
+            layout-gt-sm="row"
+          >
+            <md-input-container
+              flex
+            >
+              <label>Costo total</label>
+              <input
+                type="number"
+                disabled
+                ng-model="item.costototal"
+                ng-blur="ingrediente.cuerpo.btn.blur(item, $index, 'costototal')"
+              >
+            </md-input-container>
+            <md-input-container
+              flex
+            >
+              <label>Costo Materias Primas</label>
+              <input
+                type="number"
+                ng-model="item.costoinsumos"
+                ng-blur="ingrediente.cuerpo.btn.blur(item, $index, 'costoinsumos')"
+              >
+            </md-input-container>
+            <md-input-container
+              flex
+            >
+              <label>Costo Manual</label>
+              <input
+                type="number"
+                ng-model="item.costomanual"
+                ng-keyup="item.cantidadblur(item)"
+                ng-blur="item.cantidadblur(item, '', $index, 'costomanual');"
+              >
+              <!-- ingrediente.cuerpo.btn.blur(item, $index, 'costomanual') -->
+            </md-input-container>
+          </div>
+          <div
+            flex
+            layout="column"
+            layout-gt-sm="row"
+          >
+            <md-input-container
+              flex
+            >
+              <label>Tiempo Estimado</label>
+              <input
+                type="time"
+                ng-model="item.fechainicia"
+                ng-blur="ingrediente.cuerpo.btn.blur(item, $index, 'fechainicia')"
+              >
+            </md-input-container>
+            <!-- <div
+              layout="row"
+            >
+              <label>Tiempo Estimado</label>
+              <input
+                type="time"
+                ng-model="item.fechainicia"
+              >
+            </div> -->
+            <div
+              flex
+              layout-padding
+            >
+              <label>
+                <input
+                  ng-disabled="!item.id"
+                  type="checkbox"
+                  ng-model="item.finalizo"
+                  ng-blur="ingrediente.cuerpo.btn.blur(item, $index, 'finalizo')"
+                >
+                Finalizo
+              </label>
+            </div>
+          </div>
+          <div
+            flex
+            layout="column"
+            layout-gt-sm="row"
+          >
+            <div
+                flex
+                layout="column"
+            >
+              <label>Descripcion</label>
+              <div
+                  flex
+                  layout="column"
+                  class="md-full"
+              >
+                <textarea
+                    flex
+                    ui-tinymce
+                    ng-model="item.descripcion"
+                    ui-tinymce="ingrediente.tinymce.opts"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <div
+            flex
+            layout="column"
+          >
+            <div
+              layout="row"
+              layout-align="space-between center"
+            >
+              <span></span>
+              <h4>Ingrediente</h4>
+              <div>
+                <md-button
+                  class="md-icon-button md-primary md-raised"
+                  ng-click="ingrediente.cuerpo.insumos.generate(item)"
+                >
+                  <md-icon md-svg-icon="plus-circle"></md-icon>
+                </md-button>
+              </div>
+            </div>
+            <md-list
+              flex
+              layout-padding
+            >
+              <md-list-item
+                class="md-3-line"
+                ng-repeat="articulo in item.articulo"
+                md-whiteframe="1dp"
+              >
+                <div
+                  flex
+                  layout="column"
+                  layout-margin
+                  md-whiteframe="4dp"
+                  layout-padding
+                >
+                  <div
+                    flex
+                    layout="column"
+                    layout-gt-sm="row"
+                  >
+                    <md-autocomplete
+                       flex
+                       md-floating-label="Materias Primas"
+                       md-item-text="item.titulo"
+                       md-selected-item="articulo.titulo"
+                       md-selected-item-change="articulo.insumos.itemChange(articulo, $index)"
+                       md-search-text="articulo.insumos.searchText[$index]"
+                       md-items="item in articulo.insumos.querySearch(articulo, $index)"
+                       ng-blur="ingrediente.cuerpo.btn.blur(articulo, $index, 'titulo', 'articulo')"
+                       >
+                    <md-item-template>
+                      <span
+                        md-highlight-text="articulo.insumos.searchText[$index]"
+                        md-highlight-flags="^i"
+                        >
+                        {{item.titulo}}
+                      </span>
+                    </md-item-template>
+                    </md-autocomplete>
+                    <md-input-container
+                      flex
+                    >
+                      <label>Cantidad</label>
+                      <input
+                        type="number"
+                        ng-model="articulo.cantidad"
+                        ng-keyup="articulo.cantidadblur(articulo, item)"
+                        ng-blur="articulo.cantidadblur(articulo, item, $index, 'cantidad', 'articulo')"
+                      >
+                      <!-- ingrediente.cuerpo.btn.blur(articulo, $index, 'cantidad', 'articulo') -->
+                    </md-input-container>
+                    <md-input-container flex>
+                      <label>Unidad</label>
+                      <md-select
+                        ng-model="articulo.unidad"
+                        class="md-no-underline"
+                        ng-blur="ingrediente.cuerpo.btn.blur(articulo, $index, 'unidad', 'articulo')"
+                      >
+                        <md-option value="null">Null</md-option>
+                        <md-option
+                          ng-repeat="key in articulo.lisunidad"
+                          ng-value="key.unidad"
+                        >
+                          {{ key.unidad }}
+                        </md-option>
+                      </md-select>
+                    </md-input-container>
+                    <md-input-container
+                      flex
+                    >
+                      <label>Precio</label>
+                      <input
+                        type="text"
+                        ng-model="articulo.preciocompra"
+                        ng-blur="ingrediente.cuerpo.btn.blur(articulo, $index, 'preciocompra', 'articulo')"
+                      >
+                    </md-input-container>
+                    <div
+                      layout="column"
+                    >
+                      <md-button
+                        class="md-icon-button md-primary md-raised"
+                        ng-click="ingrediente.cuerpo.btn.eliminar(articulo, $index, 'articulo', item)"
+                      >
+                        <md-icon md-svg-icon="close"></md-icon>
+                      </md-button>
+                    </div>
+                  </div>
+                </div>
+              </md-list-item>
+            </md-list>
+          </div>
+          <div
+            flex
+            layout = "row"
+          >
+            <md-chips
+                flex
+                md-transform-chip="item.usuario.transformChip($chip, item)"
+                ng-model="item.empleado"
+                placeholder="Empleados"
+                secondary-placeholder="+ Empleados"
+                md-on-select = "item.usuario.onSelect(item)"
+                md-autocomplete-snap
+                md-on-add="item.usuario.onAdd($chip, item)"
+                md-on-remove="item.usuario.onRemove($chip, item)"
+            >
+              <md-autocomplete
+                  style="width:500px"
+                  md-selected-item="item.usuario.selectedItem[val]"
+                  md-search-text="item.usuario.searchText"
+                  md-items="item in item.usuario.querySearch(item)"
+                  md-item-text="item.titulo"
+                  placeholder="Empleados..."
+                  secondary-placeholder="+ Otras Empleados"
+              >
+                    <span
+                        md-highlight-text="item.usuario.searchText"
+                    >
+                      {{item.nombre }}
+                    </span>
+              </md-autocomplete>
+              <md-chip-template>
+                <strong>{{ $chip.nombre }}</strong>
+              </md-chip-template>
+            </md-chips>
+          </div>
+          <div
+            layout="row"
+            layout-align="space-between center"
+          >
+            <span></span>
+            <span></span>
+            <md-button
+              class="md-icon-button md-primary md-raised"
+              ng-click="ingrediente.cuerpo.list.splice($index, 1)"
+            >
+              <md-icon md-svg-icon="close"></md-icon>
+            </md-button>
+          </div>
+        </div>
+      </md-list-item>
+    </md-list>
+  </md-dialog-content>
+  <md-dialog-actions
+    layout-align="space-between center"
+  >
+    <span></span>
+    <md-button
+      ng-if="ingrediente.cuerpo.btn.disable"
+      ng-click="ingrediente.cuerpo.btn.guardad()"
+    >
+      <md-icon md-svg-icon="content-save"></md-icon>
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>
