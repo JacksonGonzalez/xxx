@@ -16,6 +16,7 @@
       '$locale',
       '$mdToast',
       'Usuario',
+      'Unidad',
       '$state',
       'Blog',
       Tools
@@ -28,6 +29,7 @@
     $locale,
     $mdToast,
     Usuario,
+    Unidad,
     $state,
     Blog
     ) {
@@ -44,14 +46,14 @@
     return rta;
 
     function BlogUrl(urlBackend) {
-
+      $rootScope.unidad = Unidad.list;
       if(location.hostname.indexOf('localhost') < 0){
         $rootScope.hostname = location.hostname;
       }else{
         //$rootScope.hostname = 'rentamas.co';
         $rootScope.hostname = location.hostname.replace('localhost', '');
       }
-      console.log($rootScope.hostname);
+      // console.log($rootScope.hostname);
 
       return Blog
       .getquerys({
@@ -73,7 +75,7 @@
         }
       })
       .then(function(rta){
-        console.log(rta);
+        // console.log(rta);
         if(!rta || _.isEmpty(rta.list)){
           $state.go('dashboard');
         }
@@ -92,7 +94,7 @@
            }
          })
          .then(function(rta){
-           console.log(rta);
+           // console.log(rta);
            rta = rta.list[0];
            $rootScope.user=rta;
            // $state.go('dashboard');

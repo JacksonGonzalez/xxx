@@ -424,29 +424,64 @@
         var
           promises = []
         ;
-        _.forEach(obj.articulo, function(item){
-          if (item.titulo) {
-            if (item.titulo.id) {
-              console.log(item);
-              var data = {
-                tipounidad: item.tipounidad,
-                unidad: item.unidad,
-                dbunidad: item.mas.articuloblog.unidad,
-                cantidad: item.cantidad,
-                lisunidad: item.lisunidad
-              }
-              ;
-              Unidad.conversion(data)
-              .then(function(rta){
-                console.log(rta);
-                if (rta) {
-                }
-              })
-              ;
-            }
-          }
-        })
-        ;
+        // _.forEach(obj.articulo, function(item){
+        //   if (item.titulo) {
+        //     if (item.titulo.id) {
+        //       console.log(item);
+        //       var data = {
+        //         tipounidad: item.tipounidad,
+        //         unidad: item.unidad,
+        //         dbunidad: item.mas.articuloblog.unidad,
+        //         cantidad: item.cantidad,
+        //         lisunidad: item.lisunidad
+        //       }
+        //       ;
+        //       Unidad.conversion(data)
+        //       .then(function(conversion){
+        //         console.log(conversion);
+        //         if (conversion) {
+        //           promises.push(
+        //             ArticuloBlog
+        //             .getquerys({
+        //               id: item.titulo.id
+        //             })
+        //             .then(function(rta){
+        //               console.log(rta);
+        //               rta = rta.list[0];
+        //               if (rta) {
+        //                 if (rta.id) {
+        //                   var
+        //                     query = {
+        //                       id: item.titulo.id,
+        //                       cantidadtotal: 0
+        //                     }
+        //                   ;
+        //                   if (rta.cantidadtotal >= conversion) {
+        //                     query.cantidadtotal = rta.cantidadtotal-conversion;
+        //                   }else {
+        //                     query.cantidadtotal = 0;
+        //                   }
+        //                   console.log(query);
+        //                   promises.push(
+        //                     ArticuloBlog
+        //                     .actializar(query)
+        //                     .then(function(rta){
+        //                       console.log(rta);
+        //                     })
+        //                   )
+        //                   ;
+        //                 }
+        //               }
+        //             })
+        //           )
+        //           ;
+        //         }
+        //       })
+        //       ;
+        //     }
+        //   }
+        // })
+        // ;
       }
       function guardad(obj) {
         // console.log(vm.cuerpo.list);

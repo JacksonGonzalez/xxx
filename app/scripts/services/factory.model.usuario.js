@@ -18,17 +18,6 @@
     Model
     ) {
       var model = new Model('usuario'); 
-      model.authenticate = authenticate;
       return model;
-
-      function authenticate(user) {
-        return Modelo
-          .post(Modelo.getBase() + '/authenticate', user)
-          .then(function(rta) {
-            return rta;
-          }, function(err) {
-            return err;
-          });
-      }
   }
 })();

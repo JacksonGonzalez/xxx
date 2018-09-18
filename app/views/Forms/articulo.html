@@ -121,6 +121,52 @@
           </div>
           <div
             flex
+            layout="row"
+            layout-align="center center"
+          >
+            <md-button
+              class="md-button md-raised md-whiteframe"
+              ng-click="item.pis = !item.pis"
+            >
+              Ver Recetas
+            </md-button>
+          </div>
+          <div
+            flex
+            layout="column"
+            layout-gt-sm="row"
+            ng-if="item.pis"
+          >
+            <md-input-container flex>
+              <label>Recesatas</label>
+              <md-select
+                ng-model="item.receta"
+                ng-blur= "articulo.cuerpo.btn.blurdata('receta', item)"
+                class="md-no-underline"
+              >
+                <md-option
+                  value="null"
+                  ng-blur= "articulo.cuerpo.btn.blurdata()"
+                >
+                  Null
+                </md-option>
+                <md-option
+                  ng-click="articulo.cuerpo.crearunidad($event)"
+                >
+                  Crear
+                </md-option>
+                <md-option
+                  ng-blur= "articulo.cuerpo.btn.blurdata('receta', item)"
+                  ng-repeat="key in item.listreceta"
+                  ng-value="key.id"
+                >
+                  {{ key.titulo }}
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+          <div
+            flex
             layout="column"
             layout-gt-sm="row"
           >

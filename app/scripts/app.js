@@ -278,24 +278,24 @@
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
-      // .state({
-      //   url: '/login',
-      //   name: 'login',
-      //   controllerAs: 'login',
-      //   controller: 'LoginCtrl',
-      //   templateUrl: 'views/Login/login.html',
-      //   // resolve: {
-      //   //   Tools: ['Tools', function(Tools) {
-      //   //     return Tools.BlogUrl(urlBackend);
-      //   //   }]
-      //   // }
-      // })
       .state({
         url: '/',
         name: 'main',
         controllerAs: 'main',
         controller: 'MainCtrl',
         templateUrl: 'views/index.html',
+        resolve: {
+          Tools: ['Tools', function(Tools) {
+            return Tools.BlogUrl(urlBackend);
+          }]
+        }
+      })
+      .state({
+        url: '/login',
+        name: 'login',
+        controllerAs: 'login',
+        controller: 'LoginCtrl',
+        templateUrl: 'views/Login/login.html',
         resolve: {
           Tools: ['Tools', function(Tools) {
             return Tools.BlogUrl(urlBackend);
@@ -324,14 +324,19 @@
         templateUrl: 'views/informacion.html',
       })
       .state({
-        url: '/dashboard',
+        url: '/dashboard/:token',
         name: 'dashboard',
         controllerAs: 'dashboard',
         controller: 'DashboardCtrl',
         templateUrl: 'views/Dashboard/dashboard.html',
         resolve: {
-          Tools: ['Tools', function(Tools) {
+          Blog: ['Tools', function(Tools) {
+            console.log(Tools);
             return Tools.BlogUrl(urlBackend);
+          }],
+          user: ['UsuarioBlog', '$stateParams', function (UsuarioBlog, $stateParams) {
+            console.log(UsuarioBlog);
+            return UsuarioBlog.authenticate($stateParams.token);
           }]
         }
       })

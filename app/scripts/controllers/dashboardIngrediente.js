@@ -33,7 +33,9 @@
       ;
       get();
       function get() {
-        vm.cuerpo.search = new Search()(Actividad, 'ingrediente', {}, paginate);
+        vm.cuerpo.search = new Search()(Actividad, 'ingrediente', {
+          tipo: 'ingrediente'
+        }, paginate);
       }
       function crear(ev, obj) {
         if (!obj) {

@@ -1,1 +1,47 @@
-hola
+<md-content
+  flex
+  layout="column"
+  layout-fill
+>
+  <div
+    flex
+    layout="column"
+    layout-align="center center"
+    md-whiteframe="4dp"
+  >
+    <form
+      layout="column"
+      layout-padding
+      style="border: 1px solid black; width: 50%; border-radius: 3px;"
+      layout-margin
+      ng-submit="login.cuerpo.btn.iniciar()"
+    >
+      <div
+        layout="row"
+        layout-align="center center"
+        style="border-bottom: 1px solid black;"
+      >
+        <h2>Login</h2>
+      </div>
+      <md-input-container>
+        <label><md-icon md-svg-icon="account-box"></md-icon>Username</label>
+        <input type="text" ng-model="login.cuerpo.data.username">
+      </md-input-container>
+      <md-input-container>
+        <label><md-icon md-svg-icon="key"></md-icon>Password</label>
+        <input type="password" ng-model="login.cuerpo.data.password">
+      </md-input-container>
+      <div
+        layout="row"
+        style="border: 1px solid black; border-radius: 3px;"
+      >
+        <md-button
+          flex
+          ng-click="login.cuerpo.btn.iniciar()"
+        >
+          Submit
+        </md-button>
+      </div>
+    </form>
+  </div>
+</md-content>

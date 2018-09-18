@@ -14,6 +14,7 @@
       '$mdSidenav',
       'Search',
       'Usuario',
+      '$state',
       Dashboard
     ]);
 
@@ -21,7 +22,8 @@
     $rootScope,
     $mdSidenav,
     Search,
-    Usuario
+    Usuario,
+    $state
   ) {
     var
       vm = this,
@@ -67,7 +69,8 @@
           ;
         }
       },
-      empresa: $rootScope.blog.titulo
+      empresa: $rootScope.blog.titulo,
+      salir: salir
     };
 
     vm.cuerpo.menu.list=
@@ -390,6 +393,10 @@
 
     function toggle(id){
       return $mdSidenav(id).toggle();
+    }
+    function salir() {
+      console.log("men");
+      $state.go('/tienda')
     }
 
   }

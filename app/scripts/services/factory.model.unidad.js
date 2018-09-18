@@ -10,10 +10,12 @@
    */
   angular.module('dilisapApp')
     .factory('Unidad', [
+      '$q',
       Unidad
     ]);
 
   function Unidad(
+    $q
     )
   {
     var obj = {
@@ -31,33 +33,33 @@
             {
               unidad: 'litro - lt',
               conversion:{           //litros
-                'm3': 0.001,          // metro cubico
-                'cm3': 1000,     // centimetro cubico
-                'mm3': 1000        //milimitro cubico
+                'Metro Cúbico - m3': 0.001,          // metro cubico
+                'centimetro Cúbico - cm3': 1000,     // centimetro cubico
+                'Milimetro Cúbico - mm3': 1000        //milimitro cubico
               }
             },
             {
               unidad: 'Metro Cúbico - m3',
               conversion:{               // metro cubico
-                'cm3': 1000000,           // centimetro cubico
-                'mm3': 1000000000,           //milimitro cubico
-                'lt': 1000             //litros
+                'centimetro Cúbico - cm3': 1000000,           // centimetro cubico
+                'Milimetro Cúbico - mm3': 1000000000,           //milimitro cubico
+                'litro - lt': 1000             //litros
               },
             },
             {
               unidad: 'centimetro Cúbico - cm3',
               conversion:{            // centimetro cubico
-                'm3': 0.000001,        // metro cubico
-                'mm3': 1000,         //milimitro cubico
-                'lt': 0.001          //litros
+                'Metro Cúbico - m3': 0.000001,        // metro cubico
+                'Milimetro Cúbico - mm3': 1000,         //milimitro cubico
+                'litro - lt': 0.001          //litros
               }
             },
             {
               unidad: 'Milimetro Cúbico - mm3',
               conversion:{           //milimitro cubico
-                'm3': 0.000001,        // metro cubico
-                'cm3': 1,       // centimetro cubico
-                'lt': 0.001         //litros
+                'Metro Cúbico - m3': 0.000001,        // metro cubico
+                'centimetro Cúbico - cm3': 1,       // centimetro cubico
+                'litro - lt': 0.001         //litros
               }
             }
           ]
@@ -82,14 +84,22 @@
       if (query.tipounidad && query.unidad && query.dbunidad && query.cantidad && query.lisunidad) {
         var
           idx = 0,
-          data = ''
+          idx2 = 0,
+          data = '',
+          data1 = 0
         ;
         idx = _.findIndex(query.lisunidad, ['unidad', query.dbunidad]);
         if (idx >-1) {
           data = query.lisunidad[idx];
+          console.log(data);
+          console.log(data.conversion[query.unidad]);
+          if (data.conversion[query.unidad]) {
+            data1 = data.conversion[query.unidad]*query.cantidad;
+          }
         }
-        // TODO terminar esto
+        return $q.resolve(data1);
       }
+      return $q.reject("error not null");
     }
 
   }

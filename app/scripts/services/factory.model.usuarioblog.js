@@ -14,6 +14,7 @@
       'Rol',
       'Model',
       'Extra',
+      '$state',
       // 'Tools',
       'Usuario',
       'UsuarioRol',
@@ -26,12 +27,14 @@
     Rol,
     Model,
     Extra,
+    $state,
     // Tools,
     Usuario,
     UsuarioRol,
     ExtraCategoria
     ) {
       var model = new Model('usuarioblog');
+      model.authenticate = authenticate;
       model.saved = saved;
       model.update = update;
       model.addrol = addrol;
@@ -43,6 +46,18 @@
       model.savereferencia = savereferencia;
 
       return model;
+      function authenticate(user) {
+        console.log(user);
+        $state.go("login");
+        // return model
+        //   .post(model.getBase() + '/authenticate', user)
+        //   .then(function(rta) {
+        //     console.log(rta);
+        //     return rta;
+        //   }, function(err) {
+        //     return err;
+        //   });
+      }
       function saved(query) {
         // console.log(query);
         if (!query.estudiosprimarios) {

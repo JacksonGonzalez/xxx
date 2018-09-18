@@ -191,14 +191,24 @@
       layout="column"
   >
     <md-toolbar
+        layout="row"
         md-whiteframe="2"
     >
       <div
+          flex
           class="md-toolbar-tools"
           layout-align="space-between center"
       >
-      <span>Mensajes</span>
-    </div>
+        <span>Mensajes</span>
+      </div>
+      <div>
+        <md-button
+          class="md-whiteframe md-primary"
+          ng-click="dashboard.cuerpo.salir()"
+        >
+          Salir
+        </md-button>
+      </div>
     </md-toolbar>
     <md-content
         flex

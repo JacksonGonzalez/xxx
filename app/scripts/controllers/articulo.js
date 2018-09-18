@@ -16,6 +16,7 @@
       '$rootScope',
       '$mdDialog',
       'Ubicacion',
+      'Actividad',
       'Articulo',
       'Unidad',
       'Ciudad',
@@ -33,6 +34,7 @@
     $rootScope,
     $mdDialog,
     Ubicacion,
+    Actividad,
     Articulo,
     Unidad,
     Ciudad,
@@ -46,6 +48,7 @@
       list = []
     ;
     // console.log(dialog, $stateParams);
+    vm.receta = [];
     vm.cuerpo={
       btn:{
         close: close,
@@ -57,12 +60,14 @@
       opt: 'Agregar',
       generar: generar,
       list:[{
-        listipodeunidad: Unidad.list,
+        listipodeunidad: $rootScope.unidad || Unidad.list,
         codigo: codigogenerar(),
         tipo: dialog.opciono,
         estado: 'inactivo',
+        listreceta: [],
         blog: $rootScope.blog.id
       }],
+      crearunidad: crearunidad,
       listClone: {},
       unidad:{
         blurunidad: blurunidad
@@ -99,11 +104,15 @@
     // console.log(vm.cuerpo, Ubicacion);
     // console.log(dialog);
     getubicacion();
+    getReceta();
     if (dialog) {
       if (dialog.id) {
         vm.cuerpo.opt = 'Editar';
         dialog.listipodeunidad= Unidad.list;
-
+        if (dialog.receta) {
+          dialog.receta = dialog.receta.id;
+        }
+        dialog.listreceta = [];
         var clone = _.clone(dialog);
         vm.cuerpo.list[0]=clone;
         vm.cuerpo.listClone = _.clone(dialog);
@@ -112,6 +121,8 @@
         }
         vm.cuerpo.btn.disable = false;
         blurunidad(dialog);
+        getReceta();
+        console.log(dialog);
       }
     }
     function getubicacion() {
@@ -122,13 +133,66 @@
           vm.cuerpo.ubicacion.list = rta;
         });
     }
+    function crearunidad(ev, obj) {
+      $mdDialog.show({
+        controller: 'IngredienteCtrl',
+        controllerAs: 'ingrediente',
+        templateUrl: 'views/Forms/ingrediente.html',
+        parent: angular.element(document.body),
+        locals:{
+          dialog:obj
+        },
+        multiple: true,
+        targetEvent: ev,
+        clickOutsideToClose:true,
+        fullscreen: vm.customFullscreen // Only for -xs, -sm breakpoints.
+      })
+      .then(function(answer) {
+        // console.log(answer);
+      });
+    }
     function generar() {
       vm.cuerpo.list.push({
         listipodeunidad: Unidad.list,
         codigo: codigogenerar(),
         tipo: dialog.opciono,
         estado: 'inactivo',
+        listreceta: []
       });
+      getReceta();
+    }
+    function getReceta() {
+      var men = full();
+     function full() {
+       return Actividad
+        .getquerys({
+          limit: -1,
+          where:{
+            tipo: 'ingrediente'
+          }
+        })
+        .then(function(rta){
+          rta = rta.list;
+          if (rta) {
+            _.forEach(vm.cuerpo.list, function(item){
+              console.log(item);
+              if (!item.listreceta) {
+                item.listreceta = [];
+              }
+              if (item.listreceta) {
+                if (!item.listreceta.length) {
+                  item.listreceta = rta;
+                }
+              }
+            })
+            ;
+          }
+          // console.log(vm.cuerpo.list);
+          return rta;
+        })
+        ;
+     }
+     ;
     }
     function getciudad(idx) {
       var
@@ -162,11 +226,11 @@
           };
         }
       }
-      console.log(query);
+      // console.log(query);
       return Barrio
         .getquerys(query)
         .then(function(rta){
-          console.log(rta);
+          // console.log(rta);
           return rta.list;
         })
         ;
@@ -179,6 +243,7 @@
           // console.log(idx);
           if (idx >-1) {
             obj.lisunidad = obj.listipodeunidad[idx].unidad;
+            vm.cuerpo.list[0].lisunidad = obj.listipodeunidad[idx].unidad;
           }
         }
       }
@@ -186,14 +251,16 @@
     function close() {
       return $mdDialog.cancel();
     }
-    function blurdata(obj) {
+    function blurdata(obj, item) {
+      // console.log(obj);
       // console.log(obj, vm.cuerpo.list[0], vm.cuerpo.listClone);
       if (dialog.id) {
         var
           data = vm.cuerpo.list[0],
           clone = vm.cuerpo.listClone
         ;
-        console.log(obj);
+        // console.log(obj);
+        // console.log(data, clone);
         if (data[obj] !== clone[obj] || obj === ['tipounidad']) {
           // console.log("si");
           var query = {
@@ -206,10 +273,32 @@
           if (obj === 'titulo') {
               query.slug = _.kebabCase(query.titulo);
           }
-          console.log(query);
+          // console.log(query);
           articuloupdate(query, obj);
         }
       }
+      // if (obj === 'receta') {
+      //   // console.log(item, obj);
+      //   if (item) {
+      //     var idx = _.findIndex(item.listreceta, [ 'id', item.receta]);
+      //     // console.log(idx);
+      //     if (idx >-1) {
+      //       // console.log(item.listreceta[idx]);
+      //       var m = item.listreceta[idx];
+      //       item.cantidadtotal = m.cantidad || item.cantidadtotal;
+      //       item.precioventa = m.costototal || item.precioventa;
+      //       if (dialog.id) {
+      //         var query = {
+      //           id: dialog.id,
+      //           cantidadtotal: item.cantidadtotal,
+      //           precioventa: item.precioventa
+      //         }
+      //         ;
+      //         articuloupdate(query, obj);
+      //       }
+      //     }
+      //   }
+      // }
     }
     // console.log($rootScope);
     function guardad(obj) {
