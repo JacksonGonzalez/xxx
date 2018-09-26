@@ -75,7 +75,7 @@
         }
       })
       .then(function(rta){
-        // console.log(rta);
+         console.log(rta);
         if(!rta || _.isEmpty(rta.list)){
           $state.go('dashboard');
         }
