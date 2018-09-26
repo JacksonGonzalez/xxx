@@ -67,7 +67,7 @@
                     .then(function(val){
                       // console.log(val);
                       if (val.id) {
-                        addarticulo(val, data);
+                        addarticulo(val, data, query);
                       }
                       return val;
                     })
@@ -174,8 +174,8 @@
         })
         ;
       }
-      function addarticulo(val, data) {
-        console.log(val, data);
+      function addarticulo(val, data, query) {
+        // console.log(val, data);
         var
           promises = []
         ;
@@ -185,12 +185,18 @@
             id: val.articuloblog
           })
           .then(function(articulo){
-            console.log(articulo);
+            // console.log(articulo);
             articulo = articulo.list[0];
             if (articulo) {
               var total = 0;
-              if (articulo.cantidadtotal >= val.cantidad) {
-                total = articulo.cantidadtotal-val.cantidad;
+              if (query.tipo === 'factura') {
+                if (articulo.cantidadtotal >= val.cantidad) {
+                  total = articulo.cantidadtotal-val.cantidad;
+                }
+              }else if (query.tipo === 'compra') {
+                total = articulo.cantidadtotal+val.cantidad;
+              }else {
+
               }
               promises.push(
                 ArticuloBlog
@@ -200,6 +206,7 @@
                 })
                 .then(function(item){
                   console.log(item);
+                  return item;
                 })
               )
               ;

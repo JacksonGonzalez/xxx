@@ -100,7 +100,7 @@
         actializar: updateItem,
         eliminar: removeItem,
         add: addItem,
-        stats: stats,
+        reportes: reportes,
         setForceSockets: setForceSockets,
         selection: selection,
         getSelection: function() {
@@ -109,8 +109,8 @@
         lista: lista
       };
 
-      function stats() {
-        return getModel(getBaseModel() + '/stats', {
+      function reportes() {
+        return getModel(getBaseModel() + '/reportes', {
           blog: $rootScope.blog.id
         });
       }

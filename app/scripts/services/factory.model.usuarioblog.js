@@ -47,8 +47,9 @@
 
       return model;
       function authenticate(user) {
-        console.log(user);
-        $state.go("login");
+        // console.log(user);
+        $state.go("dashboard");
+        // TODO terminar lo del login
         // return model
         //   .post(model.getBase() + '/authenticate', user)
         //   .then(function(rta) {

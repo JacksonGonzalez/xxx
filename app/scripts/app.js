@@ -324,7 +324,7 @@
         templateUrl: 'views/informacion.html',
       })
       .state({
-        url: '/dashboard/:token',
+        url: '/dashboard',
         name: 'dashboard',
         controllerAs: 'dashboard',
         controller: 'DashboardCtrl',
@@ -334,10 +334,10 @@
             console.log(Tools);
             return Tools.BlogUrl(urlBackend);
           }],
-          user: ['UsuarioBlog', '$stateParams', function (UsuarioBlog, $stateParams) {
-            console.log(UsuarioBlog);
-            return UsuarioBlog.authenticate($stateParams.token);
-          }]
+          // user: ['UsuarioBlog', '$stateParams', function (UsuarioBlog, $stateParams) {
+          //   console.log(UsuarioBlog);
+          //   return UsuarioBlog.authenticate($stateParams.token);
+          // }]
         }
       })
       .state({
@@ -383,6 +383,14 @@
         templateUrl: 'views/Dashboard/historial.html',
       })
 
+
+      .state({
+        url: '/reportes',
+        name: 'dashboard.reportes',
+        controllerAs: 'reportes',
+        controller: 'DashboardReportesCtrl',
+        templateUrl: 'views/Dashboard/reportes.html',
+      })
 
       .state({
         url: '/fasturas',

@@ -149,10 +149,10 @@
             sref: ''
           },
           {
-            name: 'Estadisticas',
+            name: 'Reportes',
             icon: '',
-            disable: false,
-            sref: ''
+            disable: true,
+            sref: 'dashboard.reportes'
           }
         ]
       },

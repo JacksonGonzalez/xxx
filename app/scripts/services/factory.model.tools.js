@@ -88,8 +88,8 @@
         return UsuarioBlog
          .getquerys({
            where:{
-             id:"5b8c5ce5f104f9dc9bc77192"
-             // nombre: 'test2',
+             // id:"5b8c5ce5f104f9dc9bc77192"
+             nombre: 'admin',
              // slugapellido: 'men'
            }
          })
