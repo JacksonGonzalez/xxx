@@ -256,6 +256,7 @@
                   item.totalprecio=item.cantidadadquiridad*item.precioventa;
                   data+=item.totalprecio;
                   iva = data*iva;
+                  iva = data+iva;
                 }
               }
           })
